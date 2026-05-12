@@ -246,8 +246,8 @@ textarea:focus { outline: none; border-color: #444; }
     </div>
     <div class="field">
       <label>Argon's Finest (points)</label>
-      <input type="number" id="ctxArgon" min="0" max="10" placeholder="e.g. 3">
-      <span class="hint">3+ = see skills at hire</span>
+      <input type="number" id="ctxArgon" min="0" max="5" placeholder="0–5">
+      <span class="hint">1pt=lv5 · 3pt=lv10 · 5pt=lv15</span>
     </div>
     <div class="field">
       <label>Gold spare</label>
@@ -446,8 +446,10 @@ function analyze() {
       parts.push(`<span class="ctx-item"><span class="ctx-label">Titan Souls</span><span class="ctx-val">${ctx.souls}</span></span>`);
     }
     if (ctx.argon !== null) {
-      const argonNote = ctx.argon >= 3 ? "skills visible at hire" : "level to 3 to see skills at hire";
-      parts.push(`<span class="ctx-item"><span class="ctx-label">Argon's Finest</span><span class="ctx-val">${ctx.argon}</span><span class="res-note">${argonNote}</span></span>`);
+      const ARGON_LEVELS = [1, 5, 8, 10, 13, 15];
+      const startLv  = ARGON_LEVELS[Math.min(ctx.argon, 5)];
+      const skills   = ctx.argon >= 3 ? "2 skills at hire" : ctx.argon >= 1 ? "1 skill at hire" : "no skills at hire";
+      parts.push(`<span class="ctx-item"><span class="ctx-label">Argon's Finest</span><span class="ctx-val">${ctx.argon}/5</span><span class="res-note">lv${startLv} start · ${skills}</span></span>`);
     }
     if (ctx.gold) {
       parts.push(`<span class="ctx-item"><span class="ctx-label">Gold spare</span><span class="ctx-val">${escHtml(ctx.gold)}</span></span>`);
