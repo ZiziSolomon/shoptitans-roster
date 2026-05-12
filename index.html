@@ -333,6 +333,49 @@ const CLASS_MAP = {
   "Fateweaver":  { element: "Air",   archetype: "Spellcaster", tier: 7 },
 };
 
+// Hero slot unlocks by ML. Index = slot number, value = ML required.
+// Slot 1 is free at game start. Data from MerchantLevel.txt.
+const HERO_SLOTS = [
+  0,   // slot 1 — start
+  3,   // slot 2
+  5,   // slot 3
+  15,  // slot 4
+  17,  // slot 5
+  20,  // slot 6
+  25,  // slot 7
+  27,  // slot 8
+  29,  // slot 9
+  33,  // slot 10
+  35,  // slot 11
+  40,  // slot 12
+  42,  // slot 13
+  44,  // slot 14
+  50,  // slot 15
+  52,  // slot 16
+  54,  // slot 17
+  60,  // slot 18
+  64,  // slot 19
+  68,  // slot 20
+  72,  // slot 21
+  76,  // slot 22
+  80,  // slot 23
+  84,  // slot 24
+  88,  // slot 25 — maximum (ML99 is level cap; no further slots in file)
+];
+
+function maxSlotsAtML(ml) {
+  if (ml == null) return null;
+  let count = 0;
+  for (const req of HERO_SLOTS) { if (ml >= req) count++; else break; }
+  return count;
+}
+
+function nextSlotML(ml) {
+  if (ml == null) return null;
+  for (const req of HERO_SLOTS) { if (req > ml) return req; }
+  return null; // already at or beyond known max
+}
+
 // T6 classes to show as "locked" on element cards below ML53
 const T6_BY_ELEMENT = {
   Water: ["Geomancer (Spellcaster)"],
@@ -519,6 +562,10 @@ function analyze() {
       parts.push(`<span class="ctx-item"><span class="ctx-label">Gold spare</span><span class="ctx-val">${escHtml(ctx.gold)}</span></span>`);
     }
     if (ctx.ml) {
+      const slots = maxSlotsAtML(ctx.ml);
+      const nextSlot = nextSlotML(ctx.ml);
+      parts.push(`<span class="ctx-item"><span class="ctx-label">Hero slots</span><span class="ctx-val">${slots}</span>${nextSlot ? `<span class="res-note">next at ML${nextSlot}</span>` : ""}</span>`);
+
       if (ctx.ml < 52)      parts.push(`<span class="milestone-note upcoming">Next: ML52 — Argon's Finest maxes, +1 roster slot</span>`);
       else if (ctx.ml < 53) parts.push(`<span class="milestone-note upcoming">Next: ML53 — T6 classes unlock (Geomancer, Berserker, Dancer)</span>`);
       else if (ctx.ml < 67) parts.push(`<span class="milestone-note unlocked">ML53 ✓ T6 classes available</span>`);
