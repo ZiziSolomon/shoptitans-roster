@@ -1,0 +1,422 @@
+SHOP TITANS — SKILL TIER LISTS BY CLASS
+Source: shoptitans.dowob.dev (May 2026)
+=========================================
+Ratings are CLASS-SPECIFIC. The same skill can be S-tier on one class and
+D-tier on another. Always check the section for the specific hero you're
+evaluating.
+
+Skill tiers: S=Essential  A=Great auxiliary  B=Usable  C=Weak  D=Avoid
+
+Skill progression: skills level up as you equip items enchanted with the
+hero's element. T1 is the base (unenchanted). T4 is fully levelled. The T4
+name is shown in brackets. All tiers of a skill share the same tier rating.
+Base stats shown in-game are T1 — the tracker shows T4 (max) values.
+
+Key skills with effects (for quick lookup):
+  Adept [Ascended Archmage]      +30% Atk; +250% Atk with Staff/Wand/Instrument
+  Assassinate [Merciless Exec.]  +120% Atk; +100% Crit Dmg
+  Battering Blows [Non-Stop Onslaught]  +140% Atk; +35% HP
+  Blurred Movement [Ludicrous Speed]    +33% Evasion
+  Cloak & Dagger [Deus Ex Machina]      +120% Def; +12% Evasion
+  Dance of Blades [Lethal Finale Pt2]   +150% Atk; +12% Evasion
+  Death Dealer [All or Nothing]         +350% Crit Dmg
+  Deception [Shadow Jaunt]              +18% Evasion; +18% Crit Chance
+  Double Cast [Penta Cast]              +220% Atk
+  Deadly Criticals [Executioner]        +200% Crit Dmg (T4)
+    Tier names: T1 Deadly Criticals → T2 Coup de Grace (+150% Crit Dmg) → T3 Executioner
+  Extended Warranty [Premium Brand]     +40% equip stats; -60% Break Chance
+    Tier names: T1 Extended Warranty (+20%/-40%) → T2 Safekept Receipt (+25%/-45%)
+                → T3 Lifetime Warranty (+30%/-50%) → T4 Premium Brand (+40%/-60%)
+    Rarity: Epic. The Common-rarity equivalent is Maintenance (same two effects,
+    smaller numbers — Maintenance T4 ≈ Extended Warranty T1).
+    Maintenance tier names: T1 Maintenance → T2 Extra Polish (-30% Break, +10% stats)
+                            → T3 Mirror Sheen → T4 (unknown)
+  Extra Conditioning [Atlas' Fitness]   +60% Def; +20% Evasion
+  Extra Plating [Bulletproof]           +150% Def; +40% HP
+  Finesse [Heavenly Grace]              +120% Atk; +13% Crit Chance
+  Fireball [Meteor Swarm]               +160% Atk; +200 flat Atk
+  Flame Brand [Scorching Purge]         +125% Atk; +50% Def
+  Impervious [Beyond Immortal]          +80% HP; +150 flat HP
+  Juggernaut [Elder Titan]              +75% Def; +40% HP
+  Mana Shield [Nihil Shield]            +120% Atk; +65% Def
+  Marksman [Deadeye Elite]              +8% Evasion; +250% Atk with Bow/Crossbow/Gun
+  On Guard [Primal Glacier]             +90% Def; 100% survive one fatal blow
+  Perfect Form [Daeva Form]             +150% Atk; +50% Def
+  Shining Blade [Chosen One]            +120% Atk; +60% Def
+  Sturdy [Greater than Granite]         +60% HP
+  Survivor [Everlasting]                +50% HP; -40% Rest Time
+  Telling Blows [Signature Move]        +18% Crit Chance; +150% Crit Dmg
+  Thick Skin [Titan Skin]               +120% Def; +30% HP
+  Toughness [Titan's Mettle]            +50% HP; -20% Rest Time
+  Wall of Force [Mage Dimension]        +90% Atk; +60% Def
+  Warlord [Elder God of War]            +20% HP; +250% Atk with Sword/Axe/Dagger
+  Whirlwind Attack [Ultra Petaslash]    +140% Atk; +12% Crit Chance
+  Weapon mastery (general):
+    Axe/Bow/Catalyst/Crossbow/Dagger/Gun/Instrument/Mace/Spear/Sword Master
+    → +200-250% Atk with that weapon type (tier-dependent)
+  Smite [Wrath of the Goddess]          +75% Atk; +50% Def
+  Mage Armor [Supreme Magic Shell]      +80% Atk; +40% Def
+  Super Genius [The Smarterest]         +30% equip stats; +300% XP  ← AVOID
+  Fast Learner [Scholar]                +25% equip stats; +100% XP  ← AVOID
+  Acrobatics [Ethereal Form]            +25% Evasion  (class-dependent value)
+  Eagle Eyes [Future Sight]             +25% Crit Chance
+
+
+=====================================
+FIGHTERS
+=====================================
+
+--- SOLDIER (T1, Earth, Fighter) ---
+S: Battering Blows, Blurred Movement, Extended Warranty, Extra Plating,
+   Impervious, Perfect Form, Warlord, Extra Conditioning, Juggernaut,
+   Thick Skin, Sturdy
+A: Survivor, Flame Brand, Shining Blade, Toughness, Acrobatics, Maintenance,
+   On Guard, Shield Master
+B: Super Genius, Deception, Fast Healer, Smite
+C: Death Dealer, Whirlwind Attack, All Natural, Caltrops, Power Attack, Sunder,
+   Telling Blows, Throw Daggers, Cleave, Dagger/Mace/Spear/Sword Master,
+   Fast Learner
+D: Deadly Criticals, Eagle Eyes, Perforate
+Note: Weapon mastery is C-tier — Soldier wants pure defense/HP skills.
+
+--- BARBARIAN (T2, Fire, Fighter) ---
+S: Battering Blows, Blurred Movement, Extended Warranty, Extra Plating,
+   Impervious, Perfect Form, Warlord, Extra Conditioning, Flame Brand,
+   Juggernaut, Shining Blade, Thick Skin, Sturdy
+A: Death Dealer, Survivor, Whirlwind Attack, All Natural, Toughness, Acrobatics,
+   Axe/Mace/Spear/Sword Master, Maintenance, On Guard, Shield Master
+B: Super Genius, Deadly Criticals, Deception, Fast Healer, Power Attack, Sunder,
+   Telling Blows, Smite
+C: Caltrops, Throw Daggers, Cleave, Eagle Eyes, Fast Learner, Perforate
+Note: Weapon mastery is A-tier for Barbarian (unlike other fighters) — Axe/Mace
+are good choices on top of defensive skills.
+
+--- KNIGHT (T3, Light, Fighter) ---
+S: Battering Blows, Blurred Movement, Extended Warranty, Extra Plating,
+   Impervious, Perfect Form, Warlord, Extra Conditioning, Juggernaut,
+   Thick Skin, Sturdy
+A: Survivor, Flame Brand, Shining Blade, Toughness, Acrobatics, Maintenance,
+   On Guard, Shield Master
+B: Super Genius, Whirlwind Attack, Deception, Fast Healer, Smite
+C: Death Dealer, All Natural, Caltrops, Power Attack, Sunder, Telling Blows,
+   Throw Daggers, Axe/Mace/Spear/Sword Master, Cleave, Fast Learner
+D: Deadly Criticals, Eagle Eyes, Perforate
+Note: Near-identical to Soldier. Pure tank — weapon mastery is C-tier.
+Target skills: Juggernaut, Extra Conditioning, Thick Skin, Impervious, On Guard.
+
+--- RANGER (T4, Air, Fighter) ---
+S: Battering Blows, Blurred Movement, Extra Plating, Impervious, Marksman,
+   Perfect Form, Extra Conditioning, Juggernaut, Thick Skin, Acrobatics, Sturdy
+A: Survivor, Caltrops, Flame Brand, Shining Blade, Throw Daggers, Toughness,
+   Maintenance, On Guard
+B: Super Genius, Deception, Fast Healer, Smite
+C: Death Dealer, Whirlwind Attack, All Natural, Power Attack, Sunder,
+   Telling Blows, Bow/Crossbow/Gun Master, Cleave, Fast Learner
+D: Deadly Criticals, Eagle Eyes, Perforate
+Note: Marksman (S) covers ALL ranged weapons + evasion and is the ONLY offensive
+skill worth having. Individual weapon mastery (Gun/Bow/Crossbow Master) is C-tier
+because Marksman outclasses them all. Ranger wants Marksman + defensive skills.
+
+--- SAMURAI (T5, Water, Fighter) ---
+S: Battering Blows, Death Dealer, Extra Plating, Impervious, Marksman,
+   Perfect Form, Warlord, Whirlwind Attack, All Natural, Deception,
+   Extra Conditioning, Flame Brand, Juggernaut, Shining Blade, Telling Blows,
+   Thick Skin, Bow/Spear/Sword Master
+A: Blurred Movement, Extended Warranty, Survivor, Deadly Criticals, Power Attack,
+   Sunder, Toughness, Eagle Eyes, Maintenance, On Guard, Sturdy
+B: Super Genius, Fast Healer, Acrobatics, Perforate
+C: Caltrops, Throw Daggers, Cleave, Fast Learner, Smite
+Note: Samurai is flexible — can build around melee (Warlord), ranged (Marksman),
+or crit (All Natural, Death Dealer, Telling Blows). Powerful but complex.
+Avoid until you understand what build you're going for.
+
+--- BERSERKER (T6, Fire, Fighter) ---
+S: Battering Blows, Blurred Movement, Extended Warranty, Extra Plating,
+   Impervious, Perfect Form, Warlord, Extra Conditioning, Flame Brand,
+   Juggernaut, Shining Blade, Thick Skin, Sturdy
+A: Death Dealer, Survivor, Whirlwind Attack, All Natural, Toughness, Acrobatics,
+   Axe Master, Gun Master, Instrument Master, Mace Master, Maintenance, On Guard,
+   Shield Master, Spear Master, Sword Master
+B: Super Genius, Deadly Criticals, Deception, Fast Healer, Power Attack, Sunder,
+   Telling Blows, Smite
+C: Caltrops, Throw Daggers, Cleave, Eagle Eyes, Fast Learner, Perforate
+Note: Strong offensive fighter but still wants defensive skills first. Weapon
+mastery is A-tier (not C-tier like Soldier/Knight). Any weapon master is fine.
+
+--- DARK KNIGHT (T7, Dark, Fighter) ---
+[URL returned 404 — data not retrieved. Avoid this class for now anyway.]
+
+
+=====================================
+ROGUES
+=====================================
+
+--- THIEF (T1, Air, Rogue) ---
+S: Adept, Assassinate, Blurred Movement, Cloak & Dagger, Dance of Blades,
+   Death Dealer, Impervious, Marksman, Warlord, Whirlwind Attack, All Natural,
+   Antimagic Net, Curse, Deception, Finesse, Bow/Crossbow/Dagger/Instrument Master
+A: Extended Warranty, Caltrops, Deadly Criticals, Extra Conditioning,
+   Glancing Blows, Hinder, Telling Blows, Throw Daggers, Acrobatics, Eagle Eyes,
+   Sturdy
+B: Survivor, Juggernaut, Toughness, Backstab, Perforate
+C: Magic Darts, Parry
+D: Super Genius, Fast Healer, Fast Learner, Maintenance
+Note: T1 needs Titan Soul. Enormous skill pool with many good options.
+
+--- MONK (T2, Water, Rogue) ---
+S: Assassinate, Blurred Movement, Cloak & Dagger, Dance of Blades, Death Dealer,
+   Destructive Strikes [Ten Thousand Fists: +150% Atk; +300% Crit Dmg],
+   Impervious, Whirlwind Attack, All Natural, Antimagic Net, Curse, Deception,
+   Finesse, Telling Blows
+A: Extended Warranty, Caltrops, Deadly Criticals, Extra Conditioning,
+   Glancing Blows, Hinder, Throw Daggers, Acrobatics, Eagle Eyes, Sturdy
+B: Survivor, Juggernaut, Toughness, Backstab, Perforate
+C: Magic Darts, Parry
+D: Super Genius, Fast Healer, Fast Learner, Maintenance
+Note: Destructive Strikes is Monk-exclusive and S-tier. Monk uses rings (no
+standard weapon mastery) — pure melee DPS.
+
+--- MUSKETEER (T3, Fire, Rogue) ---
+S: Assassinate, Blurred Movement, Cloak & Dagger, Dance of Blades, Death Dealer,
+   Impervious, Marksman, Warlord, Whirlwind Attack, All Natural, Antimagic Net,
+   Curse, Deception, Finesse, Telling Blows, Crossbow/Gun/Sword Master
+A: Extended Warranty, Caltrops, Deadly Criticals, Extra Conditioning,
+   Glancing Blows, Hinder, Throw Daggers, Acrobatics, Eagle Eyes, Sturdy
+B: Survivor, Juggernaut, Toughness, Backstab, Perforate
+C: Magic Darts, Parry
+D: Super Genius, Fast Healer, Fast Learner, Maintenance
+Note: Gun Master is S-tier for Musketeer (unlike Ranger where it's C-tier).
+Eagle Eyes is A-tier here. Strong DPS class with good weapon mastery options.
+
+--- WANDERER (T4, Earth, Rogue) ---
+S: Assassinate, Blurred Movement, Cloak & Dagger, Dance of Blades, Death Dealer,
+   Impervious, Marksman, Warlord, Whirlwind Attack, All Natural, Antimagic Net,
+   Curse, Deception, Finesse, Axe/Dagger/Gun Master
+A: Extended Warranty, Caltrops, Deadly Criticals, Extra Conditioning,
+   Glancing Blows, Hinder, Telling Blows, Throw Daggers, Acrobatics, Eagle Eyes,
+   Sturdy
+B: Survivor, Juggernaut, Toughness, Backstab, Perforate
+C: Magic Darts, Parry
+D: Super Genius, Fast Healer, Fast Learner, Maintenance
+Note: Rogue classes share very similar tier lists. S-tier skills are strong attack
+skills with at least one secondary stat (evasion/crit). Pure HP skills are lower.
+
+--- NINJA (T5, Dark, Rogue) ---
+S: Assassinate, Blurred Movement, Cloak & Dagger, Dance of Blades, Death Dealer,
+   Impervious, Marksman, Warlord, Whirlwind Attack, All Natural, Antimagic Net,
+   Curse, Deception, Finesse, Bow/Dagger/Sword Master
+A: Extended Warranty, Caltrops, Deadly Criticals, Extra Conditioning,
+   Glancing Blows, Hinder, Telling Blows, Throw Daggers, Sturdy
+B: Survivor, Juggernaut, Toughness, Acrobatics, Backstab, Eagle Eyes, Magic Darts,
+   Perforate
+C: Parry
+D: Super Genius, Fast Healer, Fast Learner, Maintenance
+Note: Bow Master is S-tier for Ninja. Marksman is also S-tier (covers all ranged).
+Ninja is a high-DPS class with good options.
+
+--- DANCER (T6, Air, Rogue) ---
+S: Adept, Assassinate, Blurred Movement, Cloak & Dagger, Dance of Blades,
+   Death Dealer, Impervious, Marksman, Warlord, Whirlwind Attack, All Natural,
+   Antimagic Net, Curse, Deception, Finesse, Bow/Catalyst/Crossbow/Dagger/
+   Instrument/Wand Master
+A: Extended Warranty, Caltrops, Deadly Criticals, Extra Conditioning,
+   Glancing Blows, Hinder, Telling Blows, Throw Daggers, Acrobatics, Eagle Eyes,
+   Sturdy
+B: Survivor, Juggernaut, Toughness, Backstab, Perforate
+C: Magic Darts, Parry
+D: Super Genius, Fast Healer, Fast Learner, Maintenance
+Note: Dancer has an unusually broad weapon mastery S-tier pool. Can use many
+weapon types. Replaces Thief as Air Rogue; Sabrina (Thief T1) becomes redundant
+when Dancer is available at ML53.
+
+--- VELITE (T7, Light, Rogue) ---
+S: Assassinate, Battering Blows, Blurred Movement, Cloak & Dagger, Dance of
+   Blades, Death Dealer, Impervious, Whirlwind Attack, All Natural, Antimagic Net,
+   Curse, Deception, Finesse, Power Attack, Shield Master
+A: Extended Warranty, Caltrops, Deadly Criticals, Extra Conditioning,
+   Glancing Blows, Hinder, Sunder, Telling Blows, Throw Daggers, Acrobatics,
+   Eagle Eyes, Sturdy
+B: Survivor, Juggernaut, Toughness, Backstab, Perforate
+C: Magic Darts, On Guard, Parry
+D: Super Genius, Fast Healer, Fast Learner, Maintenance
+Note: T7, expensive to hire. Light Rogue — the only Light rogue in the game.
+Shield Master is S-tier here (unlike most other rogues where it's lower).
+
+
+=====================================
+SPELLCASTERS
+=====================================
+
+--- MAGE (T1, Fire, Spellcaster) ---
+S: Adept, Dance of Blades, Death Dealer, Double Cast, Impervious, Mana Shield,
+   Marksman, Perfect Form, All Natural, Electric Arc, Fireball, Flame Brand,
+   Shining Blade, Telling Blows, Staff Master
+A: Extended Warranty, Antimagic Net, Curse, Deadly Criticals, Juggernaut,
+   Wall of Force, Arcane Blast, Catalyst/Crossbow/Instrument/Wand Master
+B: Survivor, Deception, Eagle Eyes, Mage Armor, Smite, Sturdy
+C: Blurred Movement, Extra Conditioning, Toughness, Magic Darts, Maintenance
+D: Super Genius, Fast Healer, Acrobatics, Fast Learner
+Note: T1 needs Titan Soul. Staff Master is S-tier. Mage Armor (→ Supreme Magic
+Shell) is B-tier — "Greater Magic Shell" (what Otello has) is mid-tier at best.
+Mage is a strong class once promoted.
+
+--- CLERIC (T2, Light, Spellcaster) ---
+S: Adept, Dance of Blades, Double Cast, Impervious, Mana Shield, Perfect Form,
+   Warlord, All Natural, Antimagic Net, Curse, Electric Arc, Fireball, Flame Brand,
+   Shining Blade, Mace/Spear/Wand Master
+A: Blurred Movement, Death Dealer, Extended Warranty, Survivor, Extra Conditioning,
+   Juggernaut, Toughness, Wall of Force, Arcane Blast, Sturdy
+B: Deadly Criticals, Deception, Acrobatics, Mage Armor, Magic Darts, Shield Master,
+   Smite
+C: Fast Healer, Eagle Eyes
+D: Super Genius, Fast Learner, Maintenance
+Note: T2 needs Titan Soul. Mace Master is S-tier for Cleric. Wand Master also
+S-tier. Strong spellcaster once promoted. Your future Light hire.
+
+--- DRUID (T3, Earth, Spellcaster) ---
+S: Adept, Dance of Blades, Double Cast, Impervious, Mana Shield, Marksman,
+   Perfect Form, All Natural, Electric Arc, Fireball, Flame Brand, Juggernaut,
+   Shining Blade, Bow/Catalyst/Instrument/Staff/Sturdy/Wand Master
+A: Death Dealer, Extended Warranty, Survivor, Antimagic Net, Curse, Telling Blows,
+   Wall of Force, Arcane Blast
+B: Deadly Criticals, Extra Conditioning, Toughness, Eagle Eyes, Mage Armor, Smite
+C: Blurred Movement, Deception, Fast Healer, Maintenance
+D: Super Genius, Acrobatics, Fast Learner
+Note: Instrument Master is S-tier for Druid — Titania's best skill. Fireball
+family (→ Meteor Swarm) also S-tier, so Magma Orb (likely Fireball intermediate)
+is probably S-tier. Titania is your best spellcaster.
+
+--- SORCERER (T4, Dark, Spellcaster) ---
+S: Adept, Dance of Blades, Death Dealer, Double Cast, Impervious, Perfect Form,
+   Petrify [+190% Atk; +50% Def], Poison Cloud [+240% Atk], Warlord, All Natural,
+   Disintegrate [+150% Atk; +60% Crit Dmg], Dragon Breath [+175% Atk],
+   Electric Arc, Fireball, Summon Demon [+150% Atk; +60 HP],
+   Catalyst/Dagger/Staff/Wand Master
+A: Extended Warranty, Mana Shield, Antimagic Net, Curse, Deadly Criticals,
+   Flame Brand, Juggernaut, Shadow Embrace [+140% Atk; +12% Evasion],
+   Shining Blade, Telling Blows, Wall of Force, Hex [+125% Atk; +50% Crit Dmg],
+   Life Drain [+125% Atk; +80 HP]
+B: Arcane Blast, Eagle Eyes, Sturdy
+C: Blurred Movement, Survivor, Deception, Extra Conditioning, Fast Healer,
+   Toughness, Mage Armor, Magic Darts, Maintenance, Smite
+D: Super Genius, Acrobatics, Fast Learner
+Note: Mage Armor (Greater Magic Shell) is C-tier for Sorcerer. Sorcerer has many
+unique S-tier spells (Petrify, Poison Cloud, Dragon Breath, etc.). Catalyst Master
+is S-tier. Kira with Catalyst is on the right track.
+
+--- SPELLBLADE (T5, All elements, Spellcaster) ---
+S: Adept, Assassinate, Battering Blows, Dance of Blades, Death Dealer, Double
+   Cast, Extended Warranty, Extra Plating, Impervious, Mana Shield, Marksman,
+   Perfect Form, Warlord, Whirlwind Attack, All Natural, Electric Arc, Finesse,
+   Fireball, Telling Blows, Thick Skin, Axe/Bow/Instrument/Staff/Sword Master
+A: Survivor, Antimagic Net, Curse, Deadly Criticals, Flame Brand, Juggernaut,
+   Power Attack, Shining Blade, Sunder, Sturdy
+B: Cloak & Dagger, Caltrops, Deception, Hinder, Throw Daggers, Toughness,
+   Wall of Force, Arcane Blast, Eagle Eyes, Mage Armor, Smite
+C: Blurred Movement, Extra Conditioning, Fast Healer, Glancing Blows, Backstab,
+   Cleave, Maintenance, Shield Master
+D: Super Genius, Acrobatics, Fast Learner, Magic Darts, On Guard, Parry, Perforate
+Note: AVOID until core roster is complete. Enormous S-tier pool means rolling
+good skills is extremely hard. On Guard (S-tier for tanks) is D-tier here.
+Selena (Sonic Thrust, Shrapnel Grenade) — both skills are not in the S-tier list,
+confirming she should be retired.
+
+--- GEOMANCER (T6, Water, Spellcaster) ---
+S: Adept, Dance of Blades, Death Dealer, Double Cast, Impervious, Mana Shield,
+   Perfect Form, Warlord, All Natural, Electric Arc, Fireball, Flame Brand,
+   Catalyst/Instrument/Staff/Sword/Wand Master
+A: Extended Warranty, Antimagic Net, Curse, Deadly Criticals, Juggernaut,
+   Shining Blade, Telling Blows, Wall of Force, Arcane Blast, Eagle Eyes, Sturdy
+B: Survivor, Deception, Mage Armor, Magic Darts, Smite
+C: Blurred Movement, Extra Conditioning, Toughness, Maintenance
+D: Super Genius, Fast Healer, Acrobatics, Fast Learner
+Note: T6 — strong out of the box. Your Water Spellcaster hire at ML53.
+Catalyst Master is S-tier, as is Staff/Wand/Instrument Master. Good options.
+
+--- CHRONOMANCER (T7, Air, Spellcaster) ---
+S: Adept, Dance of Blades, Death Dealer, Double Cast, Impervious, Mana Shield,
+   Perfect Form, Warlord, All Natural, Electric Arc, Fireball, Flame Brand,
+   Catalyst/Instrument/Staff/Sword/Wand Master (and more)
+A: Extended Warranty, Antimagic Net, Curse, Deadly Criticals, Juggernaut,
+   Shining Blade, Telling Blows, Wall of Force, Arcane Blast, Eagle Eyes, Sturdy
+B: Survivor, Deception, Mage Armor, Magic Darts, Smite
+C: Blurred Movement, Extra Conditioning, Toughness, Maintenance
+D: Super Genius, Fast Healer, Acrobatics, Fast Learner
+Note: T7, expensive. Avoid until core roster complete. Similar to Geomancer.
+
+
+=====================================
+NOTES ON UNCONFIRMED SKILL NAMES
+(skills your heroes have that weren't in the tracker)
+=====================================
+
+Greater Magic Shell  — T3 form of "Mage Armor → Supreme Magic Shell".
+                       Confirmed C-tier for Sorcerer, B-tier for Druid/Mage.
+                       Otello (Sorcerer) has a C-tier defensive skill.
+
+Mage Fortress        — CONFIRMED Mage Armor intermediate tier: +60% Atk, +30% Def
+                       (matches Mage Armor's 2:1 ratio, ~T3 of 80/40 T4). B-tier
+                       for Mage. Olga (Mage) has S+B — fails Titan Soul bar.
+
+Magma Orb            — Almost certainly "Fireball" intermediate tier. Fireball
+                       is S-tier for Druid and Sorcerer. Very likely S-tier.
+
+Instrument Maestro   — T3/T4 of "Instrument Master". S-tier for Druid.
+                       Titania's best skill. Excellent.
+
+Lock On              — Possibly "Marksman" intermediate tier (S-tier for Ranger).
+                       If confirmed Marksman family, Bartram has one good slot.
+
+Mirror Sheen         — CONFIRMED Maintenance intermediate tier: -20% break chance,
+                       +10% stats (all equip). Maintenance is the Common-rarity
+                       version of Extended Warranty (same effects, smaller
+                       numbers). A-tier for Ranger (Roark), C-tier for Druid
+                       (Titania). Note: general guidance still rates Maintenance
+                       as weak overall; only Extended Warranty (Epic) is
+                       genuinely strong.
+
+Deliverance          — CONFIRMED Smite (Wrath of the Goddess) family. T4: +75% Atk,
+                       +50% Def. B-tier for Ranger (Roark).
+
+Widowmaker           — CONFIRMED Backstab family: T1 Backstab (+30% Atk, +3% Crit)
+                       → T2 Darkstalker (+40% Atk, +6% Crit) → T3 Widowmaker
+                       (+60% Atk, +10% Crit). B-tier for Ninja, Wanderer, Musketeer.
+
+Otherworldly Grace   — CONFIRMED Acrobatics family. A-tier for both Soldier
+                       (Gloriana) and Thief (Sabrina). +25% Evasion at T4.
+
+Soul Drain           — CONFIRMED T1 of Life Drain: +50% Atk, +10 HP (T4: +125% Atk,
+                       +80 HP). A-tier for Sorcerer. Otello has one C-tier slot
+                       (Greater Magic Shell) and one A-tier slot (Soul Drain) —
+                       C+A fails Titan Soul bar. Kira is still the better Sorcerer.
+
+Catalyst (not Master) — Working toward "Catalyst Master" (S-tier for Sorcerer,
+                        Geomancer, Dancer). Kira (Sorcerer) has this — excellent.
+
+Unbreakable          — Unknown. Appears on Calil (Soldier). Likely defensive.
+                       Could be Impervious intermediate (S-tier) or Extra Plating
+                       (S-tier). Probably good.
+
+Sonic Thrust         — CONFIRMED T3 of Perforate family: T1 Perforate (+35% Atk)
+                       → T2 Impale (+50% Atk) → T3 Sonic Thrust (+50% Atk, +50%
+                       Crit Dmg). D-tier for Ranger, B-tier for Musketeer/Wanderer.
+
+Kinetic Lance        — CONFIRMED T3 of Magic Darts family: T1 Magic Darts (+40% Atk)
+                       → T2 Magic Missile (+60% Atk) → T3 Kinetic Lance (+80% Atk).
+                       C-tier for Druid/Mage/Sorcerer. Low stats for a DPS skill.
+
+Shrapnel Grenade     — Unknown. Appears on Selena (Spellblade). Moot — retire.
+
+Coup de Grace        — CONFIRMED T2 of Deadly Criticals family: T1 Deadly Criticals
+                       → T2 Coup de Grace (+150% Crit Dmg) → T3 Executioner (+200%
+                       Crit Dmg). A-tier for Rogues (Wanderer, Musketeer, etc.).
+
+Extra Polish         — CONFIRMED T2 of Maintenance (Common rarity): T1 Maintenance
+                       → T2 Extra Polish (+10% stats, -30% Break) → T3 Mirror Sheen.
+                       C-tier for Druid, D-tier for Musketeer. Weak — same family as
+                       Maintenance which is generally avoid-tier.
+
+Acrobatics note      — S-tier for Ranger, A-tier for Barbarian/Samurai, B-tier
+                       for Ninja/Berserker, D-tier for Sorcerer/Mage/Druid.
+                       Isadora (Samurai) has Acrobatics — B-tier, not terrible,
+                       but she's a retire candidate anyway.

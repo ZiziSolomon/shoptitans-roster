@@ -1,0 +1,229 @@
+SHOP TITANS - HERO SYSTEM REFERENCE
+Source: st-central.net (May 2026)
+====================================
+
+
+## THE BIG PICTURE
+
+Heroes quest on your behalf, fighting through dungeons and boss floors. Their
+effectiveness depends on three things: class/tier, skills, and gear. The hero
+system is deep — a few wrong investments early can waste weeks of progress.
+
+
+## ROSTER RULES (non-negotiable foundations)
+
+Rule 1 — 3+ heroes per element
+  The six elements are: Water, Earth, Fire, Air, Light, Dark.
+  You need at least three heroes of each element to handle elemental barriers
+  in extreme quests, bosses from Cinderlake Volcano onwards, and Tower of
+  Titans Terror difficulty.
+  Note: Spellblades only count at 50% power and do NOT fulfil elemental
+  requirements on their own.
+
+Rule 2 — 2+ archetypes per element
+  Each element needs heroes from at least two of the three groups:
+    - Fighters (red)
+    - Rogues (green)
+    - Spellcasters (blue)
+  This matters most for Tower of Titans Terror (ML67+), where debuffs can
+  lock out entire archetype groups mid-run.
+
+
+## TEAM COMPOSITION (per party)
+
+  1 Champion
+  1 Fighter (red)
+  2 Rogues/Spellcasters (blue/green) — any combination
+  + elements matched to the quest's barrier requirements
+
+These are guidelines, not rigid rules, but deviating meaningfully hurts you.
+
+
+## CLASSES TO AVOID UNTIL YOUR CORE ROSTER IS DONE
+
+  - T1 and T2 classes: require a Titan Soul promotion just to function well
+  - T7 classes (Dark Knight, Velites, Chronomancer): cost excessive gold
+  - Spellblades: huge skill pool with mostly bad skills; rerolls are painful
+  - Samurai: conflicting stat needs (tank + damage) make optimisation hard
+
+Invest in these only after you have a solid 3-per-element roster.
+
+
+## WHAT MAKES A GOOD HERO (skill evaluation)
+
+Each hero has 3–4 skill slots. These are everything — a wasted slot is a
+meaningful loss of power, so be ruthless about what you accept.
+
+Skills to AVOID:
+  - Fast Learner / Super Genius: XP bonus is useless at max level
+  - Maintenance: break chance reduction is too weak to matter
+    (Exception: Extended Warranty — 60% break reduction, worth keeping)
+  - Smite / Parry / Mage Armor: hybrid attack+defence stats, only 120–125%
+    total at rank 4; each class has better dedicated alternatives
+  - Magic Darts: directly outclassed by Arcane Blast for spellcasters
+  - Perforate: wastes power on Crit Damage for fighters who have only 5%
+    base Crit Chance
+
+Core principle: never fill a slot with a skill that does nothing in combat
+or that has a superior alternative available to that class.
+
+
+## PROMOTIONS (using Titan Souls)
+
+What promotion does:
+  - Increases base Attack, HP, and Defence
+  - Unlocks T4 skills
+  - Some classes: grants 4th skill slot, new equippable item types,
+    upgraded innate skill, or class-specific bonuses
+
+When to promote:
+  1. The hero already has a strong skillset
+  2. The hero has learned their full natural skillset
+  3. They benefit significantly from promotion, OR you've already done all
+     the high-benefit classes
+
+Priority order:
+  Highest  — T1/T2 (non-functional without promotion)
+  High     — T3/T4 attackers (big survivability + skill slot gains)
+             Ninjas and Spellblades (upgraded innate is transformative)
+  Medium   — T3/T4 tanks
+  Low      — T5 classes (already strong baseline)
+  Lowest   — T6/T7 (best out of the box, promotion least impactful)
+
+Champion promotion recipe: 2x Titan Soul + 1x Legendary Item (T10+) +
+  5x Mythic XP Drinks + 10x Phoenix Feathers + 300x Perfect Moonstones
+Champion promotion priority: Malady → King Reinhold → Ashley/Argon → others
+
+
+## RETIRE / REHIRE (managing skill RNG)
+
+The strategy: retire heroes who roll bad skills at level 5 or 10, before
+you've invested heavily. This filters out bad RNG cheaply.
+
+Key insight: early skill slots have lower odds of rare/epic skills by
+default. If you use the retire/rehire method, you bypass that penalty.
+
+Fast levelling methods:
+  - Argon's Finest talent tree: hire heroes at level 10 (3 points invested),
+    check first 2 skills instantly without questing
+  - XP Drinks: 500 / 5,000 / 50,000 XP per drink (avoid Mythic on low levels)
+  - Aurora Caves Medium (450 power) → level 5 in one run
+  - Aurora Hard → Whispering Bog Hard → Barren Hard → level 10 in 3 quests
+
+
+## CHAMPIONS — WHO DOES WHAT
+
+Argon (Light)   +40% atk, +40% def. Broadly the strongest champion.
+                Best for accessing hard content without maxed heroes.
+
+Lilu (Water)    Heals 20HP/turn, +25% HP, +50% faster rest time.
+                Best with high-evasion heroes; reduces downtime.
+
+Sia (Air)       +100% components/quest, +25% atk.
+                Essential for Lost City of Gold (keybearer bosses lvl 9+).
+
+Yami (Dark)     +20% crit, +20% evasion, +50% faster questing.
+                Best with crit or evasion builds; good for timed events.
+
+Rudo (Fire)     +50% crit chance, -100% break chance (4 rounds), +50% element.
+                Best with crit builds; keeps repair costs low.
+
+Polonia (Water) 50% chance to steal super-valuable items, +25% def, +10% eva.
+                Strong early; shifts to raising item drop tiers post-T12.
+
+Donovan (Fire)  +14% atk per blue hero, +10% HP per red, +7% crit/eva per green.
+                Tailored buffs; good for mixed-composition parties.
+
+Hemma (Dark)    Drains 7% HP from one hero/turn, heals herself +25HP, +35% atk,
+                +25% HP for party (net positive).
+                Reliable late-game DPS + party buffer.
+
+Ashley (Earth)  +25% atk & def, +20% faster quests; doubled vs bosses.
+                Best for boss content and Dragon Invasion events.
+
+Bjorn (Air)     +30% atk, +20% HP, +50% crit dmg; doubled in flash quests;
+                grants one extra flash quest attempt.
+                Strong in flash quests and crit-focused teams.
+
+Malady (Light)  +30% atk, +15% evasion, +10% crit; earns enchantments as loot.
+                Pairs with green heroes; must survive for loot to trigger.
+
+Reinhold (Gold) +30% atk, +30% def, +30% HP; finds unusual items IF he survives.
+                Needs a tank; worth running for unique loot collection.
+                Event-only champion — appears roughly one week per month. Hire
+                when available.
+
+Tamas (Earth)   Up to +200% random atk bonus; finds Leather bonus loot.
+                Exceptional DPS ceiling but needs support to survive.
+                Event-only champion — appears roughly one week per year. Rare
+                window; prioritise hiring when available.
+
+Champion-hero evasion pairings:
+  95% evasion hero → Lilu
+  85% evasion hero → Donovan, Malady, or Polonia
+  75% evasion hero → Yami (adds +20%)
+
+Fighter pairing notes:
+  Offensive fighters → Argon / Ashley / Bjorn / Rudo (damage reduction)
+  Crit fighters       → Rudo / Bjorn (skill slot constraints make crit focus easier)
+
+
+## CLASS → ELEMENT MAPPING
+
+Tier order reflects unlock progression. T1/T2 need promotion to be viable;
+T7 cost excessive gold; T5 Spellblade and T5 Samurai have special caveats
+(see CLASSES TO AVOID section above).
+
+Note on confidence: tier ordering inferred from st-central.net guides and
+unlock-level data. Elements from the Hero Academia guide. Treat as reliable
+but not 100% verified against official sources.
+
+  FIGHTERS (red)
+  T1  Soldier / Mercenary      — Earth
+  T2  Barbarian / Chieftain    — Fire
+  T3  Knight / Lord            — Light
+  T4  Ranger / Warden          — Air
+  T5  Samurai / Daimyo         — Water   [avoid until core roster done]
+  T6  Berserker / Jarl         — Fire
+  T7  Dark Knight / Death Knight — Dark  [avoid until core roster done]
+
+  ROGUES (green)
+  T1  Thief / Trickster        — Air
+  T2  Monk / Grandmaster       — Water
+  T3  Musketeer / Conquistador — Fire
+  T4  Wanderer / Pathfinder    — Earth
+  T5  Ninja / Sensei           — Dark
+  T6  Dancer / Acrobat         — Air
+  T7  Velite / Praetorian      — Light   [avoid until core roster done]
+
+  SPELLCASTERS (blue)
+  T1  Mage / Archmage          — Fire
+  T2  Cleric / Bishop          — Light
+  T3  Druid / Arch Druid       — Earth
+  T4  Sorcerer / Warlock       — Dark
+  T5  Spellblade / Spellknight — All-50%  [avoid until core roster done; counts at 50% for elemental requirements]
+  T6  Geomancer / Astramancer  — Water
+  T7  Chronomancer / Fateweaver — Air    [avoid until core roster done]
+
+Quick lookup — element coverage by class:
+  Water  — Samurai, Monk, Geomancer
+  Earth  — Soldier, Wanderer, Druid
+  Fire   — Barbarian, Berserker, Musketeer, Mage
+  Air    — Ranger, Thief, Dancer, Chronomancer
+  Light  — Knight, Velite, Cleric
+  Dark   — Dark Knight, Ninja, Sorcerer
+
+
+## GEAR
+
+Best in Slot gear: see https://stcentral-hub.github.io/posts/bis-heroes/
+Levelling gear guide: https://st-central.net/levelling-hero-gear/
+Quest simulator (Excel): linked from https://st-central.net/tldr-heroes/
+
+
+## KEY TOOLS
+
+Hero Tracker (by Drakeonfire): track your whole roster and evaluate skills
+Quest Simulator (by Ress): Excel spreadsheet simulating quests; test builds
+  against any dungeon — "a min-maxer's best friend"
+Both tools linked from: https://st-central.net/tldr-heroes/

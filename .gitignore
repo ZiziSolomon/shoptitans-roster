@@ -1,0 +1,16 @@
+# Sensitive / personal files — never commit these
+API_Keys.txt
+API_keys.txt
+shop_titans_roster_plan.txt
+MilkshakesPlan.txt
+
+# Local data exports
+data/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Editor / OS
+.DS_Store
+Thumbs.db
