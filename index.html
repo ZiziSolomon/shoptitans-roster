@@ -19,23 +19,14 @@ body {
 
 h1 { font-size: 1.3rem; color: #f0c040; letter-spacing: 0.04em; margin-bottom: 4px; }
 .page-subtitle { font-size: 0.82rem; color: #555; margin-bottom: 28px; }
-
 h2 {
-  font-size: 0.78rem;
-  color: #666;
-  font-weight: normal;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  margin-bottom: 10px;
+  font-size: 0.78rem; color: #666; font-weight: normal;
+  letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px;
 }
 
-/* ── Panels ── */
 .panel {
-  background: #0e0e1c;
-  border: 1px solid #2a2a3a;
-  border-radius: 6px;
-  padding: 16px;
-  margin-bottom: 16px;
+  background: #0e0e1c; border: 1px solid #2a2a3a;
+  border-radius: 6px; padding: 16px; margin-bottom: 16px;
 }
 
 /* ── Context inputs ── */
@@ -45,116 +36,76 @@ h2 {
   gap: 12px;
 }
 .field { display: flex; flex-direction: column; gap: 4px; }
-.field label {
-  font-size: 0.68rem;
-  color: #666;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
+.field label { font-size: 0.68rem; color: #666; text-transform: uppercase; letter-spacing: 0.08em; }
 .field input {
-  background: #0c0c1a;
-  border: 1px solid #2a2a3a;
-  color: #ddd;
-  padding: 6px 10px;
-  font-size: 0.9rem;
-  border-radius: 4px;
-  width: 100%;
+  background: #0c0c1a; border: 1px solid #2a2a3a; color: #ddd;
+  padding: 6px 10px; font-size: 0.9rem; border-radius: 4px; width: 100%;
 }
 .field input:focus { outline: none; border-color: #555; }
 .field .hint { font-size: 0.65rem; color: #444; margin-top: 2px; }
 
-/* ── Textarea ── */
-/* TODO: replace with API fetch when TitansDB adds /api/my_heroes */
+/* TODO: replace textarea with API fetch when TitansDB adds /api/my_heroes */
 textarea {
-  width: 100%;
-  height: 90px;
-  background: #0c0c1a;
-  border: 1px solid #2a2a3a;
-  color: #aaa;
-  padding: 10px;
-  font-family: monospace;
-  font-size: 0.72rem;
-  resize: vertical;
-  border-radius: 4px;
-  display: block;
+  width: 100%; height: 90px;
+  background: #0c0c1a; border: 1px solid #2a2a3a; color: #aaa;
+  padding: 10px; font-family: monospace; font-size: 0.72rem;
+  resize: vertical; border-radius: 4px; display: block;
 }
 textarea:focus { outline: none; border-color: #444; }
 
-/* ── Buttons ── */
 .btn {
-  padding: 7px 20px;
-  background: #f0c040;
-  color: #12121e;
-  border: none;
-  font-weight: bold;
-  font-size: 0.85rem;
-  cursor: pointer;
-  border-radius: 4px;
-  white-space: nowrap;
+  padding: 7px 20px; background: #f0c040; color: #12121e;
+  border: none; font-weight: bold; font-size: 0.85rem;
+  cursor: pointer; border-radius: 4px; white-space: nowrap;
 }
 .btn:hover { background: #ffd060; }
 .btn:disabled { background: #444; color: #777; cursor: default; }
-.btn-ghost { background: transparent; color: #555; border: 1px solid #2a2a3a; font-weight: normal; }
+.btn-ghost {
+  background: transparent; color: #555; border: 1px solid #2a2a3a;
+  font-weight: normal;
+}
 .btn-ghost:hover { background: #1a1a2a; color: #888; }
 
-/* ── API connect (collapsed by default) ── */
+/* ── API (collapsed) ── */
 .api-toggle {
-  font-size: 0.72rem;
-  color: #444;
-  cursor: pointer;
-  background: none;
-  border: none;
-  padding: 0;
-  text-decoration: underline;
-  text-decoration-style: dotted;
+  font-size: 0.72rem; color: #444; cursor: pointer;
+  background: none; border: none; padding: 0;
+  text-decoration: underline; text-decoration-style: dotted;
 }
 .api-toggle:hover { color: #888; }
 .api-panel { display: none; margin-top: 12px; }
 .api-panel.open { display: block; }
 .api-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 .api-key-input {
-  flex: 1; min-width: 200px;
-  background: #0c0c1a; border: 1px solid #2a2a3a;
-  color: #ccc; padding: 6px 10px;
-  font-family: monospace; font-size: 0.8rem;
-  border-radius: 4px;
+  flex: 1; min-width: 200px; background: #0c0c1a; border: 1px solid #2a2a3a;
+  color: #ccc; padding: 6px 10px; font-family: monospace; font-size: 0.8rem; border-radius: 4px;
 }
 .api-key-input:focus { outline: none; border-color: #444; }
 .api-msg { margin-top: 8px; font-size: 0.75rem; }
 .api-msg.err { color: #c04030; }
 .api-msg.ok  { color: #40a060; }
 
-/* ── Results ── */
-#output { margin-top: 4px; }
-
+/* ── Context bar (results) ── */
 .context-bar {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-  padding: 10px 14px;
-  background: #0e0e1c;
-  border: 1px solid #2a2a3a;
-  border-radius: 6px;
-  margin-bottom: 16px;
-  font-size: 0.78rem;
+  display: flex; gap: 16px; flex-wrap: wrap;
+  padding: 10px 14px; background: #0e0e1c; border: 1px solid #2a2a3a;
+  border-radius: 6px; margin-bottom: 16px; font-size: 0.78rem;
 }
 .ctx-item .ctx-label { color: #555; }
 .ctx-item .ctx-val   { color: #ddd; font-weight: bold; margin-left: 4px; }
 .ctx-item .ctx-val.highlight { color: #f0c040; }
+.ctx-item .res-note  { color: #666; margin-left: 4px; font-size: 0.68rem; }
 .milestone-note {
-  font-size: 0.7rem;
-  padding: 3px 8px;
-  border-radius: 3px;
-  align-self: center;
+  font-size: 0.7rem; padding: 3px 8px; border-radius: 3px; align-self: center;
 }
 .milestone-note.upcoming { background: #201808; color: #a06010; }
 .milestone-note.unlocked { background: #0c2010; color: #50a060; }
 
+/* ── Element grid ── */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 12px;
-  margin-bottom: 16px;
+  gap: 12px; margin-bottom: 16px;
 }
 .card { border-radius: 6px; padding: 14px; border-left: 4px solid transparent; }
 .card.ok   { background: #0c201a; border-color: #2a7a4e; }
@@ -163,12 +114,9 @@ textarea:focus { outline: none; border-color: #444; }
 
 .card-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
 .el-name { font-weight: bold; font-size: 1rem; }
-.el-Water { color: #50a8f0; }
-.el-Earth { color: #78c040; }
-.el-Fire  { color: #f07028; }
-.el-Air   { color: #90d8f0; }
-.el-Light { color: #f0d840; }
-.el-Dark  { color: #b060f0; }
+.el-Water { color: #50a8f0; } .el-Earth { color: #78c040; }
+.el-Fire  { color: #f07028; } .el-Air   { color: #90d8f0; }
+.el-Light { color: #f0d840; } .el-Dark  { color: #b060f0; }
 
 .count-badge { font-size: 0.78rem; font-weight: bold; padding: 2px 9px; border-radius: 10px; }
 .badge-ok   { background: #143d24; color: #50e080; }
@@ -177,22 +125,16 @@ textarea:focus { outline: none; border-color: #444; }
 
 .arch-row { display: flex; gap: 5px; margin-bottom: 8px; flex-wrap: wrap; }
 .arch {
-  font-size: 0.68rem; font-weight: bold;
-  padding: 2px 9px; border-radius: 3px;
-  letter-spacing: 0.06em; text-transform: uppercase;
+  font-size: 0.68rem; font-weight: bold; padding: 2px 9px;
+  border-radius: 3px; letter-spacing: 0.06em; text-transform: uppercase;
 }
-.arch.present { opacity: 1; }
-.arch.absent  { opacity: 0.2; }
+.arch.present { opacity: 1; } .arch.absent { opacity: 0.2; }
 .arch.Fighter     { background: #4a1010; color: #ff8070; }
 .arch.Rogue       { background: #104a10; color: #70ff70; }
 .arch.Spellcaster { background: #10204a; color: #7090ff; }
 
 .arch-warn { font-size: 0.7rem; color: #a06010; margin-bottom: 6px; }
-
-.card-locked {
-  font-size: 0.68rem; color: #444; margin-top: 6px;
-  border-top: 1px solid #222; padding-top: 6px;
-}
+.card-locked { font-size: 0.68rem; color: #444; margin-top: 6px; border-top: 1px solid #222; padding-top: 6px; }
 
 .hero-list { margin-top: 8px; }
 .hero-row {
@@ -202,19 +144,9 @@ textarea:focus { outline: none; border-color: #444; }
 .hero-row:first-child { border-top: none; }
 .hero-class { color: #ccc; }
 .hero-meta  { color: #555; font-size: 0.7rem; }
+.hero-promoted { color: #f0c040; font-size: 0.65rem; margin-left: 4px; }
 .half-note  { color: #555; }
 .empty-note { font-size: 0.73rem; color: #444; font-style: italic; margin-top: 6px; }
-
-.resources-bar {
-  display: flex; gap: 20px; flex-wrap: wrap;
-  padding: 10px 14px;
-  background: #0e0e1c; border: 1px solid #2a2a3a;
-  border-radius: 6px; margin-bottom: 16px;
-}
-.res-item { font-size: 0.78rem; }
-.res-label { color: #555; }
-.res-val   { color: #ddd; font-weight: bold; margin-left: 4px; }
-.res-note  { color: #666; margin-left: 4px; font-size: 0.68rem; }
 
 .parse-note { font-size: 0.73rem; color: #555; margin-top: 8px; }
 .unknown-box {
@@ -223,6 +155,79 @@ textarea:focus { outline: none; border-color: #444; }
 }
 .unknown-box h3 { color: #c09030; font-size: 0.85rem; margin-bottom: 8px; }
 .unknown-box .unknown-item { color: #888; padding: 1px 0; }
+
+/* ── Advice section ── */
+.advice-panel { margin-top: 4px; }
+
+.mode-tabs { display: flex; gap: 0; margin-bottom: 16px; }
+.mode-btn {
+  padding: 7px 18px; font-size: 0.82rem; cursor: pointer;
+  border: 1px solid #2a2a3a; background: #0e0e1c; color: #555;
+  font-weight: normal; border-radius: 0;
+}
+.mode-btn:first-child { border-radius: 4px 0 0 4px; }
+.mode-btn:last-child  { border-radius: 0 4px 4px 0; border-left: none; }
+.mode-btn.active { background: #1e1e34; color: #ddd; border-color: #444; }
+.mode-btn:hover:not(.active) { color: #aaa; }
+
+.mode-desc { font-size: 0.73rem; color: #555; margin-bottom: 14px; }
+
+.advice-list { display: flex; flex-direction: column; gap: 8px; }
+
+.advice-item {
+  border-radius: 5px; padding: 11px 13px;
+  border-left: 3px solid #2a2a3a; background: #0e0e1c;
+}
+.advice-item.crit { border-color: #a02010; background: #160808; }
+.advice-item.warn { border-color: #a06810; background: #130e04; }
+
+.advice-main { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.advice-num {
+  font-size: 0.7rem; color: #555; font-weight: bold;
+  min-width: 18px; text-align: right;
+}
+.advice-action { font-size: 0.88rem; color: #ddd; }
+.advice-action strong { color: #fff; }
+.advice-tags { display: flex; gap: 4px; }
+.el-tag {
+  font-size: 0.65rem; font-weight: bold; padding: 1px 7px;
+  border-radius: 3px; background: rgba(255,255,255,0.06);
+}
+.arch-tag {
+  font-size: 0.65rem; font-weight: bold; padding: 1px 7px;
+  border-radius: 3px; text-transform: uppercase; letter-spacing: 0.05em;
+}
+.arch-tag.Fighter     { background: #4a1010; color: #ff8070; }
+.arch-tag.Rogue       { background: #104a10; color: #70ff70; }
+.arch-tag.Spellcaster { background: #10204a; color: #7090ff; }
+
+.advice-reason { font-size: 0.72rem; color: #555; margin-left: auto; }
+
+.advice-caveats { margin-top: 6px; display: flex; flex-direction: column; gap: 3px; }
+.caveat { font-size: 0.72rem; color: #a06010; }
+.caveat.hard { color: #c04030; }
+
+.advice-retire {
+  margin-top: 6px; font-size: 0.72rem; color: #555;
+  border-top: 1px solid rgba(255,255,255,0.05); padding-top: 6px;
+}
+.advice-retire .retire-warn {
+  color: #e05030; font-weight: bold;
+}
+
+.retire-block {
+  margin-top: 12px; padding: 10px 13px;
+  background: #0e0e1c; border: 1px solid #2a2a3a; border-radius: 5px;
+  font-size: 0.78rem;
+}
+.retire-block .label { color: #666; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+.retire-el { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.promoted-warning {
+  margin-top: 4px; font-size: 0.72rem; color: #e05030;
+  padding: 4px 8px; background: #200808; border-radius: 3px;
+}
+
+.advice-ok { font-size: 0.85rem; color: #40a060; padding: 12px 0; }
 </style>
 </head>
 <body>
@@ -242,7 +247,7 @@ textarea:focus { outline: none; border-color: #444; }
     <div class="field">
       <label>Titan Souls</label>
       <input type="number" id="ctxSouls" min="0" placeholder="e.g. 1">
-      <span class="hint">Available for hero / champion promotions</span>
+      <span class="hint">Available for promotions</span>
     </div>
     <div class="field">
       <label>Argon's Finest (points)</label>
@@ -255,8 +260,6 @@ textarea:focus { outline: none; border-color: #444; }
       <span class="hint">Available for hiring / promotions</span>
     </div>
   </div>
-
-  <!-- API auto-fill (secondary) -->
   <div style="margin-top:14px">
     <button class="api-toggle" onclick="toggleApi()">Connect TitansDB account to auto-fill merchant level ▾</button>
     <div class="api-panel" id="apiPanel">
@@ -285,38 +288,35 @@ const ELEMENTS   = ["Water", "Earth", "Fire", "Air", "Light", "Dark"];
 const ARCHETYPES = ["Fighter", "Rogue", "Spellcaster"];
 const API_BASE   = "https://www.titansdb.com/api";
 
-// Classes locked until ML53 T6 unlock
-const T6_CLASSES = ["Geomancer", "Astramancer", "Berserker", "Jarl", "Dancer", "Acrobat"];
-
 const CLASS_MAP = {
-  "Soldier":     { element: "Earth", archetype: "Fighter", tier: 1 },
-  "Mercenary":   { element: "Earth", archetype: "Fighter", tier: 1 },
-  "Barbarian":   { element: "Fire",  archetype: "Fighter", tier: 2 },
-  "Chieftain":   { element: "Fire",  archetype: "Fighter", tier: 2 },
-  "Knight":      { element: "Light", archetype: "Fighter", tier: 3 },
-  "Lord":        { element: "Light", archetype: "Fighter", tier: 3 },
-  "Ranger":      { element: "Air",   archetype: "Fighter", tier: 4 },
-  "Warden":      { element: "Air",   archetype: "Fighter", tier: 4 },
-  "Samurai":     { element: "Water", archetype: "Fighter", tier: 5 },
-  "Daimyo":      { element: "Water", archetype: "Fighter", tier: 5 },
-  "Berserker":   { element: "Fire",  archetype: "Fighter", tier: 6 },
-  "Jarl":        { element: "Fire",  archetype: "Fighter", tier: 6 },
-  "Dark Knight": { element: "Dark",  archetype: "Fighter", tier: 7 },
-  "Death Knight":{ element: "Dark",  archetype: "Fighter", tier: 7 },
-  "Thief":       { element: "Air",   archetype: "Rogue",   tier: 1 },
-  "Trickster":   { element: "Air",   archetype: "Rogue",   tier: 1 },
-  "Monk":        { element: "Water", archetype: "Rogue",   tier: 2 },
-  "Grandmaster": { element: "Water", archetype: "Rogue",   tier: 2 },
-  "Musketeer":   { element: "Fire",  archetype: "Rogue",   tier: 3 },
-  "Conquistador":{ element: "Fire",  archetype: "Rogue",   tier: 3 },
-  "Wanderer":    { element: "Earth", archetype: "Rogue",   tier: 4 },
-  "Pathfinder":  { element: "Earth", archetype: "Rogue",   tier: 4 },
-  "Ninja":       { element: "Dark",  archetype: "Rogue",   tier: 5 },
-  "Sensei":      { element: "Dark",  archetype: "Rogue",   tier: 5 },
-  "Dancer":      { element: "Air",   archetype: "Rogue",   tier: 6 },
-  "Acrobat":     { element: "Air",   archetype: "Rogue",   tier: 6 },
-  "Velite":      { element: "Light", archetype: "Rogue",   tier: 7 },
-  "Praetorian":  { element: "Light", archetype: "Rogue",   tier: 7 },
+  "Soldier":     { element: "Earth", archetype: "Fighter",     tier: 1 },
+  "Mercenary":   { element: "Earth", archetype: "Fighter",     tier: 1 },
+  "Barbarian":   { element: "Fire",  archetype: "Fighter",     tier: 2 },
+  "Chieftain":   { element: "Fire",  archetype: "Fighter",     tier: 2 },
+  "Knight":      { element: "Light", archetype: "Fighter",     tier: 3 },
+  "Lord":        { element: "Light", archetype: "Fighter",     tier: 3 },
+  "Ranger":      { element: "Air",   archetype: "Fighter",     tier: 4 },
+  "Warden":      { element: "Air",   archetype: "Fighter",     tier: 4 },
+  "Samurai":     { element: "Water", archetype: "Fighter",     tier: 5 },
+  "Daimyo":      { element: "Water", archetype: "Fighter",     tier: 5 },
+  "Berserker":   { element: "Fire",  archetype: "Fighter",     tier: 6 },
+  "Jarl":        { element: "Fire",  archetype: "Fighter",     tier: 6 },
+  "Dark Knight": { element: "Dark",  archetype: "Fighter",     tier: 7 },
+  "Death Knight":{ element: "Dark",  archetype: "Fighter",     tier: 7 },
+  "Thief":       { element: "Air",   archetype: "Rogue",       tier: 1 },
+  "Trickster":   { element: "Air",   archetype: "Rogue",       tier: 1 },
+  "Monk":        { element: "Water", archetype: "Rogue",       tier: 2 },
+  "Grandmaster": { element: "Water", archetype: "Rogue",       tier: 2 },
+  "Musketeer":   { element: "Fire",  archetype: "Rogue",       tier: 3 },
+  "Conquistador":{ element: "Fire",  archetype: "Rogue",       tier: 3 },
+  "Wanderer":    { element: "Earth", archetype: "Rogue",       tier: 4 },
+  "Pathfinder":  { element: "Earth", archetype: "Rogue",       tier: 4 },
+  "Ninja":       { element: "Dark",  archetype: "Rogue",       tier: 5 },
+  "Sensei":      { element: "Dark",  archetype: "Rogue",       tier: 5 },
+  "Dancer":      { element: "Air",   archetype: "Rogue",       tier: 6 },
+  "Acrobat":     { element: "Air",   archetype: "Rogue",       tier: 6 },
+  "Velite":      { element: "Light", archetype: "Rogue",       tier: 7 },
+  "Praetorian":  { element: "Light", archetype: "Rogue",       tier: 7 },
   "Mage":        { element: "Fire",  archetype: "Spellcaster", tier: 1 },
   "Archmage":    { element: "Fire",  archetype: "Spellcaster", tier: 1 },
   "Cleric":      { element: "Light", archetype: "Spellcaster", tier: 2 },
@@ -333,12 +333,65 @@ const CLASS_MAP = {
   "Fateweaver":  { element: "Air",   archetype: "Spellcaster", tier: 7 },
 };
 
-// T6 classes available to each element once ML53 is reached
+// T6 classes to show as "locked" on element cards below ML53
 const T6_BY_ELEMENT = {
   Water: ["Geomancer (Spellcaster)"],
   Fire:  ["Berserker (Fighter)"],
   Air:   ["Dancer (Rogue)"],
 };
+
+// Best hire options per element+archetype.
+// Order within each array matters: first viable option is used.
+// needsML53: locked until ML53 | needsSoul: T1/T2, needs Titan Soul to function
+// caveat: warning shown but not blocking | t7: avoid flag
+const HIRE_TABLE = {
+  Water: {
+    Fighter:     [{ cls: "Samurai",      caveat: "Tricky class — conflicting stat needs, avoid until core roster is done" }],
+    Rogue:       [{ cls: "Monk",         needsSoul: true }],
+    Spellcaster: [{ cls: "Geomancer",    needsML53: true }],
+  },
+  Earth: {
+    Fighter:     [{ cls: "Soldier",      needsSoul: true }],
+    Rogue:       [{ cls: "Wanderer" }],
+    Spellcaster: [{ cls: "Druid" }],
+  },
+  Fire: {
+    Fighter:     [{ cls: "Berserker",    needsML53: true },
+                  { cls: "Barbarian",    needsSoul: true }],
+    Rogue:       [{ cls: "Musketeer" }],
+    Spellcaster: [{ cls: "Mage",         needsSoul: true }],
+  },
+  Air: {
+    Fighter:     [{ cls: "Ranger" }],
+    Rogue:       [{ cls: "Dancer",       needsML53: true },
+                  { cls: "Thief",        needsSoul: true }],
+    Spellcaster: [{ cls: "Chronomancer", t7: true }],
+  },
+  Light: {
+    Fighter:     [{ cls: "Knight" }],
+    Rogue:       [{ cls: "Velite",       t7: true }],
+    Spellcaster: [{ cls: "Cleric",       needsSoul: true }],
+  },
+  Dark: {
+    Fighter:     [{ cls: "Dark Knight",  t7: true }],
+    Rogue:       [{ cls: "Ninja" }],
+    Spellcaster: [{ cls: "Sorcerer" }],
+  },
+};
+
+function getBestHire(el, archetype, ml) {
+  const opts = HIRE_TABLE[el]?.[archetype];
+  if (!opts?.length) return null;
+  // Sort: prefer options with fewer issues. t7 worst, then ML-locked, then soul needed.
+  const score = o =>
+    (o.t7          ? 1000 : 0) +
+    (o.needsML53 && !(ml >= 53) ? 100 : 0) +
+    (o.needsSoul   ? 10   : 0) +
+    (o.caveat      ? 1    : 0);
+  return [...opts].sort((a, b) => score(a) - score(b))[0];
+}
+
+// ── Parsing ───────────────────────────────────────────────────────────────────
 
 function lookupClass(name) {
   return CLASS_MAP[name] ??
@@ -364,7 +417,7 @@ function parseHeroString(line) {
 function getContext() {
   return {
     ml:    parseInt(document.getElementById("ctxML").value)    || null,
-    souls: parseInt(document.getElementById("ctxSouls").value) || null,
+    souls: parseInt(document.getElementById("ctxSouls").value) ?? null,
     argon: parseInt(document.getElementById("ctxArgon").value) ?? null,
     gold:  document.getElementById("ctxGold").value.trim()     || null,
   };
@@ -373,8 +426,7 @@ function getContext() {
 // ── API ───────────────────────────────────────────────────────────────────────
 
 function toggleApi() {
-  const panel = document.getElementById("apiPanel");
-  panel.classList.toggle("open");
+  document.getElementById("apiPanel").classList.toggle("open");
 }
 
 async function fetchPlayer() {
@@ -382,8 +434,7 @@ async function fetchPlayer() {
   if (!key) return;
   const btn = document.getElementById("fetchBtn");
   const msg = document.getElementById("apiMsg");
-  btn.disabled = true; btn.textContent = "Fetching…";
-  msg.textContent = "";
+  btn.disabled = true; btn.textContent = "Fetching…"; msg.textContent = "";
   try {
     const res  = await fetch(`${API_BASE}/my_player`, { headers: { "X-API-Key": key } });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -397,8 +448,7 @@ async function fetchPlayer() {
     }
   } catch (err) {
     msg.className = "api-msg err";
-    const cors = err instanceof TypeError;
-    msg.textContent = cors
+    msg.textContent = (err instanceof TypeError)
       ? "CORS error — TitansDB hasn't enabled browser access from this domain yet."
       : "Error: " + err.message;
   } finally {
@@ -409,6 +459,20 @@ async function fetchPlayer() {
 // ── Analysis ──────────────────────────────────────────────────────────────────
 
 function tier(count) { return count >= 3 ? "ok" : count >= 1 ? "warn" : "crit"; }
+
+let adviceMode = "even";
+let lastAdviceData = null;
+
+function setAdviceMode(mode) {
+  adviceMode = mode;
+  document.querySelectorAll(".mode-btn").forEach(b =>
+    b.classList.toggle("active", b.dataset.mode === mode)
+  );
+  if (lastAdviceData) {
+    document.getElementById("adviceContent").innerHTML =
+      renderAdvice(lastAdviceData, mode);
+  }
+}
 
 function analyze() {
   const lines = document.getElementById("heroInput").value
@@ -424,9 +488,9 @@ function analyze() {
   const heroes = lines.map(parseHeroString);
   const known  = heroes.filter(h => h.classInfo);
   const unk    = heroes.filter(h => !h.classInfo);
-  const t6ok   = ctx.ml !== null && ctx.ml >= 53;
+  const t6ok   = ctx.ml != null && ctx.ml >= 53;
 
-  // Bucket by element
+  // Bucket heroes by element
   const byEl = Object.fromEntries(ELEMENTS.map(el => [el, []]));
   for (const h of known) {
     const targets = h.classInfo.halfCount ? ELEMENTS : [h.classInfo.element];
@@ -436,36 +500,29 @@ function analyze() {
 
   let html = "";
 
-  // Context bar (only if any context entered)
-  if (ctx.ml || ctx.souls !== null || ctx.argon !== null || ctx.gold) {
+  // Context bar
+  if (ctx.ml || ctx.souls != null || ctx.argon != null || ctx.gold) {
     const parts = [];
     if (ctx.ml) {
       parts.push(`<span class="ctx-item"><span class="ctx-label">ML</span><span class="ctx-val highlight">${ctx.ml}</span></span>`);
     }
-    if (ctx.souls !== null) {
+    if (ctx.souls != null) {
       parts.push(`<span class="ctx-item"><span class="ctx-label">Titan Souls</span><span class="ctx-val">${ctx.souls}</span></span>`);
     }
-    if (ctx.argon !== null) {
+    if (ctx.argon != null) {
       const ARGON_LEVELS = [1, 5, 8, 10, 13, 15];
-      const startLv  = ARGON_LEVELS[Math.min(ctx.argon, 5)];
-      const skills   = ctx.argon >= 3 ? "2 skills at hire" : ctx.argon >= 1 ? "1 skill at hire" : "no skills at hire";
-      parts.push(`<span class="ctx-item"><span class="ctx-label">Argon's Finest</span><span class="ctx-val">${ctx.argon}/5</span><span class="res-note">lv${startLv} start · ${skills}</span></span>`);
+      const startLv = ARGON_LEVELS[Math.min(ctx.argon, 5)];
+      const skillsNote = ctx.argon >= 3 ? "2 skills at hire" : ctx.argon >= 1 ? "1 skill at hire" : "no skills at hire";
+      parts.push(`<span class="ctx-item"><span class="ctx-label">Argon's Finest</span><span class="ctx-val">${ctx.argon}/5</span><span class="res-note">lv${startLv} start · ${skillsNote}</span></span>`);
     }
     if (ctx.gold) {
       parts.push(`<span class="ctx-item"><span class="ctx-label">Gold spare</span><span class="ctx-val">${escHtml(ctx.gold)}</span></span>`);
     }
-
-    // ML milestone note
     if (ctx.ml) {
-      if (ctx.ml < 52) {
-        parts.push(`<span class="milestone-note upcoming">Next: ML52 — Argon's Finest maxes, +1 roster slot</span>`);
-      } else if (ctx.ml < 53) {
-        parts.push(`<span class="milestone-note upcoming">Next: ML53 — T6 classes unlock (Geomancer, Berserker, Dancer)</span>`);
-      } else if (ctx.ml < 67) {
-        parts.push(`<span class="milestone-note unlocked">ML53 ✓ T6 classes available</span>`);
-      }
+      if (ctx.ml < 52)      parts.push(`<span class="milestone-note upcoming">Next: ML52 — Argon's Finest maxes, +1 roster slot</span>`);
+      else if (ctx.ml < 53) parts.push(`<span class="milestone-note upcoming">Next: ML53 — T6 classes unlock (Geomancer, Berserker, Dancer)</span>`);
+      else if (ctx.ml < 67) parts.push(`<span class="milestone-note unlocked">ML53 ✓ T6 classes available</span>`);
     }
-
     html += `<div class="context-bar">${parts.join("")}</div>`;
   }
 
@@ -478,8 +535,7 @@ function analyze() {
     const countTier = tier(count);
     const archOk    = archetypesPresent.size >= 2;
     const cardTier  = countTier === "crit" ? "crit" : (countTier === "warn" || !archOk) ? "warn" : "ok";
-
-    const countLabel   = Number.isInteger(count) ? `${count}/3` : `${count.toFixed(1)}/3`;
+    const countLabel = Number.isInteger(count) ? `${count}/3` : `${count.toFixed(1)}/3`;
     const statusSymbol = cardTier === "ok" ? "✓" : cardTier === "warn" ? "⚠" : "✗";
 
     const archBadges = ARCHETYPES.map(a => {
@@ -495,8 +551,9 @@ function analyze() {
       const label = h.name
         ? `${escHtml(h.name)} <span style="color:#555">(${escHtml(h.className)})</span>`
         : escHtml(h.className);
+      const promBadge = h.promoted ? `<span class="hero-promoted">★ promoted</span>` : "";
       return `<div class="hero-row">
-        <span class="hero-class">${label}</span>
+        <span class="hero-class">${label}${promBadge}</span>
         <span class="hero-meta">${h.level != null ? "lv" + h.level : "??"}</span>
       </div>`;
     }).join("");
@@ -512,7 +569,6 @@ function analyze() {
       ? `<div class="hero-list">${heroRows}${sbRows}</div>`
       : `<div class="empty-note">No heroes</div>`;
 
-    // Show locked T6 options for this element if ML known and < 53
     const lockedT6 = (!t6ok && ctx.ml && T6_BY_ELEMENT[el])
       ? `<div class="card-locked">Unlocks at ML53: ${T6_BY_ELEMENT[el].join(", ")}</div>`
       : "";
@@ -537,11 +593,176 @@ function analyze() {
       ${unk.map(h => `<div class="unknown-item">${escHtml(h.className || "(empty)")}</div>`).join("")}
     </div>`;
   }
-
   html += `<p class="parse-note">Parsed ${known.length} hero${known.length === 1 ? "" : "es"}${unk.length ? `, ${unk.length} unrecognized` : ""}.
     Spellblades count ½ toward all elements and do not satisfy elemental requirements alone.</p>`;
 
+  // Advice section
+  lastAdviceData = buildAdviceData(byEl, ctx);
+  html += `
+    <div class="advice-panel" style="margin-top:20px">
+      <h2>Roster Advice</h2>
+      <div class="mode-tabs">
+        <button class="mode-btn ${adviceMode === "even" ? "active" : ""}"
+                data-mode="even" onclick="setAdviceMode('even')">Even Spread</button>
+        <button class="mode-btn ${adviceMode === "complete" ? "active" : ""}"
+                data-mode="complete" onclick="setAdviceMode('complete')">Complete Elements</button>
+      </div>
+      <div id="adviceContent">${renderAdvice(lastAdviceData, adviceMode)}</div>
+    </div>`;
+
   document.getElementById("output").innerHTML = html;
+}
+
+function buildAdviceData(byEl, ctx) {
+  const elData = {};
+  for (const el of ELEMENTS) {
+    const list  = byEl[el];
+    const count = list.reduce((s, h) => s + h.weight, 0);
+    const archs = new Set(list.map(h => h.classInfo.archetype));
+    const promotedClasses = list
+      .filter(h => h.promoted && !h.classInfo.halfCount)
+      .map(h => h.name ? `${h.name} (${h.className})` : h.className);
+    elData[el] = { count, archs, promotedClasses, heroes: list };
+  }
+
+  // Count gaps: elements below 3
+  const countGaps = ELEMENTS
+    .filter(el => elData[el].count < 3)
+    .map(el => ({
+      el,
+      count: elData[el].count,
+      deficit: 3 - elData[el].count,
+      missingArchs: ARCHETYPES.filter(a => !elData[el].archs.has(a)),
+    }));
+
+  // Archetype-only gaps: element has 3+ heroes but missing an archetype
+  const archOnlyGaps = ELEMENTS
+    .filter(el => elData[el].count >= 3 && elData[el].archs.size < 2)
+    .map(el => ({
+      el,
+      missingArchs: ARCHETYPES.filter(a => !elData[el].archs.has(a)),
+    }));
+
+  // Sorted by count descending — most stocked first (for retire suggestions)
+  const byCount = [...ELEMENTS].sort((a, b) => elData[b].count - elData[a].count);
+
+  return { elData, countGaps, archOnlyGaps, byCount, ctx };
+}
+
+function renderAdvice(data, mode) {
+  const { elData, countGaps, archOnlyGaps, byCount, ctx } = data;
+  const ml    = ctx.ml;
+  const souls = ctx.souls ?? 0;
+
+  if (!countGaps.length && !archOnlyGaps.length) {
+    return `<p class="advice-ok">✓ All elements have 3+ heroes and 2+ archetypes. Roster looks solid.</p>`;
+  }
+
+  const modeDesc = mode === "even"
+    ? "Fix the worst gaps first — no element stays empty while others have 2."
+    : "Complete the elements closest to 3/3 first, then work on the rest.";
+
+  // Sort count gaps by mode
+  const sortedGaps = [...countGaps].sort((a, b) =>
+    mode === "even"
+      ? a.count - b.count          // Even: worst first (0 → 1 → 2)
+      : b.count - a.count          // Complete: closest-to-done first (2 → 1 → 0)
+  );
+
+  // Build hire items
+  const items = [];
+
+  for (const gap of sortedGaps) {
+    // Archetype to target: prefer missing archetypes, then any
+    const targetArchs = gap.missingArchs.length
+      ? gap.missingArchs
+      : ARCHETYPES.filter(a => elData[gap.el].archs.has(a));
+    const arch = targetArchs[0];
+    const hire = getBestHire(gap.el, arch, ml);
+    if (hire) items.push({ type: "count", gap, arch, hire });
+  }
+
+  for (const ag of archOnlyGaps) {
+    const arch = ag.missingArchs[0];
+    const hire = getBestHire(ag.el, arch, ml);
+    if (hire) items.push({
+      type: "arch",
+      gap: { el: ag.el, count: elData[ag.el].count, deficit: 0, missingArchs: ag.missingArchs },
+      arch,
+      hire,
+    });
+  }
+
+  // Retire suggestion: pick the most stocked element with count > 3, else the most stocked overall
+  const retireEl = byCount.find(el => elData[el].count > 3) ?? byCount[0];
+  const retireCount = Math.floor(elData[retireEl].count);
+  const retirePromoted = elData[retireEl].promotedClasses;
+  const retireNeeded = countGaps.some(g => g.deficit > 0); // any hire requires a slot
+
+  const itemsHtml = items.map((item, i) => {
+    const { gap, arch, hire } = item;
+    const urgency = gap.count === 0 ? "crit" : gap.count < 2 ? "warn" : "";
+
+    const caveats = [];
+    if (hire.t7) {
+      caveats.push({ text: "T7 class — extremely expensive, avoid until core roster is complete", hard: true });
+    }
+    if (hire.needsML53 && !(ml >= 53)) {
+      caveats.push({ text: `Requires ML53${ml ? ` (you're at ML${ml})` : ""}`, hard: true });
+    }
+    if (hire.needsSoul) {
+      const soulNote = souls === 0 ? " — you have none currently" : souls === 1 ? " — you have 1" : ` — you have ${souls}`;
+      caveats.push({ text: `Needs a Titan Soul to function${soulNote}`, hard: souls === 0 });
+    }
+    if (hire.caveat) {
+      caveats.push({ text: hire.caveat, hard: false });
+    }
+
+    const caveatHtml = caveats.length
+      ? `<div class="advice-caveats">${caveats.map(c =>
+          `<span class="caveat${c.hard ? " hard" : ""}">⚠ ${escHtml(c.text)}</span>`
+        ).join("")}</div>`
+      : "";
+
+    const reasonText = item.type === "arch"
+      ? `${gap.el} missing ${arch} archetype`
+      : gap.count === 0
+        ? `${gap.el} has no heroes — critical`
+        : `${gap.el} has ${Math.floor(gap.count)}/3`;
+
+    return `<div class="advice-item ${urgency}">
+      <div class="advice-main">
+        <span class="advice-num">${i + 1}.</span>
+        <span class="advice-action">Hire <strong>${escHtml(hire.cls)}</strong></span>
+        <span class="advice-tags">
+          <span class="el-tag el-${gap.el}">${gap.el}</span>
+          <span class="arch-tag ${arch}">${arch[0]}</span>
+        </span>
+        <span class="advice-reason">${reasonText}</span>
+      </div>
+      ${caveatHtml}
+    </div>`;
+  }).join("");
+
+  // Retire block
+  let retireHtml = "";
+  if (retireNeeded) {
+    const promotedWarn = retirePromoted.length
+      ? `<div class="promoted-warning">⚠ Promoted heroes in this element: ${retirePromoted.map(escHtml).join(", ")} — each promotion cost a Titan Soul. Only retire a promoted hero if you are certain it is the weakest in that element, since you cannot recover that Soul.</div>`
+      : "";
+    retireHtml = `<div class="retire-block">
+      <div class="label">If you need to free a slot first</div>
+      <div class="retire-el">
+        <span>Retire a <span class="el-name el-${retireEl}">${retireEl}</span> hero</span>
+        <span style="color:#555;font-size:.72rem">(${retireCount} heroes — most stocked)</span>
+      </div>
+      ${promotedWarn}
+    </div>`;
+  }
+
+  return `<p class="mode-desc">${escHtml(modeDesc)}</p>
+    <div class="advice-list">${itemsHtml}</div>
+    ${retireHtml}`;
 }
 
 function escHtml(s) {
