@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop Titans Roster Analyzer — Assumptions &amp; Sources</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background: #12121e;
+  color: #ddd;
+  padding: 24px;
+  min-height: 100vh;
+  max-width: 860px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+h1 { font-size: 1.3rem; color: #f0c040; letter-spacing: 0.04em; margin-bottom: 4px; }
+.page-subtitle { font-size: 0.82rem; color: #555; margin-bottom: 32px; }
+
+h2 {
+  font-size: 0.78rem; color: #666; font-weight: normal;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  margin-bottom: 12px; margin-top: 32px;
+}
+
+p { font-size: 0.85rem; color: #bbb; margin-bottom: 10px; }
+p:last-child { margin-bottom: 0; }
+
+.section {
+  background: #0e0e1c; border: 1px solid #2a2a3a;
+  border-radius: 6px; padding: 18px; margin-bottom: 16px;
+}
+
+.assumption {
+  border-left: 3px solid #2a2a3a;
+  padding: 8px 12px;
+  margin-bottom: 8px;
+  font-size: 0.83rem;
+  color: #bbb;
+}
+.assumption:last-child { margin-bottom: 0; }
+.assumption strong { color: #ddd; }
+.assumption.judgement { border-color: #a06810; }
+.assumption.verified  { border-color: #2a7a4e; }
+
+.judgement-note {
+  font-size: 0.7rem; color: #a06010; margin-top: 3px;
+}
+
+.source-item {
+  display: flex; gap: 12px; align-items: baseline;
+  padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+  font-size: 0.82rem;
+}
+.source-item:last-child { border-bottom: none; }
+.source-label { color: #888; min-width: 160px; flex-shrink: 0; font-size: 0.75rem; }
+.source-detail { color: #bbb; }
+.source-detail a { color: #7090d0; text-decoration: none; }
+.source-detail a:hover { text-decoration: underline; }
+.source-date { color: #444; font-size: 0.7rem; margin-left: 6px; }
+
+.feedback-box {
+  background: #0c0c1a; border: 1px solid #2a4a2a;
+  border-radius: 6px; padding: 14px; margin-top: 8px;
+}
+.feedback-box p { margin-bottom: 8px; }
+.feedback-box p:last-child { margin-bottom: 0; }
+
+a.issue-link {
+  display: inline-block;
+  padding: 6px 16px;
+  background: #1a3a1a; border: 1px solid #2a5a2a;
+  color: #70c070; border-radius: 4px;
+  text-decoration: none; font-size: 0.82rem;
+  margin-top: 4px;
+}
+a.issue-link:hover { background: #223a22; }
+
+nav { margin-bottom: 28px; }
+nav a { font-size: 0.78rem; color: #555; text-decoration: none; }
+nav a:hover { color: #888; }
+nav a::before { content: "← "; }
+
+footer {
+  margin-top: 40px; padding-top: 16px;
+  border-top: 1px solid #1e1e2e;
+  font-size: 0.72rem; color: #444;
+}
+</style>
+</head>
+<body>
+
+<nav><a href="index.html">Back to Roster Analyzer</a></nav>
+
+<h1>Assumptions &amp; Sources</h1>
+<p class="page-subtitle">What this tool assumes about Shop Titans, where the data comes from, and how to flag corrections.</p>
+
+<!-- ── Roster Rules ── -->
+<h2>Roster rules</h2>
+<div class="section">
+  <div class="assumption verified">
+    <strong>3+ heroes per element required.</strong> Elemental barriers appear in extreme quests, boss floors from Cinderlake Volcano onwards, and Tower of Titans Terror. A party without 3 heroes of the required element cannot pass these barriers.
+  </div>
+  <div class="assumption verified">
+    <strong>2+ archetypes per element required.</strong> Tower of Titans Terror (ML67+) can apply debuffs that lock out an entire archetype group mid-run. Having only Fighters or only Rogues in an element leaves you exposed.
+  </div>
+  <div class="assumption verified">
+    <strong>Spellblades count at 50% toward all elements</strong> and cannot independently satisfy an elemental requirement. A Spellblade contributes 0.5 to every element's count but will not clear a barrier on its own.
+  </div>
+</div>
+
+<!-- ── Class assumptions ── -->
+<h2>Class-specific judgements</h2>
+<div class="section">
+  <p style="font-size:0.75rem;color:#555;margin-bottom:12px">
+    These are the tool's opinions. Experienced players may reasonably disagree — see the feedback section below.
+  </p>
+  <div class="assumption judgement">
+    <strong>T1 and T2 classes need a Titan Soul to function well.</strong> Without promotion, T1/T2 heroes are significantly weaker than their promoted equivalents (Soldier → Mercenary, Cleric → Bishop, etc.). The tool flags these as requiring a Soul.
+    <div class="judgement-note">Judgement call — some players run T1/T2 unpromoted in early game.</div>
+  </div>
+  <div class="assumption judgement">
+    <strong>T7 classes (Dark Knight, Velite, Chronomancer) should be avoided</strong> until the core 3-per-element roster is complete. The gold cost is extremely high for the incremental benefit.
+    <div class="judgement-note">Judgement call — late-game players may disagree.</div>
+  </div>
+  <div class="assumption judgement">
+    <strong>Samurai is flagged as a difficult class.</strong> It has conflicting stat requirements (tank + damage optimisation is hard to balance) and is generally considered suboptimal until you understand the build deeply.
+    <div class="judgement-note">Judgement call — Samurai can work well with the right gear and skills.</div>
+  </div>
+  <div class="assumption verified">
+    <strong>T6 classes (Berserker, Dancer, Geomancer) unlock at ML53.</strong>
+  </div>
+  <div class="assumption verified">
+    <strong>Skills become visible at hero levels 5, 10, 23, and 35.</strong>
+  </div>
+</div>
+
+<!-- ── Argon's Finest ── -->
+<h2>Argon's Finest</h2>
+<div class="section">
+  <div class="assumption verified">
+    <strong>Hire-level by points invested:</strong> 0 pts → lv1 · 1 pt → lv5 · 2 pts → lv8 · 3 pts → lv10 · 4 pts → lv13 · 5 pts → lv15 (max). At 3+ points, two skills are visible at hire, which is the key threshold for efficient retire/rehire.
+    <div class="judgement-note">Source: direct player testing. Let us know if these numbers have changed.</div>
+  </div>
+</div>
+
+<!-- ── Hero slots ── -->
+<h2>Hero slot unlocks</h2>
+<div class="section">
+  <div class="assumption verified">
+    <strong>Hero slots are purchased with gold as they unlock at specific merchant levels.</strong>
+    Maximum is 25 slots, available from ML88. All slots require gold to purchase; having the ML is necessary but not sufficient.
+    <div class="judgement-note">Source: MerchantLevel.txt community data file. Max level is ML99; no further slots exist beyond slot 25.</div>
+  </div>
+</div>
+
+<!-- ── Data sources ── -->
+<h2>Data sources</h2>
+<div class="section">
+  <div class="source-item">
+    <span class="source-label">Class → element mapping</span>
+    <span class="source-detail">
+      <a href="https://st-central.net" target="_blank" rel="noopener">st-central.net</a> Hero Academia guide
+      <span class="source-date">sourced May 2026</span>
+    </span>
+  </div>
+  <div class="source-item">
+    <span class="source-label">Roster rules</span>
+    <span class="source-detail">
+      <a href="https://st-central.net/foster-your-roster/" target="_blank" rel="noopener">st-central.net — Foster Your Roster</a>
+      <span class="source-date">sourced May 2026</span>
+    </span>
+  </div>
+  <div class="source-item">
+    <span class="source-label">Skill tier ratings</span>
+    <span class="source-detail">
+      <a href="https://shoptitans.dowob.dev" target="_blank" rel="noopener">shoptitans.dowob.dev</a> per-class tier lists
+      <span class="source-date">sourced May 2026 · skill analysis not yet live</span>
+    </span>
+  </div>
+  <div class="source-item">
+    <span class="source-label">Hero slot unlock table</span>
+    <span class="source-detail">
+      MerchantLevel.txt — community data file, original attribution unclear
+    </span>
+  </div>
+  <div class="source-item">
+    <span class="source-label">Argon's Finest levels</span>
+    <span class="source-detail">Direct player testing and community knowledge</span>
+  </div>
+  <div class="source-item">
+    <span class="source-label">Live player data (optional)</span>
+    <span class="source-detail">
+      <a href="https://www.titansdb.com" target="_blank" rel="noopener">TitansDB API</a> — merchant level auto-fill only
+    </span>
+  </div>
+</div>
+
+<!-- ── Feedback ── -->
+<h2>Something wrong? Tell us</h2>
+<div class="section">
+  <div class="feedback-box">
+    <p>Shop Titans updates regularly and community knowledge evolves. If you know a rule, number, or class judgement here is incorrect or outdated, please open a GitHub issue — it takes under a minute and helps everyone who uses the tool.</p>
+    <p>Especially useful: corrections to Argon's Finest levels, hero slot unlock MLs, class tier or element assignments, and any rule changes after a major game update.</p>
+    <a class="issue-link"
+       href="https://github.com/ZiziSolomon/shoptitans-roster/issues/new"
+       target="_blank" rel="noopener">
+      Open an issue on GitHub
+    </a>
+  </div>
+</div>
+
+<footer>
+  Not affiliated with Kabam or the Shop Titans team. All game content belongs to its respective owners.
+</footer>
+
+</body>
+</html>
