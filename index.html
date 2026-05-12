@@ -17,109 +17,57 @@ body {
   margin: 0 auto;
 }
 
-h1 {
-  font-size: 1.3rem;
-  color: #f0c040;
-  letter-spacing: 0.04em;
-  margin-bottom: 4px;
-}
-h2 {
-  font-size: 0.9rem;
-  color: #888;
-  font-weight: normal;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin-bottom: 12px;
-}
+h1 { font-size: 1.3rem; color: #f0c040; letter-spacing: 0.04em; margin-bottom: 4px; }
 .page-subtitle { font-size: 0.82rem; color: #555; margin-bottom: 28px; }
 
-/* ── API section ── */
-.api-section {
+h2 {
+  font-size: 0.78rem;
+  color: #666;
+  font-weight: normal;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+/* ── Panels ── */
+.panel {
   background: #0e0e1c;
   border: 1px solid #2a2a3a;
   border-radius: 6px;
   padding: 16px;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
-.api-row {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  flex-wrap: wrap;
+
+/* ── Context inputs ── */
+.context-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
 }
-.api-key-input {
-  flex: 1;
-  min-width: 220px;
+.field { display: flex; flex-direction: column; gap: 4px; }
+.field label {
+  font-size: 0.68rem;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.field input {
   background: #0c0c1a;
   border: 1px solid #2a2a3a;
-  color: #ccc;
-  padding: 7px 10px;
-  font-family: monospace;
-  font-size: 0.8rem;
+  color: #ddd;
+  padding: 6px 10px;
+  font-size: 0.9rem;
   border-radius: 4px;
+  width: 100%;
 }
-.api-key-input:focus { outline: none; border-color: #444; }
+.field input:focus { outline: none; border-color: #555; }
+.field .hint { font-size: 0.65rem; color: #444; margin-top: 2px; }
 
-.btn {
-  padding: 7px 18px;
-  background: #f0c040;
-  color: #12121e;
-  border: none;
-  font-weight: bold;
-  font-size: 0.85rem;
-  cursor: pointer;
-  border-radius: 4px;
-  white-space: nowrap;
-}
-.btn:hover { background: #ffd060; }
-.btn:disabled { background: #555; color: #888; cursor: default; }
-.btn-secondary {
-  background: #2a2a3a;
-  color: #aaa;
-}
-.btn-secondary:hover { background: #3a3a4a; }
-
-.api-status {
-  margin-top: 12px;
-  font-size: 0.8rem;
-}
-.player-card {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-  padding: 10px 0 4px;
-}
-.player-stat { }
-.player-stat .label { font-size: 0.68rem; color: #555; text-transform: uppercase; letter-spacing: 0.06em; }
-.player-stat .value { font-size: 1rem; color: #ddd; font-weight: bold; }
-.player-stat .value.ml { color: #f0c040; }
-.ml-note {
-  font-size: 0.72rem;
-  color: #a06010;
-  margin-top: 6px;
-  padding: 4px 8px;
-  background: #201808;
-  border-radius: 3px;
-  display: inline-block;
-}
-
-.api-error {
-  color: #e05030;
-  padding: 6px 0;
-}
-.api-error .err-detail {
-  font-size: 0.72rem;
-  color: #884433;
-  margin-top: 3px;
-}
-
-/* ── Hero input section ── */
-.hero-section { margin-bottom: 24px; }
-.section-note { font-size: 0.75rem; color: #555; margin-bottom: 8px; }
-/* TODO: when TitansDB adds /api/my_heroes, replace textarea with auto-fetch */
+/* ── Textarea ── */
+/* TODO: replace with API fetch when TitansDB adds /api/my_heroes */
 textarea {
   width: 100%;
-  height: 100px;
+  height: 90px;
   background: #0c0c1a;
   border: 1px solid #2a2a3a;
   color: #aaa;
@@ -132,31 +80,88 @@ textarea {
 }
 textarea:focus { outline: none; border-color: #444; }
 
-/* ── Results grid ── */
+/* ── Buttons ── */
+.btn {
+  padding: 7px 20px;
+  background: #f0c040;
+  color: #12121e;
+  border: none;
+  font-weight: bold;
+  font-size: 0.85rem;
+  cursor: pointer;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+.btn:hover { background: #ffd060; }
+.btn:disabled { background: #444; color: #777; cursor: default; }
+.btn-ghost { background: transparent; color: #555; border: 1px solid #2a2a3a; font-weight: normal; }
+.btn-ghost:hover { background: #1a1a2a; color: #888; }
+
+/* ── API connect (collapsed by default) ── */
+.api-toggle {
+  font-size: 0.72rem;
+  color: #444;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+}
+.api-toggle:hover { color: #888; }
+.api-panel { display: none; margin-top: 12px; }
+.api-panel.open { display: block; }
+.api-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.api-key-input {
+  flex: 1; min-width: 200px;
+  background: #0c0c1a; border: 1px solid #2a2a3a;
+  color: #ccc; padding: 6px 10px;
+  font-family: monospace; font-size: 0.8rem;
+  border-radius: 4px;
+}
+.api-key-input:focus { outline: none; border-color: #444; }
+.api-msg { margin-top: 8px; font-size: 0.75rem; }
+.api-msg.err { color: #c04030; }
+.api-msg.ok  { color: #40a060; }
+
+/* ── Results ── */
 #output { margin-top: 4px; }
+
+.context-bar {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 10px 14px;
+  background: #0e0e1c;
+  border: 1px solid #2a2a3a;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  font-size: 0.78rem;
+}
+.ctx-item .ctx-label { color: #555; }
+.ctx-item .ctx-val   { color: #ddd; font-weight: bold; margin-left: 4px; }
+.ctx-item .ctx-val.highlight { color: #f0c040; }
+.milestone-note {
+  font-size: 0.7rem;
+  padding: 3px 8px;
+  border-radius: 3px;
+  align-self: center;
+}
+.milestone-note.upcoming { background: #201808; color: #a06010; }
+.milestone-note.unlocked { background: #0c2010; color: #50a060; }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 12px;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
-
-.card {
-  border-radius: 6px;
-  padding: 14px;
-  border-left: 4px solid transparent;
-}
+.card { border-radius: 6px; padding: 14px; border-left: 4px solid transparent; }
 .card.ok   { background: #0c201a; border-color: #2a7a4e; }
 .card.warn { background: #201808; border-color: #a06810; }
 .card.crit { background: #200808; border-color: #a02010; }
 
-.card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: 10px;
-}
+.card-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
 .el-name { font-weight: bold; font-size: 1rem; }
 .el-Water { color: #50a8f0; }
 .el-Earth { color: #78c040; }
@@ -165,24 +170,16 @@ textarea:focus { outline: none; border-color: #444; }
 .el-Light { color: #f0d840; }
 .el-Dark  { color: #b060f0; }
 
-.count-badge {
-  font-size: 0.78rem;
-  font-weight: bold;
-  padding: 2px 9px;
-  border-radius: 10px;
-}
+.count-badge { font-size: 0.78rem; font-weight: bold; padding: 2px 9px; border-radius: 10px; }
 .badge-ok   { background: #143d24; color: #50e080; }
 .badge-warn { background: #3d2208; color: #e09030; }
 .badge-crit { background: #3d0808; color: #e04030; }
 
 .arch-row { display: flex; gap: 5px; margin-bottom: 8px; flex-wrap: wrap; }
 .arch {
-  font-size: 0.68rem;
-  font-weight: bold;
-  padding: 2px 9px;
-  border-radius: 3px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  font-size: 0.68rem; font-weight: bold;
+  padding: 2px 9px; border-radius: 3px;
+  letter-spacing: 0.06em; text-transform: uppercase;
 }
 .arch.present { opacity: 1; }
 .arch.absent  { opacity: 0.2; }
@@ -192,30 +189,37 @@ textarea:focus { outline: none; border-color: #444; }
 
 .arch-warn { font-size: 0.7rem; color: #a06010; margin-bottom: 6px; }
 
+.card-locked {
+  font-size: 0.68rem; color: #444; margin-top: 6px;
+  border-top: 1px solid #222; padding-top: 6px;
+}
+
 .hero-list { margin-top: 8px; }
 .hero-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 3px 0;
-  border-top: 1px solid rgba(255,255,255,0.05);
-  font-size: 0.75rem;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 3px 0; border-top: 1px solid rgba(255,255,255,0.05); font-size: 0.75rem;
 }
 .hero-row:first-child { border-top: none; }
 .hero-class { color: #ccc; }
 .hero-meta  { color: #555; font-size: 0.7rem; }
-.half-note  { color: #666; }
+.half-note  { color: #555; }
 .empty-note { font-size: 0.73rem; color: #444; font-style: italic; margin-top: 6px; }
 
-.parse-note { font-size: 0.73rem; color: #555; margin-top: 8px; }
+.resources-bar {
+  display: flex; gap: 20px; flex-wrap: wrap;
+  padding: 10px 14px;
+  background: #0e0e1c; border: 1px solid #2a2a3a;
+  border-radius: 6px; margin-bottom: 16px;
+}
+.res-item { font-size: 0.78rem; }
+.res-label { color: #555; }
+.res-val   { color: #ddd; font-weight: bold; margin-left: 4px; }
+.res-note  { color: #666; margin-left: 4px; font-size: 0.68rem; }
 
+.parse-note { font-size: 0.73rem; color: #555; margin-top: 8px; }
 .unknown-box {
-  background: #1a1608;
-  border: 1px solid #3a3010;
-  border-radius: 4px;
-  padding: 12px;
-  margin-top: 4px;
-  font-size: 0.78rem;
+  background: #1a1608; border: 1px solid #3a3010;
+  border-radius: 4px; padding: 12px; margin-top: 8px; font-size: 0.78rem;
 }
 .unknown-box h3 { color: #c09030; font-size: 0.85rem; margin-bottom: 8px; }
 .unknown-box .unknown-item { color: #888; padding: 1px 0; }
@@ -224,26 +228,53 @@ textarea:focus { outline: none; border-color: #444; }
 <body>
 
 <h1>Shop Titans — Roster Analyzer</h1>
-<p class="page-subtitle">Element and archetype coverage analysis for your hero roster.</p>
+<p class="page-subtitle">Element and archetype coverage for your hero roster.</p>
 
-<!-- ── API Section ── -->
-<div class="api-section">
-  <h2>Player Data</h2>
-  <div class="api-row">
-    <input class="api-key-input" id="apiKey" type="password"
-           placeholder="TitansDB API key"
-           onkeydown="if(event.key==='Enter') fetchPlayer()">
-    <button class="btn" onclick="fetchPlayer()" id="fetchBtn">Fetch</button>
-    <button class="btn btn-secondary" onclick="clearPlayer()" id="clearBtn" style="display:none">Clear</button>
+<!-- ── Player Context ── -->
+<div class="panel">
+  <h2>Player Context</h2>
+  <div class="context-grid">
+    <div class="field">
+      <label>Merchant Level</label>
+      <input type="number" id="ctxML" min="1" max="200" placeholder="e.g. 52">
+      <span class="hint">Affects which classes are available</span>
+    </div>
+    <div class="field">
+      <label>Titan Souls</label>
+      <input type="number" id="ctxSouls" min="0" placeholder="e.g. 1">
+      <span class="hint">Available for hero / champion promotions</span>
+    </div>
+    <div class="field">
+      <label>Argon's Finest (points)</label>
+      <input type="number" id="ctxArgon" min="0" max="10" placeholder="e.g. 3">
+      <span class="hint">3+ = see skills at hire</span>
+    </div>
+    <div class="field">
+      <label>Gold spare</label>
+      <input type="text" id="ctxGold" placeholder="e.g. 50M">
+      <span class="hint">Available for hiring / promotions</span>
+    </div>
   </div>
-  <div class="api-status" id="apiStatus"></div>
+
+  <!-- API auto-fill (secondary) -->
+  <div style="margin-top:14px">
+    <button class="api-toggle" onclick="toggleApi()">Connect TitansDB account to auto-fill merchant level ▾</button>
+    <div class="api-panel" id="apiPanel">
+      <div class="api-row">
+        <input class="api-key-input" id="apiKey" type="password"
+               placeholder="TitansDB API key"
+               onkeydown="if(event.key==='Enter') fetchPlayer()">
+        <button class="btn" onclick="fetchPlayer()" id="fetchBtn">Fetch</button>
+      </div>
+      <div class="api-msg" id="apiMsg"></div>
+    </div>
+  </div>
 </div>
 
-<!-- ── Hero String Input ── -->
-<div class="hero-section">
+<!-- ── Hero Strings ── -->
+<div class="panel">
   <h2>Hero Roster</h2>
-  <p class="section-note">Paste hero strings from the game (one per line). Both plain and name-prefixed formats accepted.</p>
-  <textarea id="heroInput" placeholder="No|Red Type|Knight|Axe|Heavy Armor|..."></textarea>
+  <textarea id="heroInput" placeholder="No|Red Type|Knight|Axe|Heavy Armor|...&#10;Paste hero strings here, one per line."></textarea>
   <button class="btn" style="margin-top:10px" onclick="analyze()">Analyze</button>
 </div>
 
@@ -254,59 +285,59 @@ const ELEMENTS   = ["Water", "Earth", "Fire", "Air", "Light", "Dark"];
 const ARCHETYPES = ["Fighter", "Rogue", "Spellcaster"];
 const API_BASE   = "https://www.titansdb.com/api";
 
-// ML thresholds that matter for roster planning
-const ML_NOTES = [
-  { ml: 52, note: "Argon's Finest maxed · +1 roster slot" },
-  { ml: 53, note: "T6 classes unlocked (Geomancer, Berserker, Dancer)" },
-  { ml: 67, note: "Tower of Titans Terror difficulty" },
-];
+// Classes locked until ML53 T6 unlock
+const T6_CLASSES = ["Geomancer", "Astramancer", "Berserker", "Jarl", "Dancer", "Acrobat"];
 
 const CLASS_MAP = {
-  // Fighters
-  "Soldier":     { element: "Earth", archetype: "Fighter" },
-  "Mercenary":   { element: "Earth", archetype: "Fighter" },
-  "Barbarian":   { element: "Fire",  archetype: "Fighter" },
-  "Chieftain":   { element: "Fire",  archetype: "Fighter" },
-  "Knight":      { element: "Light", archetype: "Fighter" },
-  "Lord":        { element: "Light", archetype: "Fighter" },
-  "Ranger":      { element: "Air",   archetype: "Fighter" },
-  "Warden":      { element: "Air",   archetype: "Fighter" },
-  "Samurai":     { element: "Water", archetype: "Fighter" },
-  "Daimyo":      { element: "Water", archetype: "Fighter" },
-  "Berserker":   { element: "Fire",  archetype: "Fighter" },
-  "Jarl":        { element: "Fire",  archetype: "Fighter" },
-  "Dark Knight": { element: "Dark",  archetype: "Fighter" },
-  "Death Knight":{ element: "Dark",  archetype: "Fighter" },
-  // Rogues
-  "Thief":       { element: "Air",   archetype: "Rogue" },
-  "Trickster":   { element: "Air",   archetype: "Rogue" },
-  "Monk":        { element: "Water", archetype: "Rogue" },
-  "Grandmaster": { element: "Water", archetype: "Rogue" },
-  "Musketeer":   { element: "Fire",  archetype: "Rogue" },
-  "Conquistador":{ element: "Fire",  archetype: "Rogue" },
-  "Wanderer":    { element: "Earth", archetype: "Rogue" },
-  "Pathfinder":  { element: "Earth", archetype: "Rogue" },
-  "Ninja":       { element: "Dark",  archetype: "Rogue" },
-  "Sensei":      { element: "Dark",  archetype: "Rogue" },
-  "Dancer":      { element: "Air",   archetype: "Rogue" },
-  "Acrobat":     { element: "Air",   archetype: "Rogue" },
-  "Velite":      { element: "Light", archetype: "Rogue" },
-  "Praetorian":  { element: "Light", archetype: "Rogue" },
-  // Spellcasters
-  "Mage":        { element: "Fire",  archetype: "Spellcaster" },
-  "Archmage":    { element: "Fire",  archetype: "Spellcaster" },
-  "Cleric":      { element: "Light", archetype: "Spellcaster" },
-  "Bishop":      { element: "Light", archetype: "Spellcaster" },
-  "Druid":       { element: "Earth", archetype: "Spellcaster" },
-  "Arch Druid":  { element: "Earth", archetype: "Spellcaster" },
-  "Sorcerer":    { element: "Dark",  archetype: "Spellcaster" },
-  "Warlock":     { element: "Dark",  archetype: "Spellcaster" },
-  "Spellblade":  { element: "All",   archetype: "Rogue", halfCount: true },
-  "Spellknight": { element: "All",   archetype: "Rogue", halfCount: true },
-  "Geomancer":   { element: "Water", archetype: "Spellcaster" },
-  "Astramancer": { element: "Water", archetype: "Spellcaster" },
-  "Chronomancer":{ element: "Air",   archetype: "Spellcaster" },
-  "Fateweaver":  { element: "Air",   archetype: "Spellcaster" },
+  "Soldier":     { element: "Earth", archetype: "Fighter", tier: 1 },
+  "Mercenary":   { element: "Earth", archetype: "Fighter", tier: 1 },
+  "Barbarian":   { element: "Fire",  archetype: "Fighter", tier: 2 },
+  "Chieftain":   { element: "Fire",  archetype: "Fighter", tier: 2 },
+  "Knight":      { element: "Light", archetype: "Fighter", tier: 3 },
+  "Lord":        { element: "Light", archetype: "Fighter", tier: 3 },
+  "Ranger":      { element: "Air",   archetype: "Fighter", tier: 4 },
+  "Warden":      { element: "Air",   archetype: "Fighter", tier: 4 },
+  "Samurai":     { element: "Water", archetype: "Fighter", tier: 5 },
+  "Daimyo":      { element: "Water", archetype: "Fighter", tier: 5 },
+  "Berserker":   { element: "Fire",  archetype: "Fighter", tier: 6 },
+  "Jarl":        { element: "Fire",  archetype: "Fighter", tier: 6 },
+  "Dark Knight": { element: "Dark",  archetype: "Fighter", tier: 7 },
+  "Death Knight":{ element: "Dark",  archetype: "Fighter", tier: 7 },
+  "Thief":       { element: "Air",   archetype: "Rogue",   tier: 1 },
+  "Trickster":   { element: "Air",   archetype: "Rogue",   tier: 1 },
+  "Monk":        { element: "Water", archetype: "Rogue",   tier: 2 },
+  "Grandmaster": { element: "Water", archetype: "Rogue",   tier: 2 },
+  "Musketeer":   { element: "Fire",  archetype: "Rogue",   tier: 3 },
+  "Conquistador":{ element: "Fire",  archetype: "Rogue",   tier: 3 },
+  "Wanderer":    { element: "Earth", archetype: "Rogue",   tier: 4 },
+  "Pathfinder":  { element: "Earth", archetype: "Rogue",   tier: 4 },
+  "Ninja":       { element: "Dark",  archetype: "Rogue",   tier: 5 },
+  "Sensei":      { element: "Dark",  archetype: "Rogue",   tier: 5 },
+  "Dancer":      { element: "Air",   archetype: "Rogue",   tier: 6 },
+  "Acrobat":     { element: "Air",   archetype: "Rogue",   tier: 6 },
+  "Velite":      { element: "Light", archetype: "Rogue",   tier: 7 },
+  "Praetorian":  { element: "Light", archetype: "Rogue",   tier: 7 },
+  "Mage":        { element: "Fire",  archetype: "Spellcaster", tier: 1 },
+  "Archmage":    { element: "Fire",  archetype: "Spellcaster", tier: 1 },
+  "Cleric":      { element: "Light", archetype: "Spellcaster", tier: 2 },
+  "Bishop":      { element: "Light", archetype: "Spellcaster", tier: 2 },
+  "Druid":       { element: "Earth", archetype: "Spellcaster", tier: 3 },
+  "Arch Druid":  { element: "Earth", archetype: "Spellcaster", tier: 3 },
+  "Sorcerer":    { element: "Dark",  archetype: "Spellcaster", tier: 4 },
+  "Warlock":     { element: "Dark",  archetype: "Spellcaster", tier: 4 },
+  "Spellblade":  { element: "All",   archetype: "Rogue",       tier: 5, halfCount: true },
+  "Spellknight": { element: "All",   archetype: "Rogue",       tier: 5, halfCount: true },
+  "Geomancer":   { element: "Water", archetype: "Spellcaster", tier: 6 },
+  "Astramancer": { element: "Water", archetype: "Spellcaster", tier: 6 },
+  "Chronomancer":{ element: "Air",   archetype: "Spellcaster", tier: 7 },
+  "Fateweaver":  { element: "Air",   archetype: "Spellcaster", tier: 7 },
+};
+
+// T6 classes available to each element once ML53 is reached
+const T6_BY_ELEMENT = {
+  Water: ["Geomancer (Spellcaster)"],
+  Fire:  ["Berserker (Fighter)"],
+  Air:   ["Dancer (Rogue)"],
 };
 
 function lookupClass(name) {
@@ -318,8 +349,6 @@ function lookupClass(name) {
 function parseHeroString(line) {
   const f = line.split("|");
   const get = i => (f[i] ?? "").trim();
-  // Standard:   No|Red Type|Knight|...   (promoted at 0, class at 2)
-  // Named:  Cyrus|fighter|light|No|...   (3-field prefix)
   const off = (get(0) === "Yes" || get(0) === "No") ? 0 : 3;
   const className = get(off + 2);
   return {
@@ -332,129 +361,121 @@ function parseHeroString(line) {
   };
 }
 
-// ── API ──────────────────────────────────────────────────────────────────────
+function getContext() {
+  return {
+    ml:    parseInt(document.getElementById("ctxML").value)    || null,
+    souls: parseInt(document.getElementById("ctxSouls").value) || null,
+    argon: parseInt(document.getElementById("ctxArgon").value) ?? null,
+    gold:  document.getElementById("ctxGold").value.trim()     || null,
+  };
+}
+
+// ── API ───────────────────────────────────────────────────────────────────────
+
+function toggleApi() {
+  const panel = document.getElementById("apiPanel");
+  panel.classList.toggle("open");
+}
 
 async function fetchPlayer() {
   const key = document.getElementById("apiKey").value.trim();
   if (!key) return;
-
-  const btn    = document.getElementById("fetchBtn");
-  const status = document.getElementById("apiStatus");
-  btn.disabled = true;
-  btn.textContent = "Fetching…";
-  status.innerHTML = "";
-
+  const btn = document.getElementById("fetchBtn");
+  const msg = document.getElementById("apiMsg");
+  btn.disabled = true; btn.textContent = "Fetching…";
+  msg.textContent = "";
   try {
-    const res = await fetch(`${API_BASE}/my_player`, {
-      headers: { "X-API-Key": key },
-    });
-
-    if (!res.ok) {
-      const text = await res.text().catch(() => "");
-      throw new Error(`HTTP ${res.status}${text ? ": " + text : ""}`);
-    }
-
+    const res  = await fetch(`${API_BASE}/my_player`, { headers: { "X-API-Key": key } });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
-    if (!data.ok) throw new Error(data.error ?? "API returned ok:false");
-
-    renderPlayer(data.player);
-    document.getElementById("clearBtn").style.display = "inline-block";
-
+    if (!data.ok) throw new Error(data.error ?? "API error");
+    const ml = data.player?.level;
+    if (ml) {
+      document.getElementById("ctxML").value = ml;
+      msg.className = "api-msg ok";
+      msg.textContent = `Loaded ML${ml} for ${escHtml(data.player.name ?? "player")}.`;
+    }
   } catch (err) {
-    const isCors = err instanceof TypeError && err.message.toLowerCase().includes("fetch");
-    status.innerHTML = `
-      <div class="api-error">
-        ${isCors
-          ? "CORS error — the TitansDB server needs to allow requests from this domain."
-          : "Error: " + escHtml(err.message)}
-        ${isCors
-          ? `<div class="err-detail">This will resolve once the site is hosted on a whitelisted domain, or once TitansDB enables open CORS.</div>`
-          : ""}
-      </div>`;
+    msg.className = "api-msg err";
+    const cors = err instanceof TypeError;
+    msg.textContent = cors
+      ? "CORS error — TitansDB hasn't enabled browser access from this domain yet."
+      : "Error: " + err.message;
   } finally {
-    btn.disabled = false;
-    btn.textContent = "Fetch";
+    btn.disabled = false; btn.textContent = "Fetch";
   }
 }
 
-function renderPlayer(p) {
-  const ml = p.level ?? "?";
+// ── Analysis ──────────────────────────────────────────────────────────────────
 
-  // Find the next meaningful ML milestone
-  const nextMilestone = ML_NOTES.find(m => m.ml > ml);
-  const mlNote = nextMilestone
-    ? `<div class="ml-note">Next milestone: ML${nextMilestone.ml} — ${nextMilestone.note}</div>`
-    : "";
-
-  // Current unlocked milestones worth surfacing
-  const unlockedNotes = ML_NOTES.filter(m => m.ml <= ml)
-    .map(m => `ML${m.ml}: ${m.note}`)
-    .join(" · ");
-
-  document.getElementById("apiStatus").innerHTML = `
-    <div class="player-card">
-      <div class="player-stat">
-        <div class="label">Player</div>
-        <div class="value">${escHtml(p.name ?? "—")}</div>
-      </div>
-      <div class="player-stat">
-        <div class="label">Merchant Level</div>
-        <div class="value ml">ML ${ml}</div>
-      </div>
-      ${p.guild ? `<div class="player-stat">
-        <div class="label">Guild</div>
-        <div class="value" style="font-size:.85rem">${escHtml(p.guild.name)} · ${escHtml(p.guild.rank)}</div>
-      </div>` : ""}
-    </div>
-    ${unlockedNotes ? `<div class="ml-note" style="background:#0c200c;color:#508040">${unlockedNotes}</div>` : ""}
-    ${mlNote}`;
-}
-
-function clearPlayer() {
-  document.getElementById("apiStatus").innerHTML = "";
-  document.getElementById("clearBtn").style.display = "none";
-  document.getElementById("apiKey").value = "";
-}
-
-// ── Analysis ─────────────────────────────────────────────────────────────────
-
-function tier(count) {
-  return count >= 3 ? "ok" : count >= 1 ? "warn" : "crit";
-}
+function tier(count) { return count >= 3 ? "ok" : count >= 1 ? "warn" : "crit"; }
 
 function analyze() {
   const lines = document.getElementById("heroInput").value
-    .split("\n")
-    .map(l => l.trim())
-    .filter(l => l.includes("|"));
+    .split("\n").map(l => l.trim()).filter(l => l.includes("|"));
 
   if (!lines.length) {
     document.getElementById("output").innerHTML =
-      '<p style="color:#555;font-size:.85rem">Paste at least one hero string and click Analyze.</p>';
+      '<p style="color:#555;font-size:.85rem;margin-top:8px">Paste hero strings above and click Analyze.</p>';
     return;
   }
 
-  const heroes  = lines.map(parseHeroString);
-  const known   = heroes.filter(h => h.classInfo);
-  const unknown = heroes.filter(h => !h.classInfo);
+  const ctx    = getContext();
+  const heroes = lines.map(parseHeroString);
+  const known  = heroes.filter(h => h.classInfo);
+  const unk    = heroes.filter(h => !h.classInfo);
+  const t6ok   = ctx.ml !== null && ctx.ml >= 53;
 
+  // Bucket by element
   const byEl = Object.fromEntries(ELEMENTS.map(el => [el, []]));
-  for (const hero of known) {
-    const targets = hero.classInfo.halfCount ? ELEMENTS : [hero.classInfo.element];
-    const weight  = hero.classInfo.halfCount ? 0.5 : 1.0;
-    for (const el of targets) byEl[el].push({ ...hero, weight });
+  for (const h of known) {
+    const targets = h.classInfo.halfCount ? ELEMENTS : [h.classInfo.element];
+    const weight  = h.classInfo.halfCount ? 0.5 : 1.0;
+    for (const el of targets) byEl[el].push({ ...h, weight });
   }
 
+  let html = "";
+
+  // Context bar (only if any context entered)
+  if (ctx.ml || ctx.souls !== null || ctx.argon !== null || ctx.gold) {
+    const parts = [];
+    if (ctx.ml) {
+      parts.push(`<span class="ctx-item"><span class="ctx-label">ML</span><span class="ctx-val highlight">${ctx.ml}</span></span>`);
+    }
+    if (ctx.souls !== null) {
+      parts.push(`<span class="ctx-item"><span class="ctx-label">Titan Souls</span><span class="ctx-val">${ctx.souls}</span></span>`);
+    }
+    if (ctx.argon !== null) {
+      const argonNote = ctx.argon >= 3 ? "skills visible at hire" : "level to 3 to see skills at hire";
+      parts.push(`<span class="ctx-item"><span class="ctx-label">Argon's Finest</span><span class="ctx-val">${ctx.argon}</span><span class="res-note">${argonNote}</span></span>`);
+    }
+    if (ctx.gold) {
+      parts.push(`<span class="ctx-item"><span class="ctx-label">Gold spare</span><span class="ctx-val">${escHtml(ctx.gold)}</span></span>`);
+    }
+
+    // ML milestone note
+    if (ctx.ml) {
+      if (ctx.ml < 52) {
+        parts.push(`<span class="milestone-note upcoming">Next: ML52 — Argon's Finest maxes, +1 roster slot</span>`);
+      } else if (ctx.ml < 53) {
+        parts.push(`<span class="milestone-note upcoming">Next: ML53 — T6 classes unlock (Geomancer, Berserker, Dancer)</span>`);
+      } else if (ctx.ml < 67) {
+        parts.push(`<span class="milestone-note unlocked">ML53 ✓ T6 classes available</span>`);
+      }
+    }
+
+    html += `<div class="context-bar">${parts.join("")}</div>`;
+  }
+
+  // Element grid
   const cards = ELEMENTS.map(el => {
     const list  = byEl[el];
     const count = list.reduce((s, h) => s + h.weight, 0);
-
     const archetypesPresent = new Set(list.map(h => h.classInfo.archetype));
 
     const countTier = tier(count);
     const archOk    = archetypesPresent.size >= 2;
-    const cardTier  = countTier === "crit" ? "crit"
-                    : (countTier === "warn" || !archOk) ? "warn" : "ok";
+    const cardTier  = countTier === "crit" ? "crit" : (countTier === "warn" || !archOk) ? "warn" : "ok";
 
     const countLabel   = Number.isInteger(count) ? `${count}/3` : `${count.toFixed(1)}/3`;
     const statusSymbol = cardTier === "ok" ? "✓" : cardTier === "warn" ? "⚠" : "✗";
@@ -468,26 +489,31 @@ function analyze() {
       ? `<div class="arch-warn">Only ${archetypesPresent.size} archetype${archetypesPresent.size === 1 ? "" : "s"} — need 2 for Tower of Titans</div>`
       : "";
 
-    const heroRows = list
-      .filter(h => !h.classInfo.halfCount)
-      .map(h => {
-        const label = h.name ? `${escHtml(h.name)} <span style="color:#666">(${escHtml(h.className)})</span>` : escHtml(h.className);
-        return `<div class="hero-row">
-          <span class="hero-class">${label}</span>
-          <span class="hero-meta">${h.level != null ? "lv" + h.level : "??"}</span>
-        </div>`;
-      }).join("");
+    const heroRows = list.filter(h => !h.classInfo.halfCount).map(h => {
+      const label = h.name
+        ? `${escHtml(h.name)} <span style="color:#555">(${escHtml(h.className)})</span>`
+        : escHtml(h.className);
+      return `<div class="hero-row">
+        <span class="hero-class">${label}</span>
+        <span class="hero-meta">${h.level != null ? "lv" + h.level : "??"}</span>
+      </div>`;
+    }).join("");
 
-    const sbRows = list
-      .filter(h => h.classInfo.halfCount)
-      .map(h => `<div class="hero-row">
+    const sbRows = list.filter(h => h.classInfo.halfCount).map(h =>
+      `<div class="hero-row">
         <span class="hero-class">${escHtml(h.className)} <span class="half-note">(½)</span></span>
         <span class="hero-meta">${h.level != null ? "lv" + h.level : "??"}</span>
-      </div>`).join("");
+      </div>`
+    ).join("");
 
     const heroSection = (heroRows || sbRows)
       ? `<div class="hero-list">${heroRows}${sbRows}</div>`
       : `<div class="empty-note">No heroes</div>`;
+
+    // Show locked T6 options for this element if ML known and < 53
+    const lockedT6 = (!t6ok && ctx.ml && T6_BY_ELEMENT[el])
+      ? `<div class="card-locked">Unlocks at ML53: ${T6_BY_ELEMENT[el].join(", ")}</div>`
+      : "";
 
     return `<div class="card ${cardTier}">
       <div class="card-header">
@@ -497,19 +523,20 @@ function analyze() {
       <div class="arch-row">${archBadges}</div>
       ${archWarn}
       ${heroSection}
+      ${lockedT6}
     </div>`;
   });
 
-  let html = `<div class="grid">${cards.join("")}</div>`;
+  html += `<div class="grid">${cards.join("")}</div>`;
 
-  if (unknown.length) {
+  if (unk.length) {
     html += `<div class="unknown-box">
       <h3>Unrecognized classes</h3>
-      ${unknown.map(h => `<div class="unknown-item">${escHtml(h.className || "(empty)")}</div>`).join("")}
+      ${unk.map(h => `<div class="unknown-item">${escHtml(h.className || "(empty)")}</div>`).join("")}
     </div>`;
   }
 
-  html += `<p class="parse-note">Parsed ${known.length} hero${known.length === 1 ? "" : "es"}${unknown.length ? `, ${unknown.length} unrecognized` : ""}.
+  html += `<p class="parse-note">Parsed ${known.length} hero${known.length === 1 ? "" : "es"}${unk.length ? `, ${unk.length} unrecognized` : ""}.
     Spellblades count ½ toward all elements and do not satisfy elemental requirements alone.</p>`;
 
   document.getElementById("output").innerHTML = html;
@@ -517,10 +544,8 @@ function analyze() {
 
 function escHtml(s) {
   return String(s)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
+    .replace(/&/g, "&amp;").replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 }
 </script>
 </body>
