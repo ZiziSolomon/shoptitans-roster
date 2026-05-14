@@ -197,17 +197,31 @@ textarea:focus { outline: none; border-color: #444; }
   color: #e05030; font-weight: bold;
 }
 
-.retire-block {
-  margin-top: 12px; padding: 10px 13px;
-  background: #0e0e1c; border: 1px solid #2a2a3a; border-radius: 5px;
-  font-size: 0.78rem;
-}
-.retire-block .label { color: #666; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
-.retire-el { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .promoted-warning {
-  margin-top: 4px; font-size: 0.72rem; color: #e05030;
+  margin-top: 6px; font-size: 0.72rem; color: #e05030;
   padding: 4px 8px; background: #200808; border-radius: 3px;
 }
+
+.advice-item.action-hire   { border-left-color: #2a5a7a; }
+.advice-item.action-hire.crit { border-left-color: #a02010; }
+.advice-item.action-hire.warn { border-left-color: #a06810; }
+.advice-item.action-retire {
+  border-left-color: #7a4a2a;
+  background: #14100a;
+}
+.action-kind {
+  font-size: 0.65rem; font-weight: bold; padding: 1px 7px;
+  border-radius: 3px; text-transform: uppercase; letter-spacing: 0.05em;
+}
+.kind-hire   { background: #10304a; color: #70a0ff; }
+.kind-retire { background: #4a2a10; color: #ff9050; }
+
+.slot-summary {
+  font-size: 0.78rem; color: #888; margin-bottom: 10px;
+  padding: 6px 10px; background: #0e0e1c;
+  border-left: 2px solid #2a3a4a; border-radius: 3px;
+}
+.slot-summary.anomaly { color: #c06030; border-left-color: #6a3020; }
 
 .advice-ok { font-size: 0.85rem; color: #40a060; padding: 12px 0; }
 </style>
@@ -584,7 +598,7 @@ function analyze() {
     Spellblades count ½ toward all elements and do not satisfy elemental requirements alone.</p>`;
 
   // Advice section
-  lastAdviceData = buildAdviceData(byEl, ctx);
+  lastAdviceData = buildAdviceData(byEl, ctx, known.length);
   html += `
     <div class="advice-panel" style="margin-top:20px">
       <h2>Roster Advice</h2>
@@ -600,7 +614,7 @@ function analyze() {
   document.getElementById("output").innerHTML = html;
 }
 
-function buildAdviceData(byEl, ctx) {
+function buildAdviceData(byEl, ctx, heroCount) {
   const elData = {};
   for (const el of ELEMENTS) {
     const list  = byEl[el];
@@ -633,11 +647,15 @@ function buildAdviceData(byEl, ctx) {
   // Sorted by count descending — most stocked first (for retire suggestions)
   const byCount = [...ELEMENTS].sort((a, b) => elData[b].count - elData[a].count);
 
-  return { elData, countGaps, archOnlyGaps, byCount, ctx };
+  const maxSlots  = maxSlotsAtML(ctx.ml);
+  const overFull  = maxSlots != null && heroCount > maxSlots;
+  const freeSlots = maxSlots != null ? Math.max(0, maxSlots - heroCount) : null;
+
+  return { elData, countGaps, archOnlyGaps, byCount, ctx, heroCount, maxSlots, freeSlots, overFull };
 }
 
 function renderAdvice(data, mode) {
-  const { elData, countGaps, archOnlyGaps, byCount, ctx } = data;
+  const { elData, countGaps, archOnlyGaps, ctx, heroCount, maxSlots, freeSlots, overFull } = data;
   const ml    = ctx.ml;
   const souls = ctx.souls ?? 0;
 
@@ -649,30 +667,24 @@ function renderAdvice(data, mode) {
     ? "Fix the worst gaps first — no element stays empty while others have 2."
     : "Complete the elements closest to 3/3 first, then work on the rest.";
 
-  // Sort count gaps by mode
   const sortedGaps = [...countGaps].sort((a, b) =>
-    mode === "even"
-      ? a.count - b.count          // Even: worst first (0 → 1 → 2)
-      : b.count - a.count          // Complete: closest-to-done first (2 → 1 → 0)
+    mode === "even" ? a.count - b.count : b.count - a.count
   );
 
-  // Build hire items
-  const items = [];
-
+  // Target hire order — count gaps first (mode-sorted), then archetype-only gaps
+  const hires = [];
   for (const gap of sortedGaps) {
-    // Archetype to target: prefer missing archetypes, then any
     const targetArchs = gap.missingArchs.length
       ? gap.missingArchs
       : ARCHETYPES.filter(a => elData[gap.el].archs.has(a));
     const arch = targetArchs[0];
     const hire = getBestHire(gap.el, arch, ml);
-    if (hire) items.push({ type: "count", gap, arch, hire });
+    if (hire) hires.push({ type: "count", gap, arch, hire });
   }
-
   for (const ag of archOnlyGaps) {
     const arch = ag.missingArchs[0];
     const hire = getBestHire(ag.el, arch, ml);
-    if (hire) items.push({
+    if (hire) hires.push({
       type: "arch",
       gap: { el: ag.el, count: elData[ag.el].count, deficit: 0, missingArchs: ag.missingArchs },
       arch,
@@ -680,13 +692,40 @@ function renderAdvice(data, mode) {
     });
   }
 
-  // Retire suggestion: pick the most stocked element with count > 3, else the most stocked overall
-  const retireEl = byCount.find(el => elData[el].count > 3) ?? byCount[0];
-  const retireCount = Math.floor(elData[retireEl].count);
-  const retirePromoted = elData[retireEl].promotedClasses;
-  const retireNeeded = countGaps.some(g => g.deficit > 0); // any hire requires a slot
+  // Build the interleaved sequence
+  const slotAware = maxSlots != null;
+  const gapEls = new Set(countGaps.map(g => g.el));
+  const workingCounts = Object.fromEntries(ELEMENTS.map(el => [el, elData[el].count]));
+  const actions = [];
+  let slotsAvailable = slotAware ? freeSlots : Infinity;
 
-  const itemsHtml = items.map((item, i) => {
+  const pickRetireEl = () => {
+    const candidates = ELEMENTS.filter(el => !gapEls.has(el));
+    const pool = candidates.length ? candidates : ELEMENTS.slice();
+    // Most-stocked with >3; else most stocked; tie-break avoids elements already at 3 when richer exists.
+    const sorted = [...pool].sort((a, b) => workingCounts[b] - workingCounts[a]);
+    return sorted.find(el => workingCounts[el] > 3) ?? sorted[0];
+  };
+
+  for (const h of hires) {
+    if (slotsAvailable > 0) {
+      actions.push({ kind: "hire", ...h });
+      slotsAvailable--;
+    } else if (slotAware) {
+      const rEl = pickRetireEl();
+      actions.push({
+        kind: "retire",
+        el: rEl,
+        promotedClasses: elData[rEl].promotedClasses,
+      });
+      workingCounts[rEl] = Math.max(0, workingCounts[rEl] - 1);
+      actions.push({ kind: "hire", ...h });
+    } else {
+      actions.push({ kind: "hire", ...h });
+    }
+  }
+
+  const renderHire = (item, i) => {
     const { gap, arch, hire } = item;
     const urgency = gap.count === 0 ? "crit" : gap.count < 2 ? "warn" : "";
 
@@ -701,9 +740,7 @@ function renderAdvice(data, mode) {
       const soulNote = souls === 0 ? " — you have none currently" : souls === 1 ? " — you have 1" : ` — you have ${souls}`;
       caveats.push({ text: `Needs a Titan Soul to function${soulNote}`, hard: souls === 0 });
     }
-    if (hire.caveat) {
-      caveats.push({ text: hire.caveat, hard: false });
-    }
+    if (hire.caveat) caveats.push({ text: hire.caveat, hard: false });
 
     const caveatHtml = caveats.length
       ? `<div class="advice-caveats">${caveats.map(c =>
@@ -717,10 +754,11 @@ function renderAdvice(data, mode) {
         ? `${gap.el} has no heroes — critical`
         : `${gap.el} has ${Math.floor(gap.count)}/3`;
 
-    return `<div class="advice-item ${urgency}">
+    return `<div class="advice-item action-hire ${urgency}">
       <div class="advice-main">
         <span class="advice-num">${i + 1}.</span>
-        <span class="advice-action">Hire <strong>${escHtml(hire.cls)}</strong></span>
+        <span class="action-kind kind-hire">Hire</span>
+        <span class="advice-action"><strong>${escHtml(hire.cls)}</strong></span>
         <span class="advice-tags">
           <span class="el-tag el-${gap.el}">${gap.el}</span>
           <span class="arch-tag ${arch}">${arch[0]}</span>
@@ -729,27 +767,51 @@ function renderAdvice(data, mode) {
       </div>
       ${caveatHtml}
     </div>`;
-  }).join("");
+  };
 
-  // Retire block
-  let retireHtml = "";
-  if (retireNeeded) {
-    const promotedWarn = retirePromoted.length
-      ? `<div class="promoted-warning">⚠ Promoted heroes in this element: ${retirePromoted.map(escHtml).join(", ")} — each promotion cost a Titan Soul. Only retire a promoted hero if you are certain it is the weakest in that element, since you cannot recover that Soul.</div>`
+  const renderRetire = (item, i) => {
+    const promotedWarn = item.promotedClasses.length
+      ? `<div class="promoted-warning">⚠ Promoted heroes in this element: ${item.promotedClasses.map(escHtml).join(", ")} — each promotion cost a Titan Soul. Only retire a promoted hero if you are certain it is the weakest in that element, since you cannot recover that Soul.</div>`
       : "";
-    retireHtml = `<div class="retire-block">
-      <div class="label">If you need to free a slot first</div>
-      <div class="retire-el">
-        <span>Retire a <span class="el-name el-${retireEl}">${retireEl}</span> hero</span>
-        <span style="color:#555;font-size:.72rem">(${retireCount} heroes — most stocked)</span>
+    return `<div class="advice-item action-retire">
+      <div class="advice-main">
+        <span class="advice-num">${i + 1}.</span>
+        <span class="action-kind kind-retire">Retire</span>
+        <span class="advice-action">a <strong>${item.el}</strong> hero</span>
+        <span class="advice-tags">
+          <span class="el-tag el-${item.el}">${item.el}</span>
+        </span>
+        <span class="advice-reason">free a slot</span>
       </div>
       ${promotedWarn}
     </div>`;
+  };
+
+  const itemsHtml = actions.map((a, i) =>
+    a.kind === "hire" ? renderHire(a, i) : renderRetire(a, i)
+  ).join("");
+
+  let summary = "";
+  if (slotAware) {
+    if (overFull) {
+      summary = `<p class="slot-summary anomaly">Roster (${heroCount}) exceeds known slot count (${maxSlots}) — treating as full.</p>`;
+    } else if (freeSlots > 0 && hires.length <= freeSlots) {
+      summary = `<p class="slot-summary">You have ${freeSlots} free slot${freeSlots === 1 ? "" : "s"} — hire directly, no retires needed.</p>`;
+    } else if (freeSlots > 0) {
+      summary = `<p class="slot-summary">You have ${freeSlots} free slot${freeSlots === 1 ? "" : "s"}, then retire to make room for the rest.</p>`;
+    } else {
+      summary = `<p class="slot-summary">Roster is full (${heroCount}/${maxSlots}) — retire before each hire.</p>`;
+    }
   }
 
+  const fallback = slotAware
+    ? ""
+    : `<p class="slot-summary">Enter your ML to see slot-aware advice.</p>`;
+
   return `<p class="mode-desc">${escHtml(modeDesc)}</p>
+    ${summary}
     <div class="advice-list">${itemsHtml}</div>
-    ${retireHtml}`;
+    ${fallback}`;
 }
 
 function escHtml(s) {
