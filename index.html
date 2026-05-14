@@ -686,23 +686,25 @@ function renderAdvice(data, mode) {
     ? "Fix the worst gaps first — no element stays empty while others have 2."
     : "Complete the elements closest to 3/3 first, then work on the rest.";
 
-  const sortedGaps = [...countGaps].sort((a, b) =>
-    mode === "even" ? a.count - b.count : b.count - a.count
-  );
-
-  // Target hire order — count gaps first (mode-sorted), then archetype-only gaps.
-  // Each count gap emits ceil(deficit) hires, preferring missing archetypes first.
-  const hires = [];
-  for (const gap of sortedGaps) {
+  // Build one hire entry per slot needed. `idx` is the slot's position within
+  // its element (0 = first hire for that element). Even mode round-robins
+  // across elements by idx; Complete mode groups all hires per element together.
+  const countHires = [];
+  for (const gap of countGaps) {
     const need = Math.max(1, Math.ceil(gap.deficit));
     const others = ARCHETYPES.filter(a => !gap.missingArchs.includes(a));
     const archQueue = [...gap.missingArchs, ...others];
     for (let i = 0; i < need; i++) {
       const arch = archQueue[i] ?? archQueue[archQueue.length - 1];
       const hire = getBestHire(gap.el, arch, ml);
-      if (hire) hires.push({ type: "count", gap, arch, hire });
+      if (hire) countHires.push({ type: "count", gap, arch, hire, idx: i });
     }
   }
+  countHires.sort((a, b) => mode === "even"
+    ? (a.idx - b.idx) || (a.gap.count - b.gap.count)
+    : (b.gap.count - a.gap.count) || (a.idx - b.idx)
+  );
+  const hires = countHires;
   for (const ag of archOnlyGaps) {
     const arch = ag.missingArchs[0];
     const hire = getBestHire(ag.el, arch, ml);
