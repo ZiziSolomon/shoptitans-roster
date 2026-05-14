@@ -1,0 +1,373 @@
+Level 	Experience Needed 	Gem Reward 	Market Item
+Tier Unlock 	Other Unlocks
+1 	None 	5 	1 	
+Shop Expansion 2 	3,000 Gold
+
+50 Gem
+	
+2 	600 	5 	1 	
+3 	900 	5 	1 	
+Carpenter 	2,500 Gold
+Hero Slot 2 	500 Gold
+
+10 Gem
+4 	1,400 	5 	1 	Avatar editor
+5 	2,100 	5 	1 	
+Apothecary 	? Gold
+Hero Slot 3 	1,000 Gold
+
+20 Gem
+6 	3,100 	5 	1 	
+7 	4,500 	5 	2 	
+8 	6,400 	5 	2 	
+9 	9,100 	5 	2 	
+10 	14,300 	5 	2 	
+Crafting Slot 3 	2,500 Gold
+
+100 Gem
+11 	20,500 	5 	2 	
+12 	27,800 	5 	2 	
+Hero Class Barbarian 	10,000 Gold
+Hero Class Monk 	10,000 Gold
+Hero Class Cleric 	10,000 Gold
+13 	36,400 	5 	2 	
+14 	46,600 	5 	2 	
+15 	58,600 	5 	3 	
+Quest Slot 2 	25,000 Gold
+
+100 Gem
+Hero Slot 4 	5,000 Gold
+
+50 Gem
+Shop Expansion 3 	30,000 Gold
+
+250 Gem
+16 	72,800 	5 	3 	Collection Book
+17 	89,500 	5 	3 	
+Hero Slot 5 	10,000 Gold
+
+100 Gem
+18 	109,300 	5 	3 	
+19 	132,600 	5 	3 	
+20 	160,100 	5 	3 	
+Crafting Slot 4 	30,000 Gold
+
+200 Gem
+Hero Slot 6 	20,000 Gold
+
+200 Gem
+Trading Slot 2 	25,000 Gold
+
+100 Gem
+21 	192,600 	5 	4 	
+22 	231,000 	5 	4 	
+Hero Class Knight 	50,000 Gold
+Hero Class Musketeer 	50,000 Gold
+Hero Class Druid 	50,000 Gold
+23 	276,300 	5 	4 	
+24 	329,800 	5 	4 	
+25 	392,900 	5 	4 	
+Quest Slot 3 	250,000 Gold
+
+250 Gem
+Hero Slot 7 	100,000 Gold
+
+300 Gem
+26 	467,400 	5 	4 	
+27 	555,300 	5 	4 	
+Hero Slot 8 	250,000 Gold
+
+400 Gem
+28 	659,100 	5 	5 	
+29 	781,600 	5 	5 	
+Hero Slot 9 	500,000 Gold
+
+500 Gem
+30 	926,100 	5 	5 	
+Crafting Slot 5 	500,000 Gold
+
+500 Gem
+Shop Expansion 4 	1,000,000 Gold
+
+500 Gem
+Trading Slot 3 	250,000 Gold
+
+250 Gem
+31 	1,096,700 	5 	5 	
+32 	1,298,100 	5 	5 	
+Hero Class Ranger 	250,000 Gold
+Hero Class Wanderer 	250,000 Gold
+Hero Class Sorcerer 	250,000 Gold
+33 	1,535,800 	5 	5 	
+Hero Slot 10 	1,000,000 Gold
+
+500 Gem
+34 	1,816,300 	5 	5 	
+35 	2,147,400 	5 	6 	
+Quest Slot 4 	2,500,000 Gold
+
+500 Gem
+Hero Slot 11 	2,500,000 Gold
+
+500 Gem
+Pet Slot 2 	5,000,000 Gold
+
+1,000 Gem
+36 	2,538,200 	5 	6 	
+37 	2,999,500 	5 	6 	
+38 	3,544,000 	5 	6 	
+39 	4,186,700 	5 	6 	
+40 	4,945,300 	5 	7 	
+Crafting Slot 6 	2,000,000 Gold
+
+750 Gem
+Hero Slot 12 	5,000,000 Gold
+
+750 Gem
+Trading Slot 4 	2,500,000 Gold
+
+500 Gem
+Shop Expansion 5 	10,000,000 Gold
+
+1,000 Gem
+Basement Expansion 1 	Free
+Basement Expansion 2 	15,000,000 Gold
+
+250 Gem
+41 	5,840,700 	5 	7 	
+42 	6,897,500 	5 	7 	
+Hero Slot 13 	10,000,000 Gold
+
+750 Gem
+43 	8,144,900 	5 	7 	
+44 	9,617,200 	5 	7 	
+Hero Slot 14 	25,000,000 Gold
+
+750 Gem
+45 	11,355,000 	5 	8 	
+Quest Slot 5 	15,000,000 Gold
+
+750 Gem
+Basement Expansion 3 	25,000,000 Gold
+
+350 Gem
+46 	13,406,200 	5 	8 	
+Hero Class Samurai 	2,500,000 Gold
+Hero Class ninja 	2,500,000 Gold
+Hero Class Spellblade 	2,500,000 Gold
+47 	15,827,200 	5 	8 	
+48 	18,684,800 	5 	8 	
+49 	22,057,700 	5 	8 	
+50 	26,038,800 	5 	9 	
+Crafting Slot 7 	5,000,000 Gold
+
+1,000 Gem
+Hero Slot 15 	50,000,000 Gold
+
+1,000 Gem
+Pet Slot 3 	50,000,000 Gold
+
+2,000 Gem
+Shop Expansion 6 	50,000,000 Gold
+
+2,000 Gem
+Trading Slot 5 	15,000,000 Gold
+
+750 Gem
+Basement Expansion 4 	75,000,000 Gold
+
+500 Gem
+51 	30,737,700 	5 	9 	
+52 	36,284,000 	5 	9 	
+Hero Slot 16 	75,000,000 Gold
+
+1,000 Gem
+53 	42,830,400 	5 	9 	
+Hero Class Berserker 	5,000,000 Gold
+Hero Class Dancer 	5,000,000 Gold
+Hero Class Geomancer 	5,000,000 Gold
+54 	50,557,200 	5 	9 	
+Hero Slot 17 	100,000,000 Gold
+
+1,000 Gem
+55 	59,677,300 	5 	10 	
+Basement Expansion 5 	100,000,000 Gold
+
+600 Gem
+56 	70,442,000 	5 	10 	
+57 	83,147,700 	5 	10 	
+58 	98,144,500 	5 	10 	
+Unlock Sunken Temple 	50,000,000 Gold
+
+3000 Gem
+59 	115,845,600 	5 	11 	
+60 	136,738,600 	5 	11 	
+Quest Slot 6 	50,000,000 Gold
+
+1,000 Gem
+Crafting Slot 8 	10,000,000 Gold
+
+1,500 Gem
+Hero Slot 18 	150,000,000 Gold
+
+1,500 Gem
+Trading Slot 6 	50,000,000 Gold
+
+1,000 Gem
+Shop Expansion 7 	200,000,000 Gold
+
+3,000 Gem
+Basement Expansion 6 	250,000,000 Gold
+
+750 Gem
+Unlock Bleakspire Peak 	250,000,000 Gold
+
+4000 Gem
+61 	161,399,000 	5 	11 	
+Merchant's Safe
+62 	190,506,200 	5 	11 	
+63 	224,862,000 	5 	12 	
+64 	265,412,900 	5 	12 	
+Hero Slot 19 	200,000,000 Gold
+
+1,500 Gem
+Basement Expansion 7 	350,000,000 Gold
+
+1,000 Gem
+65 	313,275,900 	5 	12 	
+Crafting Slot 9 	25,000,000 Gold
+
+2,000 Gem
+66 	369,769,600 	5 	12 	
+67 	436,450,300 	5 	13 	
+68 	515,154,900 	5 	13 	
+Hero Slot 20 	300,000,000 Gold
+
+1,500 Gem
+Basement Expansion 8 	400,000,000 Gold
+
+1,250 Gem
+69 	608,051,500 	5 	13 	
+70 	717,699,300 	5 	13 	
+Quest Slot 7 	100,000,000 Gold
+
+2,000 Gem
+Crafting Slot 10 	50,000,000 Gold
+
+2,500 Gem
+Trading Slot 7 	100,000,000 Gold
+
+2,000 Gem
+71 	847,118,900 	5 	13 	
+72 	999,875,500 	5 	13 	
+Hero Slot 21 	500,000,000 Gold
+
+2,000 Gem
+Basement Expansion 9 	500,000,000 Gold
+
+1,500 Gem
+73 	1,180,177,300 	5 	13 	
+74 	1,392,991,200 	5 	13 	
+75 	1,644,179,800 	5 	13 	
+Crafting Slot 11 	125,000,000 Gold
+
+5,000 Gem
+Shop Expansion 8 	500,000,000 Gold
+
+4,000 Gem
+Basement Expansion 10 	650,000,000 Gold
+
+1,750 Gem
+76 	1,940,662,900 	5 	13 	
+Hero Slot 22 	700,000,000 Gold
+
+2,000 Gem
+77 	2,290,608,100 	5 	13 	
+78 	2,703,655,600 	5 	13 	
+Basement Expansion 11 	750,000,000 Gold
+
+2,000 Gem
+79 	3,191,184,100 	5 	13 	
+80 	3,766,624,000 	5 	13 	
+Quest Slot 8 	250,000,000 Gold
+
+4,000 Gem
+Crafting Slot 12 	250,000,000 Gold
+
+10,000 Gem
+Hero Slot 23 	850,000,000 Gold
+
+2,000 Gem
+Trading Slot 8 	250,000,000 Gold
+
+4,000 Gem
+Shop Expansion 9 	1,000,000,000 Gold
+
+5,000 Gem
+81 	4,445,827,600 	5 	13 	
+Basement Expansion 12 	1,000,000,000 Gold
+
+2,250 Gem
+82 	5,247,505,700 	5 	13 	
+Shop Expansion 10 	1,250,000,000 Gold
+
+1,000 Gem
+83 	6,193,742,900 	5 	13 	
+84 	7,310,606,100 	5 	13 	
+Hero Slot 24 	1,000,000,000 Gold
+
+2,500 Gem
+Basement Expansion 13 	1,500,000,000 Gold
+
+2,500 Gem
+Shop Expansion 11 	1,500,000,000 Gold
+
+1,250 Gem
+85 	8,628,862,800 	5 	13 	
+86 	10,184,828,400 	5 	13 	
+Shop Expansion 12 	1,750,000,000 Gold
+
+1,500 Gem
+87 	12,021,366,700 	5 	13 	
+Basement Expansion 14 	2,000,000,000 Gold
+
+2,750 Gem
+88 	14,189,070,800 	5 	13 	
+Hero Slot 25 	1,250,000,000 Gold
+
+2,500 Gem
+Shop Expansion 13 	2,000,000,000 Gold
+
+1,750 Gem
+89 	16,747,656,700 	5 	13 	
+Basement Expansion 15 	2,500,000,000 Gold
+
+3,000 Gem
+90 	19,767,608,400 	5 	13 	
+Shop Expansion 14 	2,500,000,000 Gold
+
+2,000 Gem
+91 	23,332,119,700 	5 	13 	
+92 	27,539,386,000 	5 	13 	
+Basement Expansion 16 	3,000,000,000 Gold
+
+3,500 Gem
+93 	32,505,309,200 	5 	13 	
+Shop Expansion 15 	3,000,000,000 Gold
+
+2,250 Gem
+94 	38,366,690,800 	5 	13 	
+Basement Expansion 17 	3,500,000,000 Gold
+
+4,000 Gem
+95 	45,285,000,500 	5 	13 	
+96 	53,450,824,200 	5 	13 	
+Shop Expansion 16 	3,500,000,000 Gold
+
+2,500 Gem
+97 	63,089,114,400 	5 	13 	
+98 	74,465,387,300 	5 	13 	
+99 	87,893,036,900 	5 	13 	
+Shop Expansion 17 	4,000,000,000 Gold
+
+3,000 Gem
