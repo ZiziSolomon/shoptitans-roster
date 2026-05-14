@@ -144,7 +144,7 @@ footer {
     <div class="judgement-note">Judgement call — Samurai can work well with the right gear and skills.</div>
   </div>
   <div class="assumption verified">
-    <strong>Advice is slot-aware.</strong> When your ML is set, the tool knows your maximum hero slots and interleaves Retire actions with Hires only when needed to free space. Retire targets are picked from the most-stocked element (excluding any element with an open gap), re-evaluated after each retire. With no ML entered, the tool shows hires only.
+    <strong>Advice is slot-aware.</strong> When your ML is set, the tool knows your maximum hero slots and interleaves Retire actions with Hires only when needed to free space. Retire targets are picked from elements with strict surplus (more than 3 heroes), re-evaluated after each retire — the tool never recommends retiring a hero you still need for elemental coverage. If no surplus is available, remaining hires become Wait actions pointing to the next slot unlock (and class unlock ML, whichever is higher). With no ML entered, the tool shows hires only.
   </div>
 </div>
 

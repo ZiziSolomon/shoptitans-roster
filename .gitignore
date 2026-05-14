@@ -7,6 +7,10 @@ MilkshakesPlan.txt
 # Local data exports
 data/
 
+# Reference sheet — re-derivable via sheet/extract.py
+sheet/shop_titans.xlsx
+sheet/formulas/
+
 # Python cache
 __pycache__/
 *.pyc

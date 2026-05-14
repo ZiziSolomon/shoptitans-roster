@@ -215,6 +215,25 @@ textarea:focus { outline: none; border-color: #444; }
 }
 .kind-hire   { background: #10304a; color: #70a0ff; }
 .kind-retire { background: #4a2a10; color: #ff9050; }
+.kind-wait   { background: #2a2a3a; color: #a0a0c0; }
+
+.advice-item.action-wait {
+  border-left-color: #3a3a5a;
+  background: #0c0c14;
+  opacity: 0.92;
+}
+
+.advice-readmore { margin-top: 4px; }
+.advice-readmore > summary {
+  cursor: pointer; font-size: 0.75rem; color: #707090;
+  padding: 4px 10px; list-style: none;
+}
+.advice-readmore > summary::-webkit-details-marker { display: none; }
+.advice-readmore > summary:hover { color: #a0a0c0; }
+.advice-readmore[open] > summary { color: #a0a0c0; }
+.advice-readmore > summary::before { content: "▸ "; }
+.advice-readmore[open] > summary::before { content: "▾ "; }
+.advice-readmore > .advice-list { margin-top: 8px; }
 
 .slot-summary {
   font-size: 0.78rem; color: #888; margin-bottom: 10px;
@@ -694,34 +713,41 @@ function renderAdvice(data, mode) {
 
   // Build the interleaved sequence
   const slotAware = maxSlots != null;
-  const gapEls = new Set(countGaps.map(g => g.el));
   const workingCounts = Object.fromEntries(ELEMENTS.map(el => [el, elData[el].count]));
   const actions = [];
   let slotsAvailable = slotAware ? freeSlots : Infinity;
+  let simulatedML = ml;
 
+  // Only retire from elements with strict surplus (>3). Falling below 3 would create a new gap.
   const pickRetireEl = () => {
-    const candidates = ELEMENTS.filter(el => !gapEls.has(el));
-    const pool = candidates.length ? candidates : ELEMENTS.slice();
-    // Most-stocked with >3; else most stocked; tie-break avoids elements already at 3 when richer exists.
-    const sorted = [...pool].sort((a, b) => workingCounts[b] - workingCounts[a]);
-    return sorted.find(el => workingCounts[el] > 3) ?? sorted[0];
+    const candidates = ELEMENTS.filter(el => workingCounts[el] > 3);
+    if (!candidates.length) return null;
+    return candidates.sort((a, b) => workingCounts[b] - workingCounts[a])[0];
   };
 
   for (const h of hires) {
     if (slotsAvailable > 0) {
       actions.push({ kind: "hire", ...h });
       slotsAvailable--;
-    } else if (slotAware) {
-      const rEl = pickRetireEl();
-      actions.push({
-        kind: "retire",
-        el: rEl,
-        promotedClasses: elData[rEl].promotedClasses,
-      });
-      workingCounts[rEl] = Math.max(0, workingCounts[rEl] - 1);
+      continue;
+    }
+    if (!slotAware) {
+      actions.push({ kind: "hire", ...h });
+      continue;
+    }
+    const rEl = pickRetireEl();
+    if (rEl) {
+      actions.push({ kind: "retire", el: rEl, promotedClasses: elData[rEl].promotedClasses });
+      workingCounts[rEl] -= 1;
       actions.push({ kind: "hire", ...h });
     } else {
-      actions.push({ kind: "hire", ...h });
+      // No surplus to retire — defer to next slot unlock (and class unlock if higher).
+      const slotML  = nextSlotML(simulatedML);
+      const classML = h.hire.needsML53 ? 53 : 0;
+      const waitML  = slotML != null ? Math.max(slotML, classML) : null;
+      actions.push({ kind: "wait", hire: h, waitML, slotML });
+      if (slotML == null) break; // no more slots ever
+      simulatedML = slotML;
     }
   }
 
@@ -787,18 +813,68 @@ function renderAdvice(data, mode) {
     </div>`;
   };
 
-  const itemsHtml = actions.map((a, i) =>
-    a.kind === "hire" ? renderHire(a, i) : renderRetire(a, i)
-  ).join("");
+  const renderWait = (item, i) => {
+    const { hire, waitML, slotML } = item;
+    if (waitML == null) {
+      return `<div class="advice-item action-wait">
+        <div class="advice-main">
+          <span class="advice-num">${i + 1}.</span>
+          <span class="action-kind kind-wait">Wait</span>
+          <span class="advice-action">no further slots available — would need to retire a hero you currently need</span>
+          <span class="advice-tags">
+            <span class="el-tag el-${hire.gap.el}">${hire.gap.el}</span>
+            <span class="arch-tag ${hire.arch}">${hire.arch[0]}</span>
+          </span>
+        </div>
+      </div>`;
+    }
+    const slotNum = maxSlotsAtML(slotML);
+    const reasonParts = [`slot ${slotNum} unlocks at ML${slotML}`];
+    if (waitML > slotML) reasonParts.push(`${hire.hire.cls} unlocks at ML${waitML}`);
+    return `<div class="advice-item action-wait">
+      <div class="advice-main">
+        <span class="advice-num">${i + 1}.</span>
+        <span class="action-kind kind-wait">Wait</span>
+        <span class="advice-action">until ML${waitML} to hire <strong>${escHtml(hire.hire.cls)}</strong></span>
+        <span class="advice-tags">
+          <span class="el-tag el-${hire.gap.el}">${hire.gap.el}</span>
+          <span class="arch-tag ${hire.arch}">${hire.arch[0]}</span>
+        </span>
+        <span class="advice-reason">${reasonParts.join("; ")}</span>
+      </div>
+    </div>`;
+  };
 
+  const renderAction = (a, i) =>
+    a.kind === "hire"   ? renderHire(a, i)
+  : a.kind === "retire" ? renderRetire(a, i)
+                        : renderWait(a, i);
+
+  // Collapse everything after the first wait under a read-more if there are >=2 hidden items.
+  const firstWaitIdx = actions.findIndex(a => a.kind === "wait");
+  const cutoff = (firstWaitIdx >= 0 && actions.length - firstWaitIdx - 1 >= 2)
+    ? firstWaitIdx + 1
+    : actions.length;
+  const visible = actions.slice(0, cutoff).map((a, i) => renderAction(a, i)).join("");
+  const hidden  = actions.slice(cutoff).map((a, i) => renderAction(a, cutoff + i)).join("");
+  const hiddenCount = actions.length - cutoff;
+  const itemsHtml = visible + (hiddenCount > 0
+    ? `<details class="advice-readmore"><summary>Show ${hiddenCount} more step${hiddenCount === 1 ? "" : "s"}</summary><div class="advice-list">${hidden}</div></details>`
+    : "");
+
+  const hasWaits = actions.some(a => a.kind === "wait");
   let summary = "";
   if (slotAware) {
     if (overFull) {
       summary = `<p class="slot-summary anomaly">Roster (${heroCount}) exceeds known slot count (${maxSlots}) — treating as full.</p>`;
     } else if (freeSlots > 0 && hires.length <= freeSlots) {
       summary = `<p class="slot-summary">You have ${freeSlots} free slot${freeSlots === 1 ? "" : "s"} — hire directly, no retires needed.</p>`;
-    } else if (freeSlots > 0) {
+    } else if (freeSlots > 0 && !hasWaits) {
       summary = `<p class="slot-summary">You have ${freeSlots} free slot${freeSlots === 1 ? "" : "s"}, then retire to make room for the rest.</p>`;
+    } else if (freeSlots > 0) {
+      summary = `<p class="slot-summary">You have ${freeSlots} free slot${freeSlots === 1 ? "" : "s"}, then retire what you can spare; remaining hires wait for future slot unlocks.</p>`;
+    } else if (hasWaits) {
+      summary = `<p class="slot-summary">Roster is full (${heroCount}/${maxSlots}) — retire surplus heroes where you can; the rest wait for future slot unlocks.</p>`;
     } else {
       summary = `<p class="slot-summary">Roster is full (${heroCount}/${maxSlots}) — retire before each hire.</p>`;
     }
