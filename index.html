@@ -690,15 +690,18 @@ function renderAdvice(data, mode) {
     mode === "even" ? a.count - b.count : b.count - a.count
   );
 
-  // Target hire order — count gaps first (mode-sorted), then archetype-only gaps
+  // Target hire order — count gaps first (mode-sorted), then archetype-only gaps.
+  // Each count gap emits ceil(deficit) hires, preferring missing archetypes first.
   const hires = [];
   for (const gap of sortedGaps) {
-    const targetArchs = gap.missingArchs.length
-      ? gap.missingArchs
-      : ARCHETYPES.filter(a => elData[gap.el].archs.has(a));
-    const arch = targetArchs[0];
-    const hire = getBestHire(gap.el, arch, ml);
-    if (hire) hires.push({ type: "count", gap, arch, hire });
+    const need = Math.max(1, Math.ceil(gap.deficit));
+    const others = ARCHETYPES.filter(a => !gap.missingArchs.includes(a));
+    const archQueue = [...gap.missingArchs, ...others];
+    for (let i = 0; i < need; i++) {
+      const arch = archQueue[i] ?? archQueue[archQueue.length - 1];
+      const hire = getBestHire(gap.el, arch, ml);
+      if (hire) hires.push({ type: "count", gap, arch, hire });
+    }
   }
   for (const ag of archOnlyGaps) {
     const arch = ag.missingArchs[0];
