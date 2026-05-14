@@ -66,24 +66,6 @@ textarea:focus { outline: none; border-color: #444; }
 }
 .btn-ghost:hover { background: #1a1a2a; color: #888; }
 
-/* ── API (collapsed) ── */
-.api-toggle {
-  font-size: 0.72rem; color: #444; cursor: pointer;
-  background: none; border: none; padding: 0;
-  text-decoration: underline; text-decoration-style: dotted;
-}
-.api-toggle:hover { color: #888; }
-.api-panel { display: none; margin-top: 12px; }
-.api-panel.open { display: block; }
-.api-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
-.api-key-input {
-  flex: 1; min-width: 200px; background: #0c0c1a; border: 1px solid #2a2a3a;
-  color: #ccc; padding: 6px 10px; font-family: monospace; font-size: 0.8rem; border-radius: 4px;
-}
-.api-key-input:focus { outline: none; border-color: #444; }
-.api-msg { margin-top: 8px; font-size: 0.75rem; }
-.api-msg.err { color: #c04030; }
-.api-msg.ok  { color: #40a060; }
 
 /* ── Context bar (results) ── */
 .context-bar {
@@ -260,23 +242,15 @@ textarea:focus { outline: none; border-color: #444; }
       <span class="hint">Available for hiring / promotions</span>
     </div>
   </div>
-  <div style="margin-top:14px">
-    <button class="api-toggle" onclick="toggleApi()">Connect TitansDB account to auto-fill merchant level ▾</button>
-    <div class="api-panel" id="apiPanel">
-      <div class="api-row">
-        <input class="api-key-input" id="apiKey" type="password"
-               placeholder="TitansDB API key"
-               onkeydown="if(event.key==='Enter') fetchPlayer()">
-        <button class="btn" onclick="fetchPlayer()" id="fetchBtn">Fetch</button>
-      </div>
-      <div class="api-msg" id="apiMsg"></div>
-    </div>
-  </div>
 </div>
 
 <!-- ── Hero Strings ── -->
 <div class="panel">
   <h2>Hero Roster</h2>
+  <p style="font-size:0.75rem;color:#555;margin-bottom:8px">
+    Sign up at <a href="https://www.titansdb.com" target="_blank" rel="noopener" style="color:#7090d0">TitansDB</a>,
+    then go to <strong style="color:#888">User → Heroes</strong> to get your hero string. Paste all lines below.
+  </p>
   <textarea id="heroInput" placeholder="No|Red Type|Knight|Axe|Heavy Armor|...&#10;Paste hero strings here, one per line."></textarea>
   <button class="btn" style="margin-top:10px" onclick="analyze()">Analyze</button>
 </div>
@@ -286,7 +260,6 @@ textarea:focus { outline: none; border-color: #444; }
 <script>
 const ELEMENTS   = ["Water", "Earth", "Fire", "Air", "Light", "Dark"];
 const ARCHETYPES = ["Fighter", "Rogue", "Spellcaster"];
-const API_BASE   = "https://www.titansdb.com/api";
 
 const CLASS_MAP = {
   "Soldier":     { element: "Earth", archetype: "Fighter",     tier: 1 },
@@ -464,39 +437,6 @@ function getContext() {
     argon: parseInt(document.getElementById("ctxArgon").value) ?? null,
     gold:  document.getElementById("ctxGold").value.trim()     || null,
   };
-}
-
-// ── API ───────────────────────────────────────────────────────────────────────
-
-function toggleApi() {
-  document.getElementById("apiPanel").classList.toggle("open");
-}
-
-async function fetchPlayer() {
-  const key = document.getElementById("apiKey").value.trim();
-  if (!key) return;
-  const btn = document.getElementById("fetchBtn");
-  const msg = document.getElementById("apiMsg");
-  btn.disabled = true; btn.textContent = "Fetching…"; msg.textContent = "";
-  try {
-    const res  = await fetch(`${API_BASE}/my_player`, { headers: { "X-API-Key": key } });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const data = await res.json();
-    if (!data.ok) throw new Error(data.error ?? "API error");
-    const ml = data.player?.level;
-    if (ml) {
-      document.getElementById("ctxML").value = ml;
-      msg.className = "api-msg ok";
-      msg.textContent = `Loaded ML${ml} for ${escHtml(data.player.name ?? "player")}.`;
-    }
-  } catch (err) {
-    msg.className = "api-msg err";
-    msg.textContent = (err instanceof TypeError)
-      ? "CORS error — TitansDB hasn't enabled browser access from this domain yet."
-      : "Error: " + err.message;
-  } finally {
-    btn.disabled = false; btn.textContent = "Fetch";
-  }
 }
 
 // ── Analysis ──────────────────────────────────────────────────────────────────

@@ -51,6 +51,24 @@ p:last-child { margin-bottom: 0; }
   font-size: 0.7rem; color: #a06010; margin-top: 3px;
 }
 
+/* Hero slot table */
+.slot-table {
+  width: 100%; border-collapse: collapse; font-size: 0.78rem; margin-top: 4px;
+}
+.slot-table th {
+  text-align: left; color: #555; font-weight: normal;
+  font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.07em;
+  padding: 4px 8px; border-bottom: 1px solid #2a2a3a;
+}
+.slot-table td {
+  padding: 3px 8px; color: #bbb;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.slot-table tr:last-child td { border-bottom: none; }
+.slot-table td:first-child { color: #555; }
+.slot-table .current-ml { background: #161620; }
+.slot-table .current-ml td { color: #f0c040; }
+
 .source-item {
   display: flex; gap: 12px; align-items: baseline;
   padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
@@ -62,6 +80,7 @@ p:last-child { margin-bottom: 0; }
 .source-detail a { color: #7090d0; text-decoration: none; }
 .source-detail a:hover { text-decoration: underline; }
 .source-date { color: #444; font-size: 0.7rem; margin-left: 6px; }
+.source-intro { font-size: 0.82rem; color: #888; margin-bottom: 14px; font-style: italic; }
 
 .feedback-box {
   background: #0c0c1a; border: 1px solid #2a4a2a;
@@ -99,8 +118,8 @@ footer {
 <h1>Assumptions &amp; Sources</h1>
 <p class="page-subtitle">What this tool assumes about Shop Titans, where the data comes from, and how to flag corrections.</p>
 
-<!-- ── Roster Rules ── -->
-<h2>Roster rules</h2>
+<!-- ── Roster Advice Rules ── -->
+<h2>Roster advice rules</h2>
 <div class="section">
   <div class="assumption verified">
     <strong>3+ heroes per element required.</strong> Elemental barriers appear in extreme quests, boss floors from Cinderlake Volcano onwards, and Tower of Titans Terror. A party without 3 heroes of the required element cannot pass these barriers.
@@ -108,17 +127,10 @@ footer {
   <div class="assumption verified">
     <strong>2+ archetypes per element required.</strong> Tower of Titans Terror (ML67+) can apply debuffs that lock out an entire archetype group mid-run. Having only Fighters or only Rogues in an element leaves you exposed.
   </div>
-  <div class="assumption verified">
-    <strong>Spellblades count at 50% toward all elements</strong> and cannot independently satisfy an elemental requirement. A Spellblade contributes 0.5 to every element's count but will not clear a barrier on its own.
+  <div class="assumption judgement">
+    <strong>Spellblades should not be used to fill an element gap.</strong> They cannot independently satisfy an elemental requirement, so they cannot replace a missing hero in a pinch. Not worth prioritising until the core 3-per-element roster is otherwise complete.
+    <div class="judgement-note">Judgement call — Spellblades are valuable once the core roster is solid.</div>
   </div>
-</div>
-
-<!-- ── Class assumptions ── -->
-<h2>Class-specific judgements</h2>
-<div class="section">
-  <p style="font-size:0.75rem;color:#555;margin-bottom:12px">
-    These are the tool's opinions. Experienced players may reasonably disagree — see the feedback section below.
-  </p>
   <div class="assumption judgement">
     <strong>T1 and T2 classes need a Titan Soul to function well.</strong> Without promotion, T1/T2 heroes are significantly weaker than their promoted equivalents (Soldier → Mercenary, Cleric → Bishop, etc.). The tool flags these as requiring a Soul.
     <div class="judgement-note">Judgement call — some players run T1/T2 unpromoted in early game.</div>
@@ -131,36 +143,65 @@ footer {
     <strong>Samurai is flagged as a difficult class.</strong> It has conflicting stat requirements (tank + damage optimisation is hard to balance) and is generally considered suboptimal until you understand the build deeply.
     <div class="judgement-note">Judgement call — Samurai can work well with the right gear and skills.</div>
   </div>
+</div>
+
+<!-- ── Shop Titans Mechanics ── -->
+<h2>Shop Titans mechanics</h2>
+<div class="section">
+  <div class="assumption verified">
+    <strong>Spellblades count at 50% toward all elements.</strong> A Spellblade contributes 0.5 to every element's count simultaneously, but will not clear an elemental barrier on its own.
+  </div>
   <div class="assumption verified">
     <strong>T6 classes (Berserker, Dancer, Geomancer) unlock at ML53.</strong>
   </div>
   <div class="assumption verified">
     <strong>Skills become visible at hero levels 5, 10, 23, and 35.</strong>
   </div>
-</div>
-
-<!-- ── Argon's Finest ── -->
-<h2>Argon's Finest</h2>
-<div class="section">
   <div class="assumption verified">
-    <strong>Hire-level by points invested:</strong> 0 pts → lv1 · 1 pt → lv5 · 2 pts → lv8 · 3 pts → lv10 · 4 pts → lv13 · 5 pts → lv15 (max). At 3+ points, two skills are visible at hire, which is the key threshold for efficient retire/rehire.
+    <strong>Argon's Finest hire level by points invested:</strong>
+    0 pts → lv1 · 1 pt → lv5 · 2 pts → lv8 · 3 pts → lv10 · 4 pts → lv13 · 5 pts → lv15 (max).
+    At 3+ points, two skills are visible at hire — the key threshold for efficient retire/rehire.
     <div class="judgement-note">Source: direct player testing. Let us know if these numbers have changed.</div>
   </div>
-</div>
-
-<!-- ── Hero slots ── -->
-<h2>Hero slot unlocks</h2>
-<div class="section">
   <div class="assumption verified">
-    <strong>Hero slots are purchased with gold as they unlock at specific merchant levels.</strong>
-    Maximum is 25 slots, available from ML88. All slots require gold to purchase; having the ML is necessary but not sufficient.
-    <div class="judgement-note">Source: MerchantLevel.txt community data file. Max level is ML99; no further slots exist beyond slot 25.</div>
+    <strong>Hero slots unlock at specific merchant levels and must each be purchased with gold.</strong>
+    Having the ML is necessary but not sufficient — the slot must still be bought.
+    <table class="slot-table">
+      <tr><th>Slot</th><th>ML required</th><th>Cost</th></tr>
+      <tr><td>1</td><td>1 (start)</td><td>Free</td></tr>
+      <tr><td>2</td><td>3</td><td>2,500 gold</td></tr>
+      <tr><td>3</td><td>5</td><td>1,000 gold</td></tr>
+      <tr><td>4</td><td>15</td><td>5,000 gold</td></tr>
+      <tr><td>5</td><td>17</td><td>10,000 gold</td></tr>
+      <tr><td>6</td><td>20</td><td>20,000 gold</td></tr>
+      <tr><td>7</td><td>25</td><td>100,000 gold</td></tr>
+      <tr><td>8</td><td>27</td><td>250,000 gold</td></tr>
+      <tr><td>9</td><td>29</td><td>500,000 gold</td></tr>
+      <tr><td>10</td><td>33</td><td>1,000,000 gold</td></tr>
+      <tr><td>11</td><td>35</td><td>2,500,000 gold</td></tr>
+      <tr><td>12</td><td>40</td><td>5,000,000 gold</td></tr>
+      <tr><td>13</td><td>42</td><td>10,000,000 gold</td></tr>
+      <tr><td>14</td><td>44</td><td>25,000,000 gold</td></tr>
+      <tr><td>15</td><td>50</td><td>50,000,000 gold</td></tr>
+      <tr><td>16</td><td>52</td><td>75,000,000 gold</td></tr>
+      <tr><td>17</td><td>54</td><td>100,000,000 gold</td></tr>
+      <tr><td>18</td><td>60</td><td>150,000,000 gold</td></tr>
+      <tr><td>19</td><td>64</td><td>200,000,000 gold</td></tr>
+      <tr><td>20</td><td>68</td><td>300,000,000 gold</td></tr>
+      <tr><td>21</td><td>72</td><td>500,000,000 gold</td></tr>
+      <tr><td>22</td><td>76</td><td>700,000,000 gold</td></tr>
+      <tr><td>23</td><td>80</td><td>850,000,000 gold</td></tr>
+      <tr><td>24</td><td>84</td><td>1,000,000,000 gold</td></tr>
+      <tr><td>25</td><td>88 (max)</td><td>1,250,000,000 gold</td></tr>
+    </table>
+    <div class="judgement-note" style="margin-top:6px">Source: MerchantLevel.txt community data file. ML99 is the level cap; no further slots exist beyond slot 25.</div>
   </div>
 </div>
 
 <!-- ── Data sources ── -->
 <h2>Data sources</h2>
 <div class="section">
+  <p class="source-intro">This site is entirely built on work by the community, and owes particular thanks to the following sources.</p>
   <div class="source-item">
     <span class="source-label">Class → element mapping</span>
     <span class="source-detail">
@@ -193,9 +234,9 @@ footer {
     <span class="source-detail">Direct player testing and community knowledge</span>
   </div>
   <div class="source-item">
-    <span class="source-label">Live player data (optional)</span>
+    <span class="source-label">Hero string export</span>
     <span class="source-detail">
-      <a href="https://www.titansdb.com" target="_blank" rel="noopener">TitansDB API</a> — merchant level auto-fill only
+      <a href="https://www.titansdb.com" target="_blank" rel="noopener">TitansDB</a> — User → Heroes page
     </span>
   </div>
 </div>
