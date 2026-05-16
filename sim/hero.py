@@ -16,7 +16,7 @@ class Hero:
     crit_multiplier: float  # e.g. 3.0
     evasion: float          # percent
     element_type: str
-    armadillo: float = 0.0  # dodge chance percent
+    armadillo: float = 0.0  # percent chance to survive ONE fatal blow per trial (one-shot, then consumed)
     lizard: float = 0.0     # HP regen per round
     shark: float = 0.0      # ATK bonus percent
     dinosaur: float = 0.0   # ATK bonus percent

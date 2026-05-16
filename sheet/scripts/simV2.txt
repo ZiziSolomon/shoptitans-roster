@@ -1,0 +1,1236 @@
+function myFunction_V2() {
+  
+    
+  var classRange       = SpreadsheetApp.getActiveSheet().getRange("B3:B7");
+  var tierRange        = SpreadsheetApp.getActiveSheet().getRange("C3:C7");
+  var aurasongRange    = SpreadsheetApp.getActiveSheet().getRange("D3:D7");
+  var HPRange          = SpreadsheetApp.getActiveSheet().getRange("E3:E7");
+  var atkRange         = SpreadsheetApp.getActiveSheet().getRange("F3:F7");
+  var defRange         = SpreadsheetApp.getActiveSheet().getRange("G3:G7");
+  var threatRange      = SpreadsheetApp.getActiveSheet().getRange("H3:H7");
+  var critChanceRange  = SpreadsheetApp.getActiveSheet().getRange("I3:I7");
+  var critMultRange    = SpreadsheetApp.getActiveSheet().getRange("J3:J7");
+  var evaRange         = SpreadsheetApp.getActiveSheet().getRange("K3:K7");
+  var elementRange     = SpreadsheetApp.getActiveSheet().getRange("L3:L7");
+  var elementtypeRange = SpreadsheetApp.getActiveSheet().getRange("M3:M7");
+  var armadilloRange   = SpreadsheetApp.getActiveSheet().getRange("N3:N7");
+  var lizardRange      = SpreadsheetApp.getActiveSheet().getRange("O3:O7");
+  var sharkRange       = SpreadsheetApp.getActiveSheet().getRange("P3:P7");
+  var dinosaurRange    = SpreadsheetApp.getActiveSheet().getRange("Q3:Q7");
+  var mundraRange      = SpreadsheetApp.getActiveSheet().getRange("R3:R7");
+  var atkModRange      = SpreadsheetApp.getActiveSheet().getRange("S3:S7");
+  var defModRange      = SpreadsheetApp.getActiveSheet().getRange("T3:T7");
+  var artifactRange    = SpreadsheetApp.getActiveSheet().getRange("U3:U7");
+   
+  var Hero_Class        = [];
+  var Hero_Tier         = [];
+  var Hero_aurasong     = [];
+  var Hero_HP_val       = [];
+  var Hero_Attack       = [];
+  var Hero_Defense      = [];
+  var Hero_Threat       = [];
+  var Hero_Crit_chance  = [];
+  var Hero_Crit_mult    = [];
+  var Hero_Evasion      = [];
+  var Hero_Element      = [];
+  var Hero_Element_Type = [];
+  var Hero_Armadillo    = [];
+  var Hero_Lizard       = [];
+  var Hero_Shark        = [];
+  var Hero_Dinosaur     = [];
+  var Hero_Mundra       = [];
+  var Hero_Attack_mod   = [];
+  var Hero_Defense_mod  = [];
+  var Hero_Artifact     = [];
+  
+
+  for (var i = 0; i < 5; i++) {
+    Hero_Class.push(classRange.getCell(i+1, 1).getValue());
+    Hero_Tier.push(tierRange.getCell(i+1, 1).getValue());
+    Hero_aurasong.push(aurasongRange.getCell(i+1, 1).getValue());
+    Hero_HP_val.push(HPRange.getCell(i+1, 1).getValue());
+    Hero_Attack.push(atkRange.getCell(i+1, 1).getValue());
+    Hero_Defense.push(defRange.getCell(i+1, 1).getValue());
+    Hero_Threat.push(threatRange.getCell(i+1, 1).getValue());
+    Hero_Crit_chance.push(critChanceRange.getCell(i+1, 1).getValue());
+    Hero_Crit_mult.push(critMultRange.getCell(i+1, 1).getValue());
+    Hero_Evasion.push(evaRange.getCell(i+1, 1).getValue());
+    Hero_Element.push(elementRange.getCell(i+1, 1).getValue());
+    Hero_Element_Type.push(elementtypeRange.getCell(i+1, 1).getValue());
+    Hero_Armadillo.push(armadilloRange.getCell(i+1, 1).getValue());
+    Hero_Lizard.push(lizardRange.getCell(i+1, 1).getValue());
+    Hero_Shark.push(sharkRange.getCell(i+1, 1).getValue());
+    Hero_Dinosaur.push(dinosaurRange.getCell(i+1, 1).getValue());
+    Hero_Mundra.push(mundraRange.getCell(i+1, 1).getValue());
+    Hero_Attack_mod.push(atkModRange.getCell(i+1, 1).getValue());
+    Hero_Defense_mod.push(defModRange.getCell(i+1, 1).getValue());
+    Hero_Artifact.push(artifactRange.getCell(i+1, 1).getValue());
+    
+  }
+  
+  
+    //Get Mob Stats
+  var Mob_Zone           = SpreadsheetApp.getActiveSheet().getRange(11, 1).getValue();
+  var Mob_HP_val         = SpreadsheetApp.getActiveSheet().getRange(11, 4).getValue();
+  var Mob_Damage         = SpreadsheetApp.getActiveSheet().getRange(11, 5).getValue();
+  var Mob_Cap            = SpreadsheetApp.getActiveSheet().getRange(11, 6).getValue();
+  var Mob_AoE_Dmg_base   = SpreadsheetApp.getActiveSheet().getRange(11, 7).getValue();
+  var Mob_AoE_chance     = SpreadsheetApp.getActiveSheet().getRange(11, 8).getValue();
+  var Is_LCoG            = SpreadsheetApp.getActiveSheet().getRange(11, 9).getValue();
+  var Mob_Is_Boss        = SpreadsheetApp.getActiveSheet().getRange(11, 10).getValue();
+  var Mob_Is_Extreme     = SpreadsheetApp.getActiveSheet().getRange(11, 11).getValue();
+  var Mob_Mini_Boss      = SpreadsheetApp.getActiveSheet().getRange(9, 2).getValue();
+  var Mob_Barrier_Type   = SpreadsheetApp.getActiveSheet().getRange(11, 13).getValue();
+  var Mob_Barrier_HP_val = SpreadsheetApp.getActiveSheet().getRange(11, 12).getValue();
+  var Extreme_Crit_bonus = [];
+  
+  var Mob_Evasion         = -1.0;
+  var Mob_HP_mod          = 1.0;
+  var Mob_Damage_mod      = 1.0;
+  var Mob_Crit_chance_mod = 1.0;
+  var Mob_Crit_chance     = 0.10;
+  var Mob_Barrier_mod     = 1.0;
+  var Mob_AoE_Dmg         = Mob_AoE_Dmg_base/Mob_Damage;
+  Mob_AoE_chance = Mob_AoE_chance/100.0;
+  
+  var Num_fighters     = 0;
+  var Num_rogues       = 0;
+  var Num_spellcasters = 0;
+  
+  var success_chance   = -13.0;
+ 
+  if (Mob_Mini_Boss == "Agile") {
+    Mob_Evasion = 0.4;
+  }
+  else if (Mob_Mini_Boss == "Dire") {
+    Mob_HP_mod = 1.5;
+    Mob_Crit_chance_mod = 3.0;
+  }
+  else if (Mob_Mini_Boss == "Huge") {
+    Mob_HP_mod = 2.0;
+    Mob_AoE_chance = Mob_AoE_chance*3.0;
+  }
+  else if (Mob_Mini_Boss == "Legendary") {
+    Mob_HP_mod = 1.5;
+    Mob_Damage_mod = 1.25;
+    Mob_Crit_chance_mod = 1.5;
+    Mob_Evasion = 0.1;
+  }
+  
+  Mob_HP_val = Math.round(Mob_HP_val*Mob_HP_mod);
+  Mob_Damage = Math.round(Mob_Damage*Mob_Damage_mod);
+  
+       
+  if(Is_LCoG=="No")  {
+    Hero_HP_val[4] = 0;
+    Hero_Class[4] = "None";
+  }
+  
+ 
+  if(Mob_Is_Boss=="No") {
+    for (var i = 0; i < Hero_Class.length; i++)
+      Hero_Mundra[i] = 0;
+  }
+  
+  
+  for (var i = 0; i < Hero_Class.length; i++) {
+    if (Hero_Class[i] == "Mercenary" || Hero_Class[i] == "Lord" || Hero_Class[i] == "Samurai" || Hero_Class[i] == "Daimyo" || Hero_Class[i] == "Berserker/Jarl" || Hero_Class[i] == "Dark Knight" || Hero_Class[i] == "Death Knight" || Hero_Class[i] == "Red/Fighter Type") 
+      Num_fighters = Num_fighters + 1;
+    else if (Hero_Class[i] == "Trickster" || Hero_Class[i] == "Conquistador" || Hero_Class[i] == "Pathfinder" || Hero_Class[i] == "Ninja" || Hero_Class[i] == "Sensei" || Hero_Class[i] == "Dancer/Acrobat" || Hero_Class[i] == "Green/Rogue Type" ) 
+      Num_rogues = Num_rogues + 1;
+    else if (Hero_Class[i] == "Bishop" || Hero_Class[i] == "Cleric" || Hero_Class[i] == "Chronomancer" || Hero_Class[i] == "Fateweaver" || Hero_Class[i] == "Blue/Spellcaster Type" || Hero_Class[i] == "Donovan") 
+      Num_spellcasters = Num_spellcasters + 1;
+  }
+    
+  
+  var Champion               = "None";
+  var Champion_Tier          = 0;
+  var aurasong               = "None";
+  var Champion_Attack_bonus  = 0.0;
+  var Champion_Defense_bonus = 0.0;
+  var Champion_HP_bonus      = 0.0;
+  var aurasong_Attack_bonus  = 0.0;
+  var aurasong_Defense_bonus = 0.0;
+  var aurasong_HP_bonus      = 0.0;
+  var Rudo_bonus             = 0.0;
+  var Rudo_barrier_bonus     = 1.0;
+  var Bjorn_mult = 1.0;
+   
+  for (var i = 0; i < Hero_Class.length; i++) {
+    if (Hero_HP_val[i] > 0 && (Hero_Class[i] == "Argon" || Hero_Class[i] == "Ashley" || Hero_Class[i] == "Bjorn" || Hero_Class[i] == "Donovan" || Hero_Class[i] == "Hemma" || Hero_Class[i] == "Lilu" || Hero_Class[i] == "Malady" || Hero_Class[i] == "Polonia" || Hero_Class[i] == "Reinhold" || Hero_Class[i] == "Rudo" || Hero_Class[i] == "Sia" || Hero_Class[i] == "Yami"))  {
+      Champion      = Hero_Class[i];
+      Champion_Tier = Hero_Tier[i];
+      aurasong      = Hero_aurasong[i];
+    }
+  }
+
+    if(Mob_Zone == "Ancient Crustacean" || Mob_Zone == "Anubis Champion" || Mob_Zone == "Cyclops General" || Mob_Zone == "Cyclops Merchant" || Mob_Zone == "Gold Golem" || Mob_Zone == "Moonstone Golem" || Mob_Zone == "Mushgoon Graverobber" || Mob_Zone == "Runestone Golem" || Mob_Zone == "Scholarly Harpy" || Mob_Zone == "Sigil Ninja" || Mob_Zone == "Toad Sage" || Mob_Zone == "Training Instructor" || Mob_Zone == "Troublin Blacksmith" || Mob_Zone == "Troublin Pirate" )
+      Bjorn_mult = 2.0;
+
+    
+  // Normalization of %s
+  // Script gets slow if this is done above
+
+  if(Mob_Zone == "Terror Tower - Floor 30 (Titan)")
+    Mob_Is_Extreme="Yes";
+  
+
+  for (var i = 0; i < Hero_Class.length; i++) {
+    
+    if(Mob_Is_Extreme=="Yes") 
+      Hero_Evasion[i] = Hero_Evasion[i]-20;
+    Extreme_Crit_bonus.push(1.0);
+    
+    Hero_Crit_chance[i] = Hero_Crit_chance[i]/100.0;
+    Hero_Evasion[i] = Hero_Evasion[i]/100.0;
+    
+    Hero_Attack_mod[i] = 1.0 + Hero_Attack_mod[i] / 100;
+    Hero_Attack[i]= Hero_Attack[i]/Hero_Attack_mod[i];
+    Hero_Defense_mod[i] = 1.0 + Hero_Defense_mod[i] / 100.0;
+    Hero_Defense[i] = Hero_Defense[i]/Hero_Defense_mod[i];
+    Hero_Defense[i] = Hero_Defense[i] * (Hero_Defense_mod[i]+0.2*Hero_Mundra[i]);
+  }
+  
+  var Hero_Survive_chance = [];
+  var Hero_Guaranteed_Crit = [];
+  var Hero_Guaranteed_Evade = [];
+  var Hero_Lost_Innate = [];
+  var Consecutive_Crit_Bonus = [];
+  var Hero_Berserker_stage = [];
+  var Hero_Berserker_level = [];
+  var Hero1_Jarl_hp1 = [];
+  var Hero1_Jarl_hp2 = [];
+  var Hero1_Jarl_hp3 = [];
+  var Hero_Ninja_bonus = [];
+  var Hero_Ninja_evasion = [];
+  var Hero_Eva_cap = [];
+  var Hemma_bonus = [];
+  var Hero_art_crit_chance_mod = [];
+  var Hero_art_champion_mod = [];
+  var Hero_art_no_evasion = [];
+  
+  
+  for (var i = 0; i < Hero_Class.length; i++) {
+    Hero_Survive_chance.push(0);
+    Hero_Guaranteed_Crit.push(false);
+    Hero_Guaranteed_Evade.push(false);
+    Hero_Lost_Innate.push(0);
+    Consecutive_Crit_Bonus.push(0);
+    Hero_Berserker_stage.push(0);
+    Hero_Berserker_level.push(0);
+    Hero1_Jarl_hp1.push(0.75);
+    Hero1_Jarl_hp2.push(0.5);
+    Hero1_Jarl_hp3.push(0.25);
+    Hero_Ninja_bonus.push(0);
+    Hero_Ninja_evasion.push(0);
+    Hemma_bonus.push(0);
+    Hero_art_crit_chance_mod.push(1);
+    Hero_art_champion_mod.push(1);
+    Hero_art_no_evasion.push(false);
+    
+    if(Hero_Tier[i]==4) {
+      Hero1_Jarl_hp1[i] = 0.8;
+      Hero1_Jarl_hp2[i] = 0.55;
+      Hero1_Jarl_hp3[i] = 0.3;
+    }
+    
+    if(Hero_Class[i] == "Berserker/Jarl")
+      Hero_Berserker_level[i]=Math.min(Hero_Tier[i],4);
+    
+    if (Hero_Class[i] == "Pathfinder")
+      Hero_Eva_cap.push(0.78);
+    else
+      Hero_Eva_cap.push(0.75);
+
+    if(Hero_Artifact[i]=="Kiku-Ichimonji")
+      Hero_art_crit_chance_mod[i] = 0;
+    else if (Hero_Artifact[i]=="Pickaxe of Greed" && Is_LCoG == "Yes")
+      Hero_Attack[i] = Hero_Attack[i]*2
+    else if (Hero_Artifact[i]=="Lone Wolf Cowl")
+      Hero_art_champion_mod[i] = 0;
+    else if (Hero_Artifact[i]=="Rock Stompers")
+        Hero_art_no_evasion[i] = true;
+    
+  }
+    
+    
+  // Get number of runs
+  var Simulations_num = 50000; // Simulate quest 50000 times
+  
+  //Hero chance to get targeted
+  var Hero1_Target;
+  var Hero2_Target;
+  var Hero3_Target;
+  var Hero4_Target;
+  var Target_Tot;
+  var target_chance;
+  var Num_Heroes = 0;
+  var Heroes_Alive = 0;
+  var Update_Target = true;
+  var Round = 0;
+  var Round_limit = false;
+  var Round_limit_times = 0;
+  var Shark_active;
+  var Dinosaur_active;
+  var Who_Hemma;
+  var Hemma_drain;
+  var Lord_present;
+  var Lord_hero;
+  var Fateweaver_present;
+  
+  var Times_quest_won = 0;
+  
+  var Polonia_loot = 0;
+  var Polonia_loot_tot = 0;
+  var Polonia_loot_cap = 20;
+  var Polonia_loot_cap_hit = 0;
+  var loot_chance;
+  var count_loot = false;
+  var Num_tricksters = 0;
+   
+  var Times_Hero_survived = [];
+  var Hero_Damage_fight = [];
+  var Hero_Damage_Dealt_avg = [];
+  var Hero_Damage_Dealt_max = [];
+  var Hero_Damage_Dealt_min = [];
+  var Hero_HP_Remaining_avg = [];
+  var Hero_HP_Remaining_max = [];
+  var Hero_HP_Remaining_min = [];
+   
+  for (var i = 0; i < Hero_Class.length; i++) {
+    Times_Hero_survived.push(0);
+    Hero_Damage_fight.push(0);
+    Hero_Damage_Dealt_avg.push(0);
+    Hero_Damage_Dealt_max.push(0);
+    Hero_Damage_Dealt_min.push(1000000000);
+    Hero_HP_Remaining_avg.push(0);
+    Hero_HP_Remaining_max.push(0);
+    Hero_HP_Remaining_min.push(100000);   
+  }
+   
+  
+  var Rounds_avg = 0;
+  var Rounds_max = 0;
+  var Rounds_min = 1000;
+  
+  var Booster = SpreadsheetApp.getActiveSheet().getRange(8, 2).getValue();
+  var Booster_Attack_bonus  = 0.0;
+  var Booster_Defense_bonus = 0.0;
+  var Hemma_mult = 0;
+  var target = 0;
+  
+  
+  for (var i = 0; i < Hero_Class.length; i++) {
+    if(Hero_Class[i]=="Lord" && Hero_HP_val[i] > 0)  {
+      Lord_present = true;
+      Lord_hero = i;
+      break;
+    }
+  }
+
+  for (var i = 0; i < Hero_Class.length; i++) {
+    if((Hero_Class[i]=="Chronomancer" || Hero_Class[i]=="Fateweaver") && Hero_HP_val[i] > 0)  {
+      Fateweaver_present = true;
+      break;
+    }
+  }
+  
+  /////////////////////////////////////
+  // Champion check
+  /////////////////////////////////////
+
+  if (Champion=="Argon")  {
+    Champion_Attack_bonus  = 0.1*Champion_Tier;
+    Champion_Defense_bonus = 0.1*Champion_Tier;
+  }
+  
+  if (Champion=="Ashley")  {
+    Champion_Attack_bonus  = 0.05 + 0.05*Champion_Tier;
+    Champion_Defense_bonus = 0.05 + 0.05*Champion_Tier;
+    if(Mob_Is_Boss == "Yes") {
+      Champion_Attack_bonus  = Champion_Attack_bonus*2;
+      Champion_Defense_bonus = Champion_Defense_bonus*2;
+    }
+  }
+
+  if (Champion=="Bjorn") {
+    for (var i = 0; i < Hero_Class.length; i++) {
+      if(Hero_Class[i]=="Mercenary") 
+        Hero_Crit_mult[i] = Hero_Crit_mult[i]+(0.1+0.1*Champion_Tier)*1.25*Bjorn_mult*Hero_art_champion_mod[i];
+      else 
+        Hero_Crit_mult[i] = Hero_Crit_mult[i]+(0.1+0.1*Champion_Tier)*Bjorn_mult*Hero_art_champion_mod[i];
+    }
+    
+    Champion_HP_bonus = 0.05*Champion_Tier * Bjorn_mult;
+    
+    if(Champion_Tier < 3)
+      Champion_Attack_bonus = (0.05 + 0.05*Champion_Tier)*Bjorn_mult;
+    else
+      Champion_Attack_bonus = (0.1*Champion_Tier - 0.1)*Bjorn_mult;
+  }
+  
+  if (Champion=="Donovan")  {
+    
+    if(Champion_Tier==1)
+      Champion_Attack_bonus = 0.05*Num_spellcasters;
+    else if(Champion_Tier==2) 
+      Champion_Attack_bonus = 0.08*Num_spellcasters;
+    else if(Champion_Tier==3) 
+      Champion_Attack_bonus = 0.10*Num_spellcasters;
+    else if(Champion_Tier==4) 
+      Champion_Attack_bonus = 0.14*Num_spellcasters;
+
+    Champion_HP_bonus = (0.04+0.01*Champion_Tier+0.02*Math.max(Champion_Tier-3,0))*Num_fighters;
+
+    for (var i = 0; i < Hero_Class.length; i++) {
+      if(Hero_Class[i]=="Mercenary") {
+        Hero_Crit_chance[i] = Hero_Crit_chance[i]+(0.02+0.01*Champion_Tier+0.01*Math.max(Champion_Tier-3,0))*Num_rogues*1.25*Hero_art_champion_mod[i];
+        Hero_Evasion[i] = Hero_Evasion[i]+(0.02+0.01*Champion_Tier+0.01*Math.max(Champion_Tier-3,0))*Num_rogues*1.25*Hero_art_champion_mod[i];
+      }
+      else {
+        Hero_Crit_chance[i] = Hero_Crit_chance[i]+(0.02+0.01*Champion_Tier+0.01*Math.max(Champion_Tier-3,0))*Num_rogues*Hero_art_champion_mod[i];
+        Hero_Evasion[i] = Hero_Evasion[i]+(0.02+0.01*Champion_Tier+0.01*Math.max(Champion_Tier-3,0))*Num_rogues*Hero_art_champion_mod[i];
+      }
+    }
+  }
+  
+  if (Champion=="Hemma")  {
+    for (var i = 0; i < Hero_Class.length; i++) {
+      if (Hero_Class[i]=="Hemma")
+        Who_Hemma = i;
+    }
+    Champion_HP_bonus = 0.05*Champion_Tier + 0.05*Math.max(Champion_Tier-3,0);
+    Hemma_mult = 0.15+Champion_Tier*0.05;
+  }
+  
+  if (Champion=="Lilu")  {
+    Champion_HP_bonus = 0.05+0.05*Champion_Tier;
+  }
+
+  if (Champion=="Malady")  {
+    if(Champion_Tier == 1)  {
+      Champion_Attack_bonus = 0.1;
+      if(Hero_Class[i]=="Mercenary") {
+          Hero_Evasion[i]=Hero_Evasion[i]+0.05*1.25*Hero_art_champion_mod[i];
+          Hero_Crit_chance[i] = Hero_Crit_chance[i]+0.03*1.25*Hero_art_champion_mod[i];
+      }
+      else {
+          Hero_Evasion[i]=Hero_Evasion[i]+0.05*Hero_art_champion_mod[i];
+          Hero_Crit_chance[i] = Hero_Crit_chance[i]+0.03*Hero_art_champion_mod[i];   
+      }
+    }
+    else if(Champion_Tier == 2)  {
+      Champion_Attack_bonus = 0.15;
+      if(Hero_Class[i]=="Mercenary") {
+          Hero_Evasion[i]=Hero_Evasion[i]+0.1*1.25*Hero_art_champion_mod[i];
+          Hero_Crit_chance[i] = Hero_Crit_chance[i]+0.05*1.25*Hero_art_champion_mod[i];
+      }
+      else {
+          Hero_Evasion[i]=Hero_Evasion[i]+0.1*Hero_art_champion_mod[i];
+          Hero_Crit_chance[i] = Hero_Crit_chance[i]+0.05*Hero_art_champion_mod[i];   
+      }
+    }
+    else if(Champion_Tier == 3)  {
+      Champion_Attack_bonus = 0.2;
+      if(Hero_Class[i]=="Mercenary") {
+          Hero_Evasion[i]=Hero_Evasion[i]+0.1*1.25*Hero_art_champion_mod[i];
+          Hero_Crit_chance[i] = Hero_Crit_chance[i]+0.08*1.25*Hero_art_champion_mod[i];
+      }
+      else {
+          Hero_Evasion[i]=Hero_Evasion[i]+0.1*Hero_art_champion_mod[i];
+          Hero_Crit_chance[i] = Hero_Crit_chance[i]+0.08*Hero_art_champion_mod[i];   
+      }
+    }
+    else if(Champion_Tier == 4)  {
+      Champion_Attack_bonus = 0.3;
+      if(Hero_Class[i]=="Mercenary") {
+          Hero_Evasion[i]=Hero_Evasion[i]+0.15*1.25*Hero_art_champion_mod[i];
+          Hero_Crit_chance[i] = Hero_Crit_chance[i]+0.1*1.25*Hero_art_champion_mod[i];
+      }
+      else {
+          Hero_Evasion[i]=Hero_Evasion[i]+0.15*Hero_art_champion_mod[i];
+          Hero_Crit_chance[i] = Hero_Crit_chance[i]+0.1*Hero_art_champion_mod[i];   
+      }
+    }
+  }
+  
+  if (Champion=="Polonia")  {
+    Champion_Defense_bonus = 0.05+0.05*Champion_Tier;
+    for (var i = 0; i < Hero_Class.length; i++) {
+      if(Champion_Tier<3) {
+        if(Hero_Class[i]=="Mercenary")
+          Hero_Evasion[i]=Hero_Evasion[i]+0.05*1.25*Hero_art_champion_mod[i];
+        else
+          Hero_Evasion[i]=Hero_Evasion[i]+0.05*Hero_art_champion_mod[i];
+      }
+      else {
+        if(Hero_Class[i]=="Mercenary")
+          Hero_Evasion[i]=Hero_Evasion[i]+0.1*1.25*Hero_art_champion_mod[i];
+        else
+          Hero_Evasion[i]=Hero_Evasion[i]+0.1*Hero_art_champion_mod[i];
+      }
+    }     
+    count_loot = true;
+    if (Champion_Tier==1)
+      loot_chance=0.3;
+    else if (Champion_Tier==2)
+      loot_chance=0.35;
+    else if (Champion_Tier==3)
+      loot_chance=0.4;
+    else if (Champion_Tier==4)
+      loot_chance=0.5;
+    
+    for (var i = 0; i < Hero_Class.length; i++) {
+      if(Hero_Class[i]=="Trickster" && Hero_HP_val[i] > 0) 
+        Num_tricksters++;
+    }
+    
+    loot_chance = loot_chance + Num_tricksters*0.02;
+    Polonia_loot_cap = Polonia_loot_cap + Num_tricksters*2;
+  }
+
+  if (Champion=="Reinhold")  {
+    Champion_Attack_bonus = 0.05 + 0.05*Champion_Tier + 0.05*Math.max(Champion_Tier-3,0.0);
+    Champion_Defense_bonus = 0.05 + 0.05*Champion_Tier + 0.05*Math.max(Champion_Tier-3,0.0);
+    Champion_HP_bonus = 0.05 + 0.05*Champion_Tier + 0.05*Math.max(Champion_Tier-3,0.0);
+  }
+  
+  if (Champion=="Sia")  
+    Champion_Attack_bonus = 0.05+0.05*Champion_Tier;
+  
+  if (Champion=="Yami")  {
+    for (var i = 0; i < Hero_Class.length; i++) {
+      if(Hero_Class[i]=="Mercenary") {
+        Hero_Crit_chance[i] = Hero_Crit_chance[i]+0.05*Champion_Tier*1.25*Hero_art_champion_mod[i];    
+        Hero_Evasion[i] = Hero_Evasion[i]+0.05*Champion_Tier*1.25*Hero_art_champion_mod[i];
+      }
+      else {
+        Hero_Crit_chance[i] = Hero_Crit_chance[i]+0.05*Champion_Tier*Hero_art_champion_mod[i];    
+        Hero_Evasion[i] = Hero_Evasion[i]+0.05*Champion_Tier*Hero_art_champion_mod[i];
+      }
+    }
+  }
+
+  /////////////////////////////////////
+  // Aurasong check
+  /////////////////////////////////////
+
+  if(aurasong=="Gleaming Aura (DEF) - T3") {
+    for (var i = 0; i < Hero_Class.length; i++) {
+      Hero_Lizard[i] = Hero_Lizard[i]+1;
+    }
+  }
+  else if(aurasong=="Aura of Rains (DEF) - T4") {
+    for (var i = 0; i < Hero_Class.length; i++) {
+      Hero_HP_val[i] = Hero_HP_val[i] + 10;
+    }
+
+  }
+  else if(aurasong=="Aura of Quakes (DEF) - T5") {
+    aurasong_Defense_bonus = 0.1;
+  }
+  else if(aurasong=="Aura of Growth (DEF) - T6") {
+    aurasong_HP_bonus = 0.05;
+  }
+  else if(aurasong=="Aura of Flames (DEF) - T7") {
+    aurasong_Attack_bonus = 0.1;
+  }
+  else if(aurasong=="Aura of Malice (DEF) - T8") {
+    for (var i = 0; i < Hero_Class.length; i++) {
+      Hero_Crit_mult[i] = Hero_Crit_mult[i] + 0.2;
+    }
+  }
+  else if(aurasong=="Aura of Sparks (DEF) - T9") {
+    aurasong_Attack_bonus = 0.15;
+  }
+  else if(aurasong=="Aura of Winds (DEF) - T10") {
+    for (var i = 0; i < Hero_Class.length; i++) {
+      Hero_Evasion[i] = Hero_Evasion[i]+0.02;
+    }
+  }
+  else if(aurasong=="Aura of Love (DEF) - T11") {
+    aurasong_HP_bonus = 0.1;
+  }
+  else if(aurasong=="Aura of Power (DEF) - T12") {
+      aurasong_Attack_bonus = 0.1;
+      aurasong_Defense_bonus = 0.1;
+  }
+  else if(aurasong=="Prismatic Aura (DEF) - T13") {
+    for (var i = 0; i < Hero_Class.length; i++) {
+      Hero_Evasion[i]     = Hero_Evasion[i]+0.02;
+      Hero_Crit_chance[i] = Hero_Crit_chance[i] + 0.02;
+    }
+  }
+  else if(aurasong=="Aura of Storms (DEF) - T14") {
+      aurasong_Attack_bonus = 0.15;
+      aurasong_Defense_bonus = 0.15;
+  }
+  else if(aurasong=="Aura of Victory (ATK/DEF) - T14") {
+      aurasong_Attack_bonus = 0.1;
+      aurasong_HP_bonus = 0.1;
+  }
+  else if(aurasong=="Aura of Transmutation (DEF) - T15") {
+      aurasong_Defense_bonus = 0.18;
+      aurasong_HP_bonus = 0.12;
+  }
+  else if(aurasong=="Aura of Inspiration (DEF/HP) - T15") {
+      aurasong_Attack_bonus = 0.12;
+      aurasong_Defense_bonus = 0.12;
+      aurasong_HP_bonus = 0.08;
+  }
+  
+  
+  if (Booster=="Normal")  {
+    Booster_Attack_bonus  = 0.2;
+    Booster_Defense_bonus = 0.2;
+  }
+  else if (Booster=="Super")  {
+    Booster_Attack_bonus  = 0.4;
+    Booster_Defense_bonus = 0.4;
+    for (var i = 0; i < Hero_Class.length; i++) 
+      Hero_Crit_chance[i] = Hero_Crit_chance[i]+0.10;
+  }
+  else if (Booster=="Mega")  {
+    Booster_Attack_bonus  = 0.8;
+    Booster_Defense_bonus = 0.8;
+    for (var i = 0; i < Hero_Class.length; i++) {
+      Hero_Crit_chance[i] = Hero_Crit_chance[i]+0.25;
+      Hero_Crit_mult[i] = Hero_Crit_mult[i]+0.5;
+    }
+  }
+  
+  for (var i = 0; i < Hero_Class.length; i++) {
+    if(Hero_Class[i]=="Mercenary") {
+      Hero_Attack[i]  = Hero_Attack[i]  * (1.0 + Champion_Attack_bonus*1.25*Hero_art_champion_mod[i]  + aurasong_Attack_bonus  + Booster_Attack_bonus);
+      Hero_Defense[i] = Hero_Defense[i] * (1.0 + Champion_Defense_bonus*1.25*Hero_art_champion_mod[i] + aurasong_Defense_bonus + Booster_Defense_bonus);
+      Hero_HP_val[i]  = Hero_HP_val[i]  * (1.0 + Champion_HP_bonus*1.25*Hero_art_champion_mod[i]      + aurasong_HP_bonus);
+    }
+    else {
+      Hero_Attack[i]  = Hero_Attack[i]  * (1.0 + Champion_Attack_bonus*Hero_art_champion_mod[i]  + aurasong_Attack_bonus  + Booster_Attack_bonus);
+      Hero_Defense[i] = Hero_Defense[i] * (1.0 + Champion_Defense_bonus*Hero_art_champion_mod[i] + aurasong_Defense_bonus + Booster_Defense_bonus);
+      Hero_HP_val[i]  = Hero_HP_val[i]  * (1.0 + Champion_HP_bonus*Hero_art_champion_mod[i]      + aurasong_HP_bonus);
+    }
+  }
+
+
+    
+  
+  // Vars for each simulation. 
+  var Lord_save;
+  var cont_fight = true;
+  var Mob_HP = Mob_HP_val;
+  var Hero_HP = [];
+  var Hero_Damage_taken = [];
+  var Hero_Crit_Damage_taken = [];
+  var Hero_Attack_Order = [];
+  var Hero_Barrier_Damage = 0;
+
+  if(Champion == "Rudo" && Champion_Tier > 2) 
+    Rudo_barrier_bonus = 1.5;
+    
+
+
+  for (var i = 0; i < Hero_Class.length; i++) {
+    
+    Hero_HP.push(Hero_HP_val[i]);
+    Hero_Attack_Order.push(i);
+    
+    if(Hero_HP[i]>0)
+      Num_Heroes++;
+    
+    if (Hero_Defense[i]<=Mob_Cap/6)  {
+      Hero_Damage_taken.push(Math.round(1.5*Mob_Damage + ((Hero_Defense[i]-0)/(Mob_Cap/6-0))*(0.5*Mob_Damage-1.5*Mob_Damage)));
+    }
+    else if (Hero_Defense[i] <= Mob_Cap/3)
+      Hero_Damage_taken.push(Math.round(0.5*Mob_Damage + ((Hero_Defense[i]-Mob_Cap/6)/(Mob_Cap/3-Mob_Cap/6))*(0.3*Mob_Damage-0.5*Mob_Damage)));
+    else
+      Hero_Damage_taken.push(Math.round(0.3*Mob_Damage + ((Hero_Defense[i]-Mob_Cap/3)/(Mob_Cap-Mob_Cap/3))*(0.25*Mob_Damage-0.3*Mob_Damage)));
+    
+    Hero_Crit_Damage_taken.push(Math.round(Math.max(Hero_Damage_taken[i],Mob_Damage)*1.5));
+    //Hero_Crit_Damage_taken.push(Math.round(Hero_Damage_taken[i]*1.5));
+
+    if(Mob_Barrier_Type == Hero_Element_Type[i])
+      Hero_Barrier_Damage = Hero_Barrier_Damage + Hero_Element[i]*Rudo_barrier_bonus;
+    else if(Hero_Element_Type[i] == "Any")
+      Hero_Barrier_Damage = Hero_Barrier_Damage + Hero_Element[i]*0.5*Rudo_barrier_bonus;
+  }
+
+  if(Mob_Barrier_HP_val > 0 && Mob_Barrier_HP_val > Hero_Barrier_Damage) 
+    Mob_Barrier_mod = 0.2;
+  else 
+    Mob_Barrier_mod = 1.0;
+
+  var temp, jj;
+  
+  for(j = 0;j < Simulations_num;j++)  {
+    // At the start of each simulation
+    cont_fight = true;
+    
+    for (var i = 0; i < Hero_Class.length; i++) {
+      
+      Hero_HP[i] = Hero_HP_val[i];   
+
+      if(Hero_Artifact[i] == "Backfire Hammer")
+        Hero_HP[i] = 0.75*Hero_HP_val[i]; 
+
+      Hero_Damage_fight[i] = 0;
+
+      Hero_Survive_chance[i] = Hero_Armadillo[i]/100;
+      if (Hero_Class[i]=="Cleric" || Hero_Class[i]=="Bishop")
+        Hero_Survive_chance[i] = 1.2;
+      
+      Hero_Berserker_stage[i]  = 0;
+      Hero_Guaranteed_Crit[i]  = false;
+    
+    }
+    
+    Mob_HP = Mob_HP_val;
+    Heroes_Alive = Num_Heroes;
+    Update_Target = true;
+    Round = 0;
+    Shark_active=0;
+    Dinosaur_active=1;
+    Hemma_bonus[Who_Hemma] = 0;
+    Polonia_loot = 0;
+    Lord_save = true;
+        
+    if(Champion == "Rudo")  {
+      if(Champion_Tier == 1)
+        Rudo_bonus = 0.3;
+      if(Champion_Tier == 2)
+        Rudo_bonus = 0.4;
+      if(Champion_Tier == 3) 
+        Rudo_bonus = 0.4;
+      if(Champion_Tier == 4) 
+        Rudo_bonus = 0.5;
+    }
+    
+    for (var i = 0; i < Hero_Class.length; i++) {
+    
+      /////////////////////////////////////
+      // Ninja check
+      /////////////////////////////////////
+      if(Hero_Class[i]=="Ninja" || Hero_Class[i]=="Sensei")  {
+        Hero_Ninja_bonus[i] = 0.1 + Math.min(Hero_Tier[i],4)*0.1;
+        Hero_Ninja_evasion[i] = 0.15; 
+        if(Hero_Tier[i]==3)
+          Hero_Ninja_evasion[i] = 0.20; 
+        if(Hero_Tier[i]==4)
+          Hero_Ninja_evasion[i] = 0.25;
+      } 
+      
+      /////////////////////////////////////
+      // Daimyo check
+      /////////////////////////////////////
+      if(Hero_Class[i]=="Daimyo")  {
+        Hero_Guaranteed_Evade[i] = true;
+      } 
+      
+      Hero_Lost_Innate[i] = -5;
+      
+      Consecutive_Crit_Bonus[i] = 0;
+      
+    }
+    
+    for (var i = Hero_Class.length -1 ; i>0; i--) {
+      jj = Math.floor(Math.random() * (i + 1));
+      temp = Hero_Attack_Order[i];
+      Hero_Attack_Order[i] = Hero_Attack_Order[jj];
+      Hero_Attack_Order[jj] = temp;
+    }
+        
+    
+       
+        
+    /////////////////////////////////////
+    // Start quest
+    /////////////////////////////////////
+    while(cont_fight)  {
+      Round=Round+1;
+      
+      /////////////////////////////////////
+      // Targeting chances
+      /////////////////////////////////////
+      if (Update_Target)  {
+        Target_Tot = 0.0;
+        Hero1_Target = 0.0;
+        Hero2_Target = 0.0;
+        Hero3_Target = 0.0;
+        Hero4_Target = 0.0;
+        //Compute hero chance to get targeted
+        if (Hero_HP[0]>0)  {
+          Hero1_Target = Hero1_Target + Hero_Threat[0];
+          Hero2_Target = Hero2_Target + Hero_Threat[0];
+          Hero3_Target = Hero3_Target + Hero_Threat[0];
+          Hero4_Target = Hero4_Target + Hero_Threat[0];
+          Target_Tot = Hero_Threat[0];
+        }
+        if (Hero_HP[1]>0)  {
+          Hero2_Target = Hero2_Target + Hero_Threat[1];
+          Hero3_Target = Hero3_Target + Hero_Threat[1];
+          Hero4_Target = Hero4_Target + Hero_Threat[1];
+          Target_Tot = Target_Tot + Hero_Threat[1];
+        }
+        if (Hero_HP[2]>0)  {
+          Hero3_Target = Hero3_Target + Hero_Threat[2];
+          Hero4_Target = Hero4_Target + Hero_Threat[2];
+          Target_Tot = Target_Tot + Hero_Threat[2];
+        }
+        if (Hero_HP[3]>0)  {
+          Hero4_Target = Hero4_Target + Hero_Threat[3];
+          Target_Tot = Target_Tot + Hero_Threat[3];
+        }
+        if (Hero_HP[4]>0)  
+          Target_Tot = Target_Tot + Hero_Threat[4];
+       
+        Hero1_Target = Hero1_Target/Target_Tot;
+        Hero2_Target = Hero2_Target/Target_Tot;
+        Hero3_Target = Hero3_Target/Target_Tot;
+        Hero4_Target = Hero4_Target/Target_Tot;
+        Update_Target = false;
+      } 
+    
+      
+      for (var i = 0; i < Hero_Class.length; i++) {
+        if(Hero_Class[i] == "Sensei" && Hero_Lost_Innate[i] == Round-2) {
+          Hero_Ninja_bonus[i] = 0.1 + Math.min(Hero_Tier[i],4)*0.1;
+          Hero_Ninja_evasion[i] = 0.15; 
+          if(Hero_Tier[i]==3)
+            Hero_Ninja_evasion[i] = 0.20; 
+          if(Hero_Tier[i]==4)
+            Hero_Ninja_evasion[i] = 0.25; 
+        } 
+        
+        Extreme_Crit_bonus[i] = 0.0;
+      
+        if(Mob_Is_Extreme=="Yes" && Hero_Evasion[i]+Hero_Berserker_stage[i]*0.1+Hero_Ninja_evasion[i]<0 && !Hero_art_no_evasion[i]) 
+          Extreme_Crit_bonus[i] = -0.25*(Hero_Evasion[i]+Hero_Berserker_stage[i]*0.1+Hero_Ninja_evasion[i]);
+      }
+        
+        
+        
+      
+      
+      /////////////////////////////////////
+      // Mob Attacks
+      /////////////////////////////////////
+      
+      /////////////////////////////////////
+      // Mob AoE
+      /////////////////////////////////////
+      if(Math.random()<Mob_AoE_chance && Heroes_Alive > 1) {  
+        
+        for (var i = 0; i < Hero_Class.length; i++) {
+          
+          if(Hero_HP[i] > 0) {
+            if(Hero_Guaranteed_Evade[i] || ( Math.random() < Math.min(Hero_Evasion[i]+Hero_Berserker_stage[i]*0.1+Hero_Ninja_evasion[i],Hero_Eva_cap[i]) && !Hero_art_no_evasion[i])) {
+              if(Hero_Class[i]=="Dancer/Acrobat")
+                Hero_Guaranteed_Crit[i] = true;
+            }
+            else  {
+              Hero_HP[i] = Hero_HP[i] - Math.ceil(Hero_Damage_taken[i]*Mob_AoE_Dmg);
+              if(Hero_HP[i]<=0) {
+                if(Math.random() >= Hero_Survive_chance[i])  {  // Surviving Fatal Blow did not activate
+                  if (Lord_present && Lord_save && Hero_Class[i] != "Lord" && Hero_HP[Lord_hero]>0) {  // Lord Saves
+                    Lord_save = false;
+                    Hero_HP[i]         = Hero_HP[i]         + Math.ceil(Hero_Damage_taken[i]*Mob_AoE_Dmg);
+                    Hero_HP[Lord_hero] = Hero_HP[Lord_hero] - Math.ceil(Hero_Damage_taken[Lord_hero]*Mob_AoE_Dmg);
+                    if(Hero_HP[Lord_hero]<=0) {    // Lord Dies in saving
+                      if(Math.random() >= Hero_Survive_chance[Lord_hero])  {  // Surviving Fatal Blow did not activate
+                        Hero_HP[Lord_hero] = 0;
+                        Heroes_Alive=Heroes_Alive-1;
+                        Update_Target = true;
+                      }
+                      else {
+                        Hero_HP[Lord_hero] = 1;
+                        Hero_Survive_chance[Lord_hero]=0.0;
+                      }
+                    }
+                  }
+                  else {
+                    Hero_HP[i] = 0;
+                    Heroes_Alive=Heroes_Alive-1;
+                    Update_Target = true;
+                  }
+                }
+                else  {             // Surviving Fatal Blow activated
+                  Hero_HP[i] = 1;
+                  Hero_Survive_chance[i]=0.0;
+                }           
+              }
+              if(Hero_Class[i] == "Sensei" && Hero_Lost_Innate[i] != Round-1)
+                Hero_Lost_Innate[i] = Round;
+            }       
+          }
+        }
+      }
+                     
+      
+      /////////////////////////////////////
+      // Mob attacks only one hero
+      /////////////////////////////////////
+      else {                
+        target_chance = Math.random();
+        
+        if (target_chance > Hero4_Target && Hero_HP[4] > 0) {   //Hero 5 targeted
+          target = 4;
+        }
+        else if (target_chance > Hero3_Target && Hero_HP[3] > 0) {   //Hero 4 targeted
+          target = 3;
+        }
+        else if (target_chance > Hero2_Target && Hero_HP[2] > 0)  {  //Hero 3 targeted
+          target = 2;
+        }
+        else if (target_chance > Hero1_Target && Hero_HP[1] > 0)  {  //Hero 2 targeted
+          target = 1;
+        }
+        else {    //Hero 1 targeted
+          target = 0;
+        }
+        
+        if(Hero_Guaranteed_Evade[target] || (Math.random() < Math.min(Hero_Evasion[target]+Hero_Berserker_stage[target]*0.1+Hero_Ninja_evasion[target],Hero_Eva_cap[target]) && !Hero_art_no_evasion[target] )) {
+          if(Hero_Class[target]=="Dancer/Acrobat")
+            Hero_Guaranteed_Crit[target] = true;         
+        }
+        else  {
+          if(Math.random() > Mob_Crit_chance*Mob_Crit_chance_mod+Extreme_Crit_bonus[target])  
+            Hero_HP[target] = Hero_HP[target] - Hero_Damage_taken[target];
+          else
+            Hero_HP[target] = Hero_HP[target] - Hero_Crit_Damage_taken[target];             
+          if(Hero_HP[target]<=0) {
+            if(Math.random() >= Hero_Survive_chance[target])  {  // Surviving Fatal Blow did not activate
+              if (Lord_present && Lord_save && Hero_Class[target] != "Lord" && Hero_HP[Lord_hero]>0) {  // Lord Saves
+                Lord_save = false;
+                Hero_HP[target]    = Hero_HP[target]    + Hero_Damage_taken[target];
+                Hero_HP[Lord_hero] = Hero_HP[Lord_hero] - Hero_Damage_taken[Lord_hero];
+                if(Hero_HP[Lord_hero]<=0) {    // Lord Dies in saving
+                  if(Math.random() >= Hero_Survive_chance[Lord_hero])  {  // Surviving Fatal Blow did not activate
+                    Hero_HP[Lord_hero] = 0;
+                    Heroes_Alive=Heroes_Alive-1;
+                    Update_Target = true;
+                  }
+                  else {
+                    Hero_HP[Lord_hero] = 1;
+                    Hero_Survive_chance[Lord_hero]=0.0;
+                  }
+                }
+              }
+              else {
+                Hero_HP[target] = 0;
+                Heroes_Alive=Heroes_Alive-1;
+                Update_Target = true;
+              }
+            }
+            else  {       // Surviving Fatal Blow activated
+              Hero_HP[target] = 1;
+              Hero_Survive_chance[target]=0.0;
+            }
+          }
+          if(Hero_Class[target] == "Sensei" && Hero_Lost_Innate[target] != Round-1)
+              Hero_Lost_Innate[target] = Round;
+        }        
+      }
+      
+
+      if (Champion=="Hemma" && Hero_HP[Who_Hemma]>0) {
+        Hemma_drain = -1; 
+        for (var i = 0; i < Hero_Class.length; i++) {
+          if(Who_Hemma != i && Hero_HP[i]>(0.11-0.01*Champion_Tier)*Hero_HP_val[i]) {
+            if(Hemma_drain == -1)
+              Hemma_drain = i;
+            else if (Hero_HP[i]/Hero_HP_val[i]>Hero_HP[Hemma_drain]/Hero_HP_val[Hemma_drain])
+              Hemma_drain = i;
+          }
+        }
+        if(Hemma_drain > -1) {
+          Hero_HP[Hemma_drain] = Hero_HP[Hemma_drain]-(0.11-0.01*Champion_Tier)*Hero_HP_val[Hemma_drain];
+          if(Hero_Class[Hemma_drain] == "Sensei" && Hero_Lost_Innate[Hemma_drain] != Round-1)
+              Hero_Lost_Innate[Hemma_drain] = Round;
+
+        Hemma_bonus[Who_Hemma] = Hemma_bonus[Who_Hemma] + Hero_Attack[Who_Hemma]*Hemma_mult;     
+        Hero_HP[Who_Hemma] = Math.min(Hero_HP[Who_Hemma] + (Champion_Tier + Math.min(Champion_Tier-3,0))*5,Hero_HP_val[Who_Hemma])
+        }
+      }
+      
+      /////////////////////////////////////
+      // Check Berserker Activation
+      /////////////////////////////////////
+      
+      
+      for (var i = 0; i < Hero_Class.length; i++) {
+      
+        if(Hero_Class[i]=="Berserker/Jarl")  {
+          if(Hero_HP[i]>=Hero1_Jarl_hp1[i]*Hero_HP_val[i])  {
+            Hero_Berserker_stage[i] = 0;
+          }
+          else if (Hero_HP[i]>=Hero1_Jarl_hp2[i]*Hero_HP_val[i]) {
+            Hero_Berserker_stage[i] = 1;
+          }
+          else if (Hero_HP[i]>=Hero1_Jarl_hp3[i]*Hero_HP_val[i]) {
+            Hero_Berserker_stage[i] = 2;
+          }
+          else if (Hero_HP[i]>0) {
+            Hero_Berserker_stage[i] = 3;
+          }
+        }
+        
+        
+        /////////////////////////////////////
+        // Ninja check
+        /////////////////////////////////////
+        
+        if (Hero_Class[i]=="Ninja" && Hero_HP[i]<Hero_HP_val[i])  {        
+          Hero_Ninja_bonus[i] = 0.0;
+          Hero_Ninja_evasion[i] = 0.0;
+        }
+      
+        if (Hero_Class[i]=="Sensei" && Hero_Lost_Innate[i] == Round)  {        
+          Hero_Ninja_bonus[i] = 0.0;
+          Hero_Ninja_evasion[i] = 0.0;
+        }
+        
+        /////////////////////////////////////
+        // Samurai check
+        /////////////////////////////////////
+        if (Round == 1 && (Hero_Class[i]=="Samurai" || Hero_Class[i]=="Daimyo")) {
+          Hero_Guaranteed_Crit[i] = true;
+          Hero_Guaranteed_Evade[i] = false;
+        }
+        
+      }
+      
+      
+      
+      /////////////////////////////////////
+      // Heroes Attack
+      /////////////////////////////////////
+      
+      for (var i = 0; i < Hero_Class.length; i++) {
+      jj = Hero_Attack_Order[i];
+              
+        if (Hero_HP[jj]>0) {
+          if(Math.random() > Mob_Evasion) {
+            if(Math.random() < (Hero_Crit_chance[jj]+Hero_Ninja_bonus[jj]+Rudo_bonus)*Hero_art_crit_chance_mod[jj] + (1-Hero_art_crit_chance_mod[jj])*0.2 || Hero_Guaranteed_Crit[jj])  {
+              if (Round == 1 && (Hero_Class[jj]=="Samurai" || Hero_Class[jj]=="Daimyo")) {
+                Mob_HP=Mob_HP-(Hero_Attack[jj]*(Hero_Attack_mod[jj]+0.2*Hero_Mundra[jj]+Shark_active*0.01*Hero_Shark[jj]+Dinosaur_active*Hero_Dinosaur[jj]*0.01+0.1*(1+Hero_Berserker_level[jj])*Hero_Berserker_stage[jj])+Hemma_bonus[jj])*(Hero_Crit_mult[jj]+Consecutive_Crit_Bonus[jj]);
+                Hero_Damage_fight[jj] = Hero_Damage_fight[jj] + (Hero_Attack[jj]*(Hero_Attack_mod[jj]+0.2*Hero_Mundra[jj]+Shark_active*0.01*Hero_Shark[jj]+Dinosaur_active*Hero_Dinosaur[jj]*0.01+0.1*(1+Hero_Berserker_level[jj])*Hero_Berserker_stage[jj])+Hemma_bonus[jj])*(Hero_Crit_mult[jj]+Consecutive_Crit_Bonus[jj]);
+              }
+              else {
+                Mob_HP=Mob_HP-(Hero_Attack[jj]*(Hero_Attack_mod[jj]+0.2*Hero_Mundra[jj]+Shark_active*0.01*Hero_Shark[jj]+Dinosaur_active*Hero_Dinosaur[jj]*0.01+0.1*(1+Hero_Berserker_level[jj])*Hero_Berserker_stage[jj])+Hemma_bonus[jj])*(Hero_Crit_mult[jj]+Consecutive_Crit_Bonus[jj])*Mob_Barrier_mod;
+                Hero_Damage_fight[jj] = Hero_Damage_fight[jj] + (Hero_Attack[jj]*(Hero_Attack_mod[jj]+0.2*Hero_Mundra[jj]+Shark_active*0.01*Hero_Shark[jj]+Dinosaur_active*Hero_Dinosaur[jj]*0.01+0.1*(1+Hero_Berserker_level[jj])*Hero_Berserker_stage[jj])+Hemma_bonus[jj])*(Hero_Crit_mult[jj]+Consecutive_Crit_Bonus[jj])*Mob_Barrier_mod;
+                if (Hero_Class[jj] == "Conquistador")
+                  Consecutive_Crit_Bonus[jj] = Math.min(Consecutive_Crit_Bonus[jj]+0.25,1);
+              }
+            }
+            else  {
+              Mob_HP=Mob_HP-(Hero_Attack[jj]*(Hero_Attack_mod[jj]+0.2*Hero_Mundra[jj]+Shark_active*0.01*Hero_Shark[jj]+Dinosaur_active*Hero_Dinosaur[jj]*0.01+0.1*(1+Hero_Berserker_level[jj])*Hero_Berserker_stage[jj])+Hemma_bonus[jj])*Mob_Barrier_mod;
+              Hero_Damage_fight[jj] = Hero_Damage_fight[jj] + (Hero_Attack[jj]*(Hero_Attack_mod[jj]+0.2*Hero_Mundra[jj]+Shark_active*0.01*Hero_Shark[jj]+Dinosaur_active*Hero_Dinosaur[jj]*0.01+0.1*(1+Hero_Berserker_level[jj])*Hero_Berserker_stage[jj])+Hemma_bonus[jj])*Mob_Barrier_mod;
+              if (Hero_Class[jj] == "Conquistador")
+                Consecutive_Crit_Bonus[jj] = 0;
+            }
+            if(count_loot) {
+              if(Math.random() < loot_chance)
+                Polonia_loot++;
+            }         
+          }
+        }
+        
+        if(Hero_Class[i]=="Dark Knight" || Hero_Class[i]=="Death Knight") {
+          if(Mob_HP<Mob_HP_val*0.1)
+            Mob_HP = -13;
+        }
+      
+        if(Mob_HP<Mob_HP_val/2)
+          Shark_active=1;
+    
+        Hero_Guaranteed_Crit[jj] = false;
+      }
+      
+      Dinosaur_active=0;
+      
+    
+      if (Mob_HP<=0)  {
+        cont_fight = false;
+        Times_quest_won = Times_quest_won + 1;
+        
+        for (var i = 0; i < Hero_Class.length; i++) {
+          
+          if (Hero_HP[i]>0) {
+            Times_Hero_survived[i] = Times_Hero_survived[i] + 1;
+            Hero_HP_Remaining_min[i] = Math.min(Hero_HP_Remaining_min[i],Hero_HP[i]);
+          }
+          
+          Hero_HP_Remaining_avg[i] = Hero_HP_Remaining_avg[i] + Math.max(Hero_HP[i],0);
+          Hero_HP_Remaining_max[i] = Math.max(Hero_HP_Remaining_max[i],Hero_HP[i]);
+          
+        }
+        
+        
+        Rounds_avg = Rounds_avg + Round;
+        Rounds_max = Math.max(Rounds_max,Round);
+        Rounds_min = Math.min(Rounds_min,Round);
+        
+                          
+      }
+    
+      if (Heroes_Alive == 0)
+        cont_fight = false;
+
+      if(cont_fight && Round == 499){
+        cont_fight        = false;
+        Round_limit       = true;
+        Round_limit_times = Round_limit_times + 1;
+      } 
+      
+      if (cont_fight == false)  {    
+        Polonia_loot_tot = Polonia_loot_tot + Math.min(Polonia_loot,Polonia_loot_cap);
+        if(Polonia_loot>=Polonia_loot_cap)
+          Polonia_loot_cap_hit++;
+        for (var i = 0; i < Hero_Class.length; i++) {       
+          Hero_Damage_Dealt_avg[i] = Hero_Damage_Dealt_avg[i] + Hero_Damage_fight[i];
+          Hero_Damage_Dealt_max[i] = Math.max(Hero_Damage_Dealt_max[i],Hero_Damage_fight[i]);
+          Hero_Damage_Dealt_min[i] = Math.min(Hero_Damage_Dealt_min[i],Hero_Damage_fight[i]);    
+        }
+      }
+        
+      if(j==4999) {
+        if (Rounds_avg/5000 > 200)
+          Simulations_num = 5000;
+      }
+      
+      if (Champion_Tier==1 && Round == 2)
+        Rudo_bonus = 0.0;
+      
+      if (Champion_Tier==2 && Round == 3)
+        Rudo_bonus = 0.0;
+      
+      if(Champion_Tier==3 && Round == 3) 
+        Rudo_bonus = 0.0;
+      
+      if (Champion_Tier==4  && Round == 4) 
+        Rudo_bonus = 0.0;
+      
+      
+      
+      /////////////////////////////////////
+      // Healing from Lizard and Cleric and Lilu
+      /////////////////////////////////////
+      if(cont_fight)  {
+        
+        for (var i = 0; i < Hero_Class.length; i++) {  
+          
+          if (Hero_HP[i]>0) {
+            Hero_HP[i] = Math.min(Hero_HP[i]+Hero_Lizard[i],Hero_HP_val[i]);
+            if (Hero_Class[i]=="Cleric")
+              Hero_HP[i] = Math.min(Hero_HP[i]+Math.min(Hero_Tier[i],3)*5-5,Hero_HP_val[i]);
+            else if (Hero_Class[i]=="Bishop")  {
+              if(Hero_Tier[i]==2)
+                Hero_HP[i] = Math.min(Hero_HP[i]+5,Hero_HP_val[i]);
+              if(Hero_Tier[i]>=3)
+                Hero_HP[i] = Math.min(Hero_HP[i]+20,Hero_HP_val[i]);
+            }
+          
+            if(Champion=="Lilu")  {
+              if (Champion_Tier == 1)
+                Hero_HP[i] = Math.min(Hero_HP[i]+3*Hero_art_champion_mod[i],Hero_HP_val[i])
+              if (Champion_Tier == 2)
+                Hero_HP[i] = Math.min(Hero_HP[i]+5*Hero_art_champion_mod[i],Hero_HP_val[i])
+              if (Champion_Tier == 3)
+                Hero_HP[i] = Math.min(Hero_HP[i]+10*Hero_art_champion_mod[i],Hero_HP_val[i])
+              if (Champion_Tier == 4)
+                Hero_HP[i] = Math.min(Hero_HP[i]+20*Hero_art_champion_mod[i],Hero_HP_val[i])
+            }
+            
+          }         
+        }        
+      }
+      
+      
+      
+      /////////////////////////////////////
+      // Check Berserker Activation
+      /////////////////////////////////////
+      
+      for (var i = 0; i < Hero_Class.length; i++) {
+      
+        if(Hero_Class[i]=="Berserker/Jarl")  {
+          if(Hero_HP[i]>=Hero1_Jarl_hp1[i]*Hero_HP_val[i])  {
+            Hero_Berserker_stage[i] = 0;
+          }
+          else if (Hero_HP[i]>=Hero1_Jarl_hp2[i]*Hero_HP_val[i]) {
+            Hero_Berserker_stage[i] = 1;
+          }
+          else if (Hero_HP[i]>=Hero1_Jarl_hp3[i]*Hero_HP_val[i]) {
+            Hero_Berserker_stage[i] = 2;
+          }
+          else if (Hero_HP[i]>0) {
+            Hero_Berserker_stage[i] = 3;
+          }
+        }
+        
+      }
+
+
+
+            
+    }    
+  }
+
+  success_chance = Times_quest_won*100/Simulations_num;
+    if(Fateweaver_present) 
+    success_chance = (1-Math.pow(1-success_chance/100,2))*100;
+  
+  
+  SpreadsheetApp.getActiveSheet().getRange(25, 1).setValue(success_chance);
+  SpreadsheetApp.getActiveSheet().getRange(25, 2).setValue(Rounds_min);
+  SpreadsheetApp.getActiveSheet().getRange(25, 3).setValue(Rounds_avg/Times_quest_won);
+  SpreadsheetApp.getActiveSheet().getRange(25, 4).setValue(Rounds_max);
+  SpreadsheetApp.getActiveSheet().getRange(25, 5).setValue(Polonia_loot_tot/Simulations_num);
+  SpreadsheetApp.getActiveSheet().getRange(25, 6).setValue(Polonia_loot_cap_hit*100/Simulations_num);
+  if(Round_limit) {
+    SpreadsheetApp.getActiveSheet().getRange(25, 7).setValue("Yes");
+    SpreadsheetApp.getActiveSheet().getRange(25, 8).setValue(Round_limit_times*100/Simulations_num);
+  }
+  else {
+    SpreadsheetApp.getActiveSheet().getRange(25, 7).setValue("No");
+    SpreadsheetApp.getActiveSheet().getRange(25, 8).setValue(0);
+  }
+  
+  SpreadsheetApp.getActiveSheet().getRange(27, 2).setValue(Times_Hero_survived[0]*100/Simulations_num);
+  SpreadsheetApp.getActiveSheet().getRange(27, 3).setValue(Times_Hero_survived[1]*100/Simulations_num);
+  SpreadsheetApp.getActiveSheet().getRange(27, 4).setValue(Times_Hero_survived[2]*100/Simulations_num);
+  SpreadsheetApp.getActiveSheet().getRange(27, 5).setValue(Times_Hero_survived[3]*100/Simulations_num);
+  SpreadsheetApp.getActiveSheet().getRange(27, 6).setValue(Times_Hero_survived[4]*100/Simulations_num);
+  
+  
+  SpreadsheetApp.getActiveSheet().getRange(28, 2).setValue(Hero_HP_Remaining_avg[0]/Simulations_num);
+  SpreadsheetApp.getActiveSheet().getRange(28, 3).setValue(Hero_HP_Remaining_avg[1]/Simulations_num);
+  SpreadsheetApp.getActiveSheet().getRange(28, 4).setValue(Hero_HP_Remaining_avg[2]/Simulations_num);
+  SpreadsheetApp.getActiveSheet().getRange(28, 5).setValue(Hero_HP_Remaining_avg[3]/Simulations_num);
+  SpreadsheetApp.getActiveSheet().getRange(28, 6).setValue(Hero_HP_Remaining_avg[4]/Simulations_num);
+  
+  SpreadsheetApp.getActiveSheet().getRange(29, 2).setValue(Hero_HP_Remaining_max[0]);
+  SpreadsheetApp.getActiveSheet().getRange(29, 3).setValue(Hero_HP_Remaining_max[1]);
+  SpreadsheetApp.getActiveSheet().getRange(29, 4).setValue(Hero_HP_Remaining_max[2]);
+  SpreadsheetApp.getActiveSheet().getRange(29, 5).setValue(Hero_HP_Remaining_max[3]);
+  SpreadsheetApp.getActiveSheet().getRange(29, 6).setValue(Hero_HP_Remaining_max[4]);
+  
+  SpreadsheetApp.getActiveSheet().getRange(30, 2).setValue(Hero_Damage_Dealt_max[0]);
+  SpreadsheetApp.getActiveSheet().getRange(30, 3).setValue(Hero_Damage_Dealt_max[1]);
+  SpreadsheetApp.getActiveSheet().getRange(30, 4).setValue(Hero_Damage_Dealt_max[2]);
+  SpreadsheetApp.getActiveSheet().getRange(30, 5).setValue(Hero_Damage_Dealt_max[3]);
+  SpreadsheetApp.getActiveSheet().getRange(30, 6).setValue(Hero_Damage_Dealt_max[4]);
+   
+  SpreadsheetApp.getActiveSheet().getRange(31, 2).setValue(Hero_Damage_Dealt_avg[0]/Simulations_num);
+  SpreadsheetApp.getActiveSheet().getRange(31, 3).setValue(Hero_Damage_Dealt_avg[1]/Simulations_num);
+  SpreadsheetApp.getActiveSheet().getRange(31, 4).setValue(Hero_Damage_Dealt_avg[2]/Simulations_num);
+  SpreadsheetApp.getActiveSheet().getRange(31, 5).setValue(Hero_Damage_Dealt_avg[3]/Simulations_num);
+  SpreadsheetApp.getActiveSheet().getRange(31, 6).setValue(Hero_Damage_Dealt_avg[4]/Simulations_num);
+  
+  SpreadsheetApp.getActiveSheet().getRange(32, 2).setValue(Hero_Damage_Dealt_min[0]);
+  SpreadsheetApp.getActiveSheet().getRange(32, 3).setValue(Hero_Damage_Dealt_min[1]);
+  SpreadsheetApp.getActiveSheet().getRange(32, 4).setValue(Hero_Damage_Dealt_min[2]);
+  SpreadsheetApp.getActiveSheet().getRange(32, 5).setValue(Hero_Damage_Dealt_min[3]);
+  SpreadsheetApp.getActiveSheet().getRange(32, 6).setValue(Hero_Damage_Dealt_min[4]);
+  
+}

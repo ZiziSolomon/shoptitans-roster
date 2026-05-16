@@ -1,19 +1,15 @@
 """
 Validate Python MC results against the Google Sheet Quest Sim.
 
-Setup:
-  1. Open the sheet and configure:
-       Quest Zone = Mushgoon Graverobber, Difficulty = Medium
-       Hero 1: Olga    HP=194  ATK=7691  DEF=1679 Threat=40  Crit=5%  CritDmg=x2.0  Eva=0%
-       Hero 2: Vena    HP=248  ATK=474   DEF=370  Threat=90  Crit=5%  CritDmg=x3.0  Eva=25%
-       Hero 3: Corae   HP=254  ATK=2295  DEF=1898 Threat=40  Crit=60% CritDmg=x3.0  Eva=30%
-       Hero 4: Sabrina HP=188  ATK=3277  DEF=1506 Threat=60  Crit=20% CritDmg=x2.0  Eva=60%
-  2. Force a recalculation so the MC rows refresh.
-  3. Run: python -m sim.validate_vs_sheet
+Current sheet config (matches premade Hero 1 + Hero 2 vs LCoG Diff 11 Hard):
+  Quest Zone = Lost City of Gold Diff 11, Difficulty = Hard
+  Hero 1: Blue/Spellcaster T4  HP=1351 ATK=149846 DEF=5795 Threat=10 Crit=0%  CritDmg=x2.0 Eva=25%  Armadillo=60
+  Hero 2: Blue/Spellcaster T4  HP=1351 ATK=113092 DEF=5548 Threat=10 Crit=40% CritDmg=x6.5 Eva=0%   Lizard=21
+  No champion, no aurasong, no booster.
+  (Batch 3 test config: H1 swapped 4 enchants to Armadillo, H2 swapped 6 to Lizard —
+  so all other stats moved too. Pulled fresh from Hero Data tab.)
 
-Expected Python MC results (100k trials, seed=42):
-  Success rate ~64.3%, avg rounds ~9.4
-  Survival: Olga ~41%, Vena ~19%, Corae ~55%, Sabrina ~50%
+To rerun: open sheet -> Quest Sim tab -> recalc -> `python -m sim.validate_vs_sheet`.
 """
 
 from __future__ import annotations
@@ -29,14 +25,14 @@ SHEET_ID = "1-SJ6j4U9NtI0aNPxqG830PA5XEbI2GAPhoxYhdLIjH8"
 SHEET_TAB = "Quest Sim"
 N_TRIALS = 100_000
 SEED = 42
-TOL = 3.0  # percentage-point tolerance for comparisons
+TOL = 1.0  # percentage-point tolerance for comparisons
 
 PARTY = [
-    Hero("Olga",    194, 7691, 1679,  40,  5.0, 2.0,  0.0, "Fire"),
-    Hero("Vena",    248,  474,  370,  90,  5.0, 3.0, 25.0, "Water"),
-    Hero("Corae",   254, 2295, 1898,  40, 60.0, 3.0, 30.0, "Fire"),
-    Hero("Sabrina", 188, 3277, 1506,  60, 20.0, 2.0, 60.0, "Wind"),
+    Hero("Hero 1", 1351, 149846, 5795, 10,  0.0, 2.0, 25.0, "Fire", armadillo=60.0),
+    Hero("Hero 2", 1351, 113092, 5548, 10, 40.0, 6.5,  0.0, "Fire", lizard=21.0),
 ]
+QUEST_NAME = "Lost City of Gold Diff 11"
+QUEST_DIFF = "Hard"
 
 
 def fetch_sheet_csv() -> list[list[str]]:
@@ -60,12 +56,17 @@ def parse_sheet_mc(rows: list[list[str]]) -> dict:
         if not row:
             continue
         label = row[0].strip()
-        if label == "Quest Success Rate [%]":
-            mc["success_rate"] = float(row[1]) if row[1] else None
+        if label == "Quest Success Rate [%]" and i + 1 < len(rows):
+            # Header row; values are on the next row: [success%, min_rnd, avg_rnd, max_rnd, ...]
+            vals = rows[i + 1]
+            mc["success_rate"] = float(vals[0]) if vals and vals[0] else None
+            mc["min_rounds"] = float(vals[1]) if len(vals) > 1 and vals[1] else None
+            mc["avg_rounds"] = float(vals[2]) if len(vals) > 2 and vals[2] else None
+            mc["max_rounds"] = float(vals[3]) if len(vals) > 3 and vals[3] else None
         elif label == "Survival Rate [%]":
-            mc["survival_rates"] = [float(v) for v in row[1:5] if v.strip()]
-        elif label == "Average HP Remaining ":
-            mc["avg_hp"] = [float(v) for v in row[1:5] if v.strip()]
+            mc["survival_rates"] = [float(v) for v in row[1:6] if v.strip()]
+        elif label.startswith("Average HP Remaining"):
+            mc["avg_hp"] = [float(v) for v in row[1:6] if v.strip()]
     return mc
 
 
@@ -82,7 +83,7 @@ def compare(label: str, py_val: float, sheet_val: float | None, tol: float = TOL
 
 def main() -> None:
     quests_db = load_quest_data()
-    q = quest_from_data(quests_db["Mushgoon Graverobber"], "Medium")
+    q = quest_from_data(quests_db[QUEST_NAME], QUEST_DIFF)
 
     print(f"Running Python MC: {q.name} [{q.difficulty}], {N_TRIALS:,} trials, seed={SEED}")
     mc, _ = run_mc(PARTY, q, n_trials=N_TRIALS, seed=SEED)

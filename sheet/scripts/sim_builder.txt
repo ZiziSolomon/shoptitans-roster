@@ -1,0 +1,413 @@
+function myFunction_builder() {
+     //Get Hero Stats 
+  
+  var Hero1_Class        = SpreadsheetApp.getActiveSheet().getRange(3, 3).getValue();
+  var Hero1_Tier         = SpreadsheetApp.getActiveSheet().getRange(24, 5).getValue();
+  var Hero1_HP_val       = SpreadsheetApp.getActiveSheet().getRange(18, 5).getValue();
+  var Hero1_Attack       = SpreadsheetApp.getActiveSheet().getRange(19, 5).getValue();
+  var Hero1_Defense      = SpreadsheetApp.getActiveSheet().getRange(20, 5).getValue();
+  var Hero1_Crit_chance  = SpreadsheetApp.getActiveSheet().getRange(22, 5).getValue();
+  var Hero1_Crit_mult    = SpreadsheetApp.getActiveSheet().getRange(23, 5).getValue();
+  var Hero1_Dodge        = SpreadsheetApp.getActiveSheet().getRange(21, 5).getValue();
+  var Hero1_Armadillo    = SpreadsheetApp.getActiveSheet().getRange(25, 5).getValue();
+  var Hero1_Dinosaur     = SpreadsheetApp.getActiveSheet().getRange(26, 5).getValue();
+  var Hero1_Lizard       = SpreadsheetApp.getActiveSheet().getRange(27, 5).getValue();
+  var Hero1_Shark        = SpreadsheetApp.getActiveSheet().getRange(28, 5).getValue();
+  var Hero1_Mundra       = SpreadsheetApp.getActiveSheet().getRange(29, 5).getValue();
+  var Hero1_Attack_mod   = SpreadsheetApp.getActiveSheet().getRange(30, 5).getValue();
+  var Hero1_Defense_mod  = SpreadsheetApp.getActiveSheet().getRange(31, 5).getValue();
+  var Hero1_Artifact     = SpreadsheetApp.getActiveSheet().getRange(34, 5).getValue();
+  var Hero1_elem_num     = SpreadsheetApp.getActiveSheet().getRange(12, 5).getValue();
+  var Hero1_Element_Type = SpreadsheetApp.getActiveSheet().getRange(4, 3).getValue();
+  
+    
+  //Get Mob Stats
+  var Mob_Zone            = SpreadsheetApp.getActiveSheet().getRange('B28').getValue();
+  var Mob_HP_val          = SpreadsheetApp.getActiveSheet().getRange('B42').getValue();
+  var Mob_Damage          = SpreadsheetApp.getActiveSheet().getRange('B43').getValue();
+  var Mob_Cap             = SpreadsheetApp.getActiveSheet().getRange('B44').getValue();
+  var Mob_Mini_Boss       = SpreadsheetApp.getActiveSheet().getRange('C30').getValue();
+  var Mob_Is_Boss         = SpreadsheetApp.getActiveSheet().getRange('B45').getValue();
+  var Mob_Is_Extreme      = SpreadsheetApp.getActiveSheet().getRange('B46').getValue();
+  var Mob_Barrier_Type    = SpreadsheetApp.getActiveSheet().getRange('B48').getValue();
+  var Mob_Barrier_HP_val  = SpreadsheetApp.getActiveSheet().getRange('B47').getValue();
+  var Is_LCoG             = SpreadsheetApp.getActiveSheet().getRange('B49').getValue();
+  var success_chance      = -13.0;
+  var Mob_Evasion         = -1.0;
+  var Mob_HP_mod          = 1.0;
+  var Mob_Damage_mod      = 1.0;
+  var Mob_Crit_chance_mod = 1.0;
+  var Extreme_Crit_bonus  = 0.1;
+  var Mob_Barrier_mod     = 1.0;
+
+  var Hero1_Eva_cap = 0.75;
+    if (Hero1_Class == "Pathfinder")
+      Hero1_Eva_cap = 0.78;
+  
+  var help = Hero1_elem_num.split("/");
+  var Hero1_Element = Number(help[0]);
+  
+  
+  if (Mob_Mini_Boss == "Agile") {
+    Mob_Evasion = 0.4;
+  }
+  else if (Mob_Mini_Boss == "Dire") {
+    Mob_HP_mod = 1.5;
+    Mob_Crit_chance_mod = 3.0;
+  }
+  else if (Mob_Mini_Boss == "Huge") {
+    Mob_HP_mod = 2.0;
+  }
+  else if (Mob_Mini_Boss == "Legendary") {
+    Mob_HP_mod = 1.5;
+    Mob_Damage_mod = 1.25;
+    Mob_Crit_chance_mod = 1.5;
+    Mob_Evasion = 0.1;
+  }
+  
+  if(Mob_Zone == "Terror Tower - Floor 30 (Titan)")
+    Mob_Is_Extreme="Yes";
+
+  if(Mob_Is_Extreme=="Yes") 
+    Hero1_Dodge = Hero1_Dodge-20;
+  
+  Mob_HP_val = Math.round(Mob_HP_val*Mob_HP_mod);
+  Mob_Damage = Math.round(Mob_Damage*Mob_Damage_mod);
+  
+  if(Mob_Is_Boss=="No")
+    Hero1_Mundra = 0;
+  
+    
+  Hero1_Crit_chance = Hero1_Crit_chance/100.0;
+  Hero1_Dodge = Hero1_Dodge/100.0;
+  
+  Hero1_Defense_mod = 1.0 + Hero1_Defense_mod / 100.0;
+  Hero1_Defense = Hero1_Defense/Hero1_Defense_mod;
+  Hero1_Defense = Hero1_Defense * (Hero1_Defense_mod+0.2*Hero1_Mundra);
+  
+  Hero1_Attack_mod = 1.0 + Hero1_Attack_mod / 100;
+  Hero1_Attack= Hero1_Attack/Hero1_Attack_mod;
+  
+  var Hero1_Survive_chance;
+  var Hero1_Guaranteed_Crit = false;
+  
+  var Shark_active;
+  var Dinosaur_active;
+  
+  var Hero_Guaranteed_Evade = false;
+  var Hero_Lost_Innate = 0;
+  var Consecutive_Crit_Bonus = 0;
+
+  var Hero1_art_crit_chance_mod = 1;
+  var Hero1_No_Evasion = false;
+
+  if(Hero1_Artifact=="Kiku-Ichimonji")
+    Hero1_art_crit_chance_mod = 0;
+  else if(Hero1_Artifact=="Pickaxe of Greed" && Is_LCoG == "Yes")
+    Hero1_Attack = Hero1_Attack * 2;
+  else if(Hero1_Artifact=="Rock Stompers") {
+   Hero1_No_Evasion = true;
+ }
+    
+  
+  
+  var Hero1_Berserker_stage;
+  var Hero1_Berserker_level = 0;
+  var Hero1_Jarl_hp1 = 0.75;
+  var Hero1_Jarl_hp2 = 0.5;
+  var Hero1_Jarl_hp3 = 0.25;
+  var Hero1_Ninja_bonus = 0;
+  var Hero1_Ninja_dodge = 0;
+  if(Hero1_Class == "Berserker" || Hero1_Class == "Jarl") {
+    Hero1_Berserker_level=Math.min(Hero1_Tier,4);
+    if (Hero1_Tier = 4) {
+      Hero1_Jarl_hp1 = 0.8;
+      Hero1_Jarl_hp2 = 0.55;
+      Hero1_Jarl_hp3 = 0.3;
+    }  
+  }
+  
+    
+  
+  // Get number of runs
+  var Simulations_num = 50000; // Simulate quest 5000 times
+  var Num_Heroes = 0;
+  var Heroes_Alive = 0;
+  var Round = 0;
+  var Times_Hero1_survived = 0;
+  var Rounds_avg = 0;
+  var Rounds_max = 0;
+  var Rounds_min = 1000;
+  
+    // Vars for each simulation. 
+  var cont_fight = true;
+  var Hero1_HP = Hero1_HP_val;
+  var Mob_HP = Mob_HP_val;
+  
+  if(Hero1_HP>0)
+    Num_Heroes++;
+  
+  
+  //Compute Hero damage taken
+  if (Hero1_Defense<=Mob_Cap/6)  {
+    var Hero1_Damage_taken = Math.round(1.5*Mob_Damage + ((Hero1_Defense-0)/(Mob_Cap/6-0))*(0.5*Mob_Damage-1.5*Mob_Damage));
+  }
+  else if (Hero1_Defense <= Mob_Cap/3)
+    var Hero1_Damage_taken = Math.round(0.5*Mob_Damage + ((Hero1_Defense-Mob_Cap/6)/(Mob_Cap/3-Mob_Cap/6))*(0.3*Mob_Damage-0.5*Mob_Damage));
+  else
+    var Hero1_Damage_taken = Math.round(0.3*Mob_Damage + ((Hero1_Defense-Mob_Cap/3)/(Mob_Cap-Mob_Cap/3))*(0.25*Mob_Damage-0.3*Mob_Damage));
+  
+  var Hero1_Crit_Damage_taken = Math.round(Math.max(Hero1_Damage_taken,Mob_Damage)*1.5);
+  //var Hero1_Crit_Damage_taken = Math.round(Hero1_Damage_taken*1.5);
+
+
+
+  if(Mob_Barrier_HP_val==0)
+      Mob_Barrier_mod = 1.0;
+  else if (Mob_Barrier_HP_val>0 && Mob_Barrier_Type == Hero1_Element_Type && Hero1_Element >= Mob_Barrier_HP_val)
+      Mob_Barrier_mod = 1.0;
+  else if (Mob_Barrier_HP_val>0 && Hero1_Element_Type == "Any" && Hero1_Element*0.5 >= Mob_Barrier_HP_val)
+      Mob_Barrier_mod = 1.0;
+  else
+      Mob_Barrier_mod = 0.2;
+
+
+
+  for(i = 0;i < Simulations_num;i++)  {
+    // At the start of each simulation
+    cont_fight = true;
+    Hero1_HP = Hero1_HP_val;
+    
+    if (Hero1_Artifact =="Backfire Hammer")
+      Hero1_HP = 0.75*Hero1_HP_val;
+
+    Hero1_Survive_chance = Hero1_Armadillo/100;
+    if (Hero1_Class=="Cleric" || Hero1_Class=="Bishop")
+      Hero1_Survive_chance = 1.2;
+        
+    Mob_HP = Mob_HP_val;
+    Heroes_Alive = Num_Heroes;
+    Round = 0;
+    Shark_active=0;
+    Dinosaur_active=1;
+    
+    Hero1_Berserker_stage=0;
+    Hero1_Guaranteed_Crit = false;
+      
+    /////////////////////////////////////
+    // Ninja check
+    /////////////////////////////////////
+    if(Hero1_Class=="Ninja" || Hero1_Class=="Sensei")  {
+      Hero1_Ninja_bonus = 0.1 + Math.min(Hero1_Tier,4)*0.1;
+      Hero1_Ninja_dodge = 0.15; 
+      if(Hero1_Tier>=3)
+        Hero1_Ninja_dodge = 0.20; 
+      if(Hero1_Tier==4)
+        Hero1_Ninja_dodge = 0.25; 
+      
+      /////////////////////////////////////
+      // Daimyo check
+      /////////////////////////////////////
+      if(Hero1_Class=="Daimyo")  {
+        Hero_Guaranteed_Evade = true;
+      } 
+      
+      Hero_Lost_Innate = -5;
+      
+      Consecutive_Crit_Bonus = 0;
+      
+    } 
+    
+    
+    /////////////////////////////////////
+    // Start quest
+    /////////////////////////////////////
+    while(cont_fight)  {
+      Round=Round+1;
+      
+      if(Hero1_Class == "Sensei" && Hero_Lost_Innate == Round-2) {
+          Hero1_Ninja_bonus = 0.1 + Math.min(Hero1_Tier,4)*0.1;
+          Hero1_Ninja_dodge = 0.15; 
+          if(Hero1_Tier>=3)
+            Hero1_Ninja_dodge = 0.20; 
+          if(Hero1_Tier==4)
+            Hero1_Ninja_dodge = 0.25; 
+      } 
+      
+      Extreme_Crit_bonus = 0.0;
+      
+      if(Mob_Is_Extreme=="Yes" && Hero1_Dodge+Hero1_Berserker_stage*0.1+Hero1_Ninja_dodge<0 && !Hero1_No_Evasion) 
+        Extreme_Crit_bonus = -0.25*(Hero1_Dodge+Hero1_Berserker_stage*0.1+Hero1_Ninja_dodge);
+        
+      /////////////////////////////////////
+      // Mob Attacks
+      /////////////////////////////////////
+    
+      if(Hero_Guaranteed_Evade || (Math.random() < Math.min(Hero1_Dodge+Hero1_Berserker_stage*0.1+Hero1_Ninja_dodge,Hero1_Eva_cap) && !Hero1_No_Evasion)) {
+       
+        if(Hero1_Class=="Dancer" || Hero1_Class=="Acrobat")
+          Hero1_Guaranteed_Crit = true;
+        
+      }
+      else  {
+        
+        if(Math.random() > 0.1*Mob_Crit_chance_mod+Extreme_Crit_bonus)  
+          Hero1_HP = Hero1_HP - Hero1_Damage_taken;
+        else
+          Hero1_HP = Hero1_HP - Hero1_Crit_Damage_taken;  
+        if(Hero1_HP<=0) {
+          if(Math.random() >= Hero1_Survive_chance)  {  // Surviving Fatal Blow did not activate
+            Hero1_HP = 0;
+            Heroes_Alive=Heroes_Alive-1;
+          }
+          else  {       // Surviving Fatal Blow activated
+            Hero1_HP = 1;
+            Hero1_Survive_chance=0.0;
+          }
+        }
+        if(Hero1_Class == "Sensei" && Hero_Lost_Innate != Round-1)
+          Hero_Lost_Innate = Round;
+
+      }
+                    
+      /////////////////////////////////////
+      // Check Berserker Activation
+      /////////////////////////////////////
+      
+      if(Hero1_Class=="Berserker" || Hero1_Class=="Jarl")  {
+        if(Hero1_HP>=Hero1_Jarl_hp1*Hero1_HP_val)  {
+          Hero1_Berserker_stage = 0;
+        }
+        else if (Hero1_HP>=Hero1_Jarl_hp2*Hero1_HP_val) {
+          Hero1_Berserker_stage = 1;
+        }
+        else if (Hero1_HP>=Hero1_Jarl_hp3*Hero1_HP_val) {
+          Hero1_Berserker_stage = 2;
+        }
+        else if (Hero1_HP>0) {
+          Hero1_Berserker_stage = 3;
+        }
+      }
+      
+        
+      /////////////////////////////////////
+      // Ninja check
+      /////////////////////////////////////
+      if (Hero1_Class=="Ninja"  && Hero1_HP<Hero1_HP_val)  {        
+        Hero1_Ninja_bonus = 0.0;
+        Hero1_Ninja_dodge = 0.0;
+      }
+      
+      if (Hero1_Class=="Sensei" && Hero_Lost_Innate == Round)  {        
+          Hero1_Ninja_bonus = 0.0;
+          Hero1_Ninja_dodge = 0.0;
+      }
+        
+      /////////////////////////////////////
+      // Samurai check
+      /////////////////////////////////////
+      if (Round==1 && (Hero1_Class=="Samurai" || Hero1_Class=="Daimyo")) {
+        Hero1_Guaranteed_Crit = true;
+        Hero_Guaranteed_Evade = false;
+      }
+      
+        
+      
+      /////////////////////////////////////
+      // Hero Attacks
+      /////////////////////////////////////
+      
+      if (Hero1_HP>0) {
+        if(Math.random() > Mob_Evasion) {
+          if(Math.random() < (Hero1_Crit_chance+Hero1_Ninja_bonus)*Hero1_art_crit_chance_mod + (1-Hero1_art_crit_chance_mod)*0.2 || Hero1_Guaranteed_Crit)  {
+            Mob_HP=Mob_HP-Hero1_Attack*(Hero1_Attack_mod+0.2*Hero1_Mundra+Shark_active*0.01*Hero1_Shark+Dinosaur_active*Hero1_Dinosaur*0.01+0.1*(1+Hero1_Berserker_level)*Hero1_Berserker_stage)*(Hero1_Crit_mult+Consecutive_Crit_Bonus)*Mob_Barrier_mod;
+            if (Hero1_Class == "Conquistador")
+                Consecutive_Crit_Bonus = Math.min(Consecutive_Crit_Bonus+0.25,1);
+          }
+          else  {
+            Mob_HP=Mob_HP-Hero1_Attack*(Hero1_Attack_mod+0.2*Hero1_Mundra+Shark_active*0.01*Hero1_Shark+Dinosaur_active*Hero1_Dinosaur*0.01+0.1*(1+Hero1_Berserker_level)*Hero1_Berserker_stage)*Mob_Barrier_mod;
+            if (Hero1_Class == "Conquistador")
+                Consecutive_Crit_Bonus = 0;
+          }
+        }
+      }
+
+      if(Hero1_Class=="Dark Knight" || Hero1_Class=="Death Knight") {
+        if(Mob_HP<Mob_HP_val*0.1)
+          Mob_HP = -13;
+      }
+
+      
+      if(Mob_HP<Mob_HP_val/2)
+        Shark_active=1;
+         
+      Dinosaur_active=0;
+      
+      Hero1_Guaranteed_Crit = false;      
+    
+      if (Mob_HP<=0)  {
+        cont_fight = false;
+        
+        if (Hero1_HP>0) 
+          Times_Hero1_survived = Times_Hero1_survived + 1; 
+        
+        Rounds_avg = Rounds_avg + Round;
+        Rounds_max = Math.max(Rounds_max,Round);
+        Rounds_min = Math.min(Rounds_min,Round);                          
+      }
+    
+      if (Heroes_Alive == 0)  
+        cont_fight = false; 
+      
+      
+      /////////////////////////////////////
+      // Healing from Lizard and Cleric and Lilu
+      /////////////////////////////////////
+      if(cont_fight)  {
+        
+        if (Hero1_HP>0) {
+          Hero1_HP = Math.min(Hero1_HP+Hero1_Lizard,Hero1_HP_val);
+          if (Hero1_Class=="Cleric")
+            Hero1_HP = Math.min(Hero1_HP+Math.min(Hero1_Tier,3)*5-5,Hero1_HP_val);
+          else if (Hero1_Class=="Bishop") {
+            if(Hero1_Tier==2)
+              Hero1_HP = Math.min(Hero1_HP+5,Hero1_HP_val);
+            if(Hero1_Tier>=3)
+              Hero1_HP = Math.min(Hero1_HP+20,Hero1_HP_val);
+          }
+        }     
+      }
+      
+      
+      
+      /////////////////////////////////////
+      // Check Berserker Activation
+      /////////////////////////////////////
+      
+      if(Hero1_Class=="Berserker" || Hero1_Class=="Jarl")  {
+        if(Hero1_HP>=Hero1_Jarl_hp1*Hero1_HP_val)  {
+          Hero1_Berserker_stage = 0;
+        }
+        else if (Hero1_HP>=Hero1_Jarl_hp2*Hero1_HP_val) {
+          Hero1_Berserker_stage = 1;
+        }
+        else if (Hero1_HP>=Hero1_Jarl_hp3*Hero1_HP_val) {
+          Hero1_Berserker_stage = 2;
+        }
+        else if (Hero1_HP>0) {
+          Hero1_Berserker_stage = 3;
+        }
+      }      
+    }    
+  }
+
+  success_chance = Times_Hero1_survived*100/Simulations_num;
+  if(Hero1_Class=="Chronomancer" || Hero1_Class=="Fateweaver") 
+    success_chance = (1-Math.pow(1-success_chance/100,2))*100;
+  
+  
+  SpreadsheetApp.getActiveSheet().getRange(36, 2).setValue(success_chance);
+  SpreadsheetApp.getActiveSheet().getRange(37, 2).setValue(Rounds_avg/Times_Hero1_survived);
+  SpreadsheetApp.getActiveSheet().getRange(38, 2).setValue(Rounds_min);
+  SpreadsheetApp.getActiveSheet().getRange(39, 2).setValue(Rounds_max);
+}

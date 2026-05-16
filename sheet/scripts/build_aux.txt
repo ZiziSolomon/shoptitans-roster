@@ -1,0 +1,277 @@
+function make_export()  {
+ 
+  var exp_string = SpreadsheetApp.getActive().getRange('B2').getValue();
+  exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('B3').getValue();
+  exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('C3').getValue();
+  exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('B6').getValue();
+  exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('B7').getValue();
+  exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('B8').getValue();
+  exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('B9').getValue();
+  exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('B10').getValue();
+  exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('B11').getValue();
+  exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('C6').getValue();
+  exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('C7').getValue();
+  exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('C8').getValue();
+  exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('C9').getValue();
+  exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('C10').getValue();
+  exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('C11').getValue();
+  exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('D6').getValue();
+  exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('D7').getValue();
+  exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('D8').getValue();
+  exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('D9').getValue();
+  exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('D10').getValue();
+  exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('D11').getValue();
+  exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('E6').getValue();
+  exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('E7').getValue();
+  exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('E8').getValue();
+  exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('E9').getValue();
+  exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('E10').getValue();
+  exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('E11').getValue();
+  exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('G6').getValue();
+  exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('G7').getValue();
+  exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('G8').getValue();
+  exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('G9').getValue();
+  exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('G10').getValue();
+  exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('G11').getValue();
+  exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('A14').getValue();
+  exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('B14').getValue();
+  exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('C14').getValue();
+  exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('D14').getValue(); 
+  exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('B16').getValue(); 
+  exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('B24').getValue(); 
+  exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('B25').getValue(); 
+  exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('B26').getValue(); 
+  exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('F6').getValue();
+  exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('F7').getValue();
+  exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('F8').getValue();
+  exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('F9').getValue();
+  exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('F10').getValue();
+  exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('F11').getValue();
+  exp_string = exp_string + "|";
+  
+  SpreadsheetApp.getActiveSheet().getRange('D2').setValue(exp_string);
+  
+}
+
+function read_import_builder()  {
+ 
+  var imp_string = SpreadsheetApp.getActive().getRange('E2').getValue();
+  var data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+  SpreadsheetApp.getActiveSheet().getRange('B2').setValue(data_curr);
+  imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);    
+  
+  data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+  SpreadsheetApp.getActiveSheet().getRange('B3').setValue(data_curr);
+  imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);    
+  
+  data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+  SpreadsheetApp.getActiveSheet().getRange(3,3).setValue(data_curr);
+  imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);    
+  
+  data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+  SpreadsheetApp.getActiveSheet().getRange('B6').setValue(data_curr);
+  imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);    
+  
+  data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+  SpreadsheetApp.getActiveSheet().getRange('B7').setValue(data_curr);
+  imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);    
+  
+  data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+  SpreadsheetApp.getActiveSheet().getRange('B8').setValue(data_curr);
+  imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);   
+  
+  data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+  SpreadsheetApp.getActiveSheet().getRange('B9').setValue(data_curr);
+  imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);   
+  
+  data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+  SpreadsheetApp.getActiveSheet().getRange('B10').setValue(data_curr);
+  imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);   
+  
+  data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+  SpreadsheetApp.getActiveSheet().getRange('B11').setValue(data_curr);
+  imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);   
+  
+  data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+  SpreadsheetApp.getActiveSheet().getRange('C6').setValue(data_curr);
+  imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);    
+  
+  data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+  SpreadsheetApp.getActiveSheet().getRange('C7').setValue(data_curr);
+  imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);    
+  
+  data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+  SpreadsheetApp.getActiveSheet().getRange('C8').setValue(data_curr);
+  imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);   
+  
+  data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+  SpreadsheetApp.getActiveSheet().getRange('C9').setValue(data_curr);
+  imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);   
+  
+  data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+  SpreadsheetApp.getActiveSheet().getRange('C10').setValue(data_curr);
+  imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);   
+  
+  data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+  SpreadsheetApp.getActiveSheet().getRange('C11').setValue(data_curr);
+  imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);   
+  
+  data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+  SpreadsheetApp.getActiveSheet().getRange('D6').setValue(data_curr);
+  imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);    
+  
+  data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+  SpreadsheetApp.getActiveSheet().getRange('D7').setValue(data_curr);
+  imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);    
+  
+  data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+  SpreadsheetApp.getActiveSheet().getRange('D8').setValue(data_curr);
+  imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);   
+  
+  data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+  SpreadsheetApp.getActiveSheet().getRange('D9').setValue(data_curr);
+  imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);   
+  
+  data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+  SpreadsheetApp.getActiveSheet().getRange('D10').setValue(data_curr);
+  imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);   
+  
+  data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+  SpreadsheetApp.getActiveSheet().getRange('D11').setValue(data_curr);
+  imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);   
+  
+  data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+  SpreadsheetApp.getActiveSheet().getRange('E6').setValue(data_curr);
+  imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);    
+  
+  data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+  SpreadsheetApp.getActiveSheet().getRange('E7').setValue(data_curr);
+  imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);    
+  
+  data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+  SpreadsheetApp.getActiveSheet().getRange('E8').setValue(data_curr);
+  imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);   
+  
+  data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+  SpreadsheetApp.getActiveSheet().getRange('E9').setValue(data_curr);
+  imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);   
+  
+  data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+  SpreadsheetApp.getActiveSheet().getRange('E10').setValue(data_curr);
+  imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);   
+  
+  data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+  SpreadsheetApp.getActiveSheet().getRange('E11').setValue(data_curr);
+  imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);   
+  
+  data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+  SpreadsheetApp.getActiveSheet().getRange('G6').setValue(data_curr);
+  imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);    
+  
+  data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+  SpreadsheetApp.getActiveSheet().getRange('G7').setValue(data_curr);
+  imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);    
+  
+  data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+  SpreadsheetApp.getActiveSheet().getRange('G8').setValue(data_curr);
+  imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);   
+  
+  data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+  SpreadsheetApp.getActiveSheet().getRange('G9').setValue(data_curr);
+  imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);   
+  
+  data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+  SpreadsheetApp.getActiveSheet().getRange('G10').setValue(data_curr);
+  imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);   
+  
+  data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+  SpreadsheetApp.getActiveSheet().getRange('G11').setValue(data_curr);
+  imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);   
+  
+  data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+  SpreadsheetApp.getActiveSheet().getRange('A14').setValue(data_curr);
+  imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);    
+  
+  data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+  SpreadsheetApp.getActiveSheet().getRange('B14').setValue(data_curr);
+  imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);    
+  
+  data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+  SpreadsheetApp.getActiveSheet().getRange('C14').setValue(data_curr);
+  imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);   
+  
+  data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+  SpreadsheetApp.getActiveSheet().getRange('D14').setValue(data_curr);
+  imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);   
+  
+  data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+  SpreadsheetApp.getActiveSheet().getRange('B16').setValue(data_curr);
+  imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);  
+  
+  data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+  SpreadsheetApp.getActiveSheet().getRange('B24').setValue(data_curr);
+  imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);  
+  
+  data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+  SpreadsheetApp.getActiveSheet().getRange('B25').setValue(data_curr);
+  imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);  
+  
+  data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+  SpreadsheetApp.getActiveSheet().getRange('B26').setValue(data_curr);
+  imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);  
+  
+  data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+  SpreadsheetApp.getActiveSheet().getRange('F6').setValue(data_curr);
+  imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);    
+  
+  data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+  SpreadsheetApp.getActiveSheet().getRange('F7').setValue(data_curr);
+  imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);    
+  
+  data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+  SpreadsheetApp.getActiveSheet().getRange('F8').setValue(data_curr);
+  imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);   
+  
+  data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+  SpreadsheetApp.getActiveSheet().getRange('F9').setValue(data_curr);
+  imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);   
+  
+  data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+  SpreadsheetApp.getActiveSheet().getRange('F10').setValue(data_curr);
+  imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);   
+  
+  data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+  SpreadsheetApp.getActiveSheet().getRange('F11').setValue(data_curr);
+  imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);
+
+  SpreadsheetApp.getActiveSheet().getRange('E2').setValue("");
+}
+
+function check_mundra() {
+  
+  var eq1 = SpreadsheetApp.getActiveSheet().getRange('C6').getValue();
+  var eq2 = SpreadsheetApp.getActiveSheet().getRange('C7').getValue();
+  var eq3 = SpreadsheetApp.getActiveSheet().getRange('C8').getValue();
+  var eq4 = SpreadsheetApp.getActiveSheet().getRange('C9').getValue();
+  var eq5 = SpreadsheetApp.getActiveSheet().getRange('C10').getValue();
+  var eq6 = SpreadsheetApp.getActiveSheet().getRange('C11').getValue();
+  
+  if (eq1 == "Mundra's Masher (ATK/HP) - T10" || eq1 == "Mundra's Hornbow (ATK) - T4" || eq1 == "Mundra's Scepter (ATK/CRIT) - T7")
+    SpreadsheetApp.getActiveSheet().getRange('G6').setValue("Mundra's Spirit (+20%ATK +20%DEF against Bosses)");
+  
+  if (eq2 == "Mundra's Tabard (DEF/ATK) - T5" || eq2 == "Mundra's Amulet (DEF/ATK) - T3")
+    SpreadsheetApp.getActiveSheet().getRange('G7').setValue("Mundra's Spirit (+20%ATK +20%DEF against Bosses)");
+  
+  if (eq3 == "Mundra's Amulet (DEF/ATK) - T3")
+    SpreadsheetApp.getActiveSheet().getRange('G8').setValue("Mundra's Spirit (+20%ATK +20%DEF against Bosses)");
+  
+  if (eq4 == "Mundra's Amulet (DEF/ATK) - T3" || eq4 == "Mundra's Aegis (DEF/HP) - T13")
+    SpreadsheetApp.getActiveSheet().getRange('G9').setValue("Mundra's Spirit (+20%ATK +20%DEF against Bosses)");
+  
+  if (eq5 == "Mundra's Amulet (DEF/ATK) - T3" || eq5 == "Mundra's Remedy (DEF/HP) - T12" || eq5 == "Mundra's Aegis (DEF/HP) - T13")
+    SpreadsheetApp.getActiveSheet().getRange('G10').setValue("Mundra's Spirit (+20%ATK +20%DEF against Bosses)");
+  
+  if (eq6 == "Mundra's Amulet (DEF/ATK) - T3" || eq6 == "Mundra's Remedy (DEF/HP) - T12" || eq6 == "Mundra's Aegis (DEF/HP) - T13")
+    SpreadsheetApp.getActiveSheet().getRange('G11').setValue("Mundra's Spirit (+20%ATK +20%DEF against Bosses)");
+    
+}

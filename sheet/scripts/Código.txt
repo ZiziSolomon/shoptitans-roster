@@ -1,0 +1,589 @@
+function onEdit(e) {
+  var activeSheet = e.source.getActiveSheet();
+  if (activeSheet.getName() == "Quest Sim" ) 
+    myFunction_V2();
+  else if (SpreadsheetApp.getActiveSheet().getRange(1, 29).getValue() == "HBSC" ) {
+    var cellAddress,cellAddress1, cellAddress2, cellAddress3, cellAddress4, cellAddress5, cellAddress6, cellAddress7;
+    var cellAddress8, cellAddress9, cellAddress10, cellAddress11, cellAddress12, cellAddress13, cellAddress14, cellAddress15;
+    var cell_aux;
+    cellAddress1 = 'C3';
+    cellAddress2 = 'B6';
+    cellAddress3 = 'B7';
+    cellAddress4 = 'B8';
+    cellAddress5 = 'B9';
+    cellAddress6 = 'B10';
+    cellAddress7 = 'B11';
+    
+    cellAddress8  = 'D4';
+    cellAddress9  = 'E4';
+    cellAddress10 = 'F4';
+    cellAddress15 = 'G4';
+    cellAddress11 = 'E2';
+    cellAddress12 = 'B2';
+    cellAddress13 = 'F2';
+    cellAddress14 = 'C2';
+    
+
+    // Get cell edited - If it's B6 then do something
+    cellAddress = e.range.getA1Notation();
+ 
+    if (cellAddress == cellAddress1) {      
+      var cell1, cell2, cell3, cell4, cell5, cell6;
+      var eq1, eq2, eq3, eq4, eq5, eq6;
+      var rule, args, target;
+            
+      cell1 = SpreadsheetApp.getActive().getRange('B6');
+      cell2 = SpreadsheetApp.getActive().getRange('B7');
+      cell3 = SpreadsheetApp.getActive().getRange('B8');
+      cell4 = SpreadsheetApp.getActive().getRange('B9');
+      cell5 = SpreadsheetApp.getActive().getRange('B10');
+      cell6 = SpreadsheetApp.getActive().getRange('B11');
+      
+      rule = cell1.getDataValidation();
+      args = rule.getCriteriaValues();
+      myTarget = args[0].getValues();
+      eq1 = myTarget[0][0];
+      
+      rule = cell2.getDataValidation();
+      args = rule.getCriteriaValues();
+      myTarget = args[0].getValues();
+      eq2 = myTarget[0][0];
+      
+      rule = cell3.getDataValidation();
+      args = rule.getCriteriaValues();
+      myTarget = args[0].getValues();
+      eq3 = myTarget[0][0];
+      
+      rule = cell4.getDataValidation();
+      args = rule.getCriteriaValues();
+      myTarget = args[0].getValues();
+      eq4 = myTarget[0][0];
+      
+      rule = cell5.getDataValidation();
+      args = rule.getCriteriaValues();
+      myTarget = args[0].getValues();
+      eq5 = myTarget[0][0];
+      
+      rule = cell6.getDataValidation();
+      args = rule.getCriteriaValues();
+      myTarget = args[0].getValues();
+      eq6 = myTarget[0][0];
+      
+      
+      SpreadsheetApp.getActiveSheet().getRange(6, 2).setValue("");
+      SpreadsheetApp.getActiveSheet().getRange(7, 2).setValue("");
+      SpreadsheetApp.getActiveSheet().getRange(8, 2).setValue("");
+      SpreadsheetApp.getActiveSheet().getRange(9, 2).setValue("");
+      SpreadsheetApp.getActiveSheet().getRange(10, 2).setValue("");
+      SpreadsheetApp.getActiveSheet().getRange(11, 2).setValue("");
+      
+      SpreadsheetApp.getActiveSheet().getRange(6, 3).setValue("");
+      SpreadsheetApp.getActiveSheet().getRange(7, 3).setValue("");
+      SpreadsheetApp.getActiveSheet().getRange(8, 3).setValue("");
+      SpreadsheetApp.getActiveSheet().getRange(9, 3).setValue("");
+      SpreadsheetApp.getActiveSheet().getRange(10, 3).setValue("");
+      SpreadsheetApp.getActiveSheet().getRange(11, 3).setValue("");
+      
+      SpreadsheetApp.getActiveSheet().getRange(6, 5).setValue("");
+      SpreadsheetApp.getActiveSheet().getRange(7, 5).setValue("");
+      SpreadsheetApp.getActiveSheet().getRange(8, 5).setValue("");
+      SpreadsheetApp.getActiveSheet().getRange(9, 5).setValue("");
+      SpreadsheetApp.getActiveSheet().getRange(10, 5).setValue("");
+      SpreadsheetApp.getActiveSheet().getRange(11, 5).setValue("");
+      
+      SpreadsheetApp.getActiveSheet().getRange(6, 6).setValue("");
+      SpreadsheetApp.getActiveSheet().getRange(7, 6).setValue("");
+      SpreadsheetApp.getActiveSheet().getRange(8, 6).setValue("");
+      SpreadsheetApp.getActiveSheet().getRange(9, 6).setValue("");
+      SpreadsheetApp.getActiveSheet().getRange(10, 6).setValue("");
+      SpreadsheetApp.getActiveSheet().getRange(11, 6).setValue("");
+      
+      SpreadsheetApp.getActiveSheet().getRange(14, 1).setValue("");
+      SpreadsheetApp.getActiveSheet().getRange(14, 2).setValue("");
+      SpreadsheetApp.getActiveSheet().getRange(14, 3).setValue("");
+      SpreadsheetApp.getActiveSheet().getRange(14, 4).setValue("");  
+         
+      SpreadsheetApp.getActiveSheet().getRange('B6').setValue(eq1);
+      SpreadsheetApp.getActiveSheet().getRange('B7').setValue(eq2);
+      SpreadsheetApp.getActiveSheet().getRange('B8').setValue(eq3);
+      SpreadsheetApp.getActiveSheet().getRange('B9').setValue(eq4);
+      SpreadsheetApp.getActiveSheet().getRange('B10').setValue(eq5);
+      SpreadsheetApp.getActiveSheet().getRange('B11').setValue(eq6);
+      
+    }
+    
+    if (cellAddress === cellAddress2) 
+      SpreadsheetApp.getActiveSheet().getRange(6, 3).setValue("");
+
+    if (cellAddress === cellAddress3) 
+      SpreadsheetApp.getActiveSheet().getRange(7, 3).setValue("");
+
+    if (cellAddress === cellAddress4) 
+      SpreadsheetApp.getActiveSheet().getRange(8, 3).setValue("");
+
+    if (cellAddress === cellAddress5) 
+      SpreadsheetApp.getActiveSheet().getRange(9, 3).setValue("");
+
+    if (cellAddress === cellAddress6) 
+      SpreadsheetApp.getActiveSheet().getRange(10, 3).setValue("");
+
+    if (cellAddress === cellAddress7) 
+      SpreadsheetApp.getActiveSheet().getRange(11, 3).setValue("");
+    
+    if (cellAddress === cellAddress8) {
+      cell_aux = SpreadsheetApp.getActiveSheet().getRange(4, 4).getValue();
+      SpreadsheetApp.getActiveSheet().getRange(6, 4).setValue(cell_aux);
+      SpreadsheetApp.getActiveSheet().getRange(7, 4).setValue(cell_aux);
+      SpreadsheetApp.getActiveSheet().getRange(8, 4).setValue(cell_aux);
+      SpreadsheetApp.getActiveSheet().getRange(9, 4).setValue(cell_aux);
+      SpreadsheetApp.getActiveSheet().getRange(10, 4).setValue(cell_aux);
+      SpreadsheetApp.getActiveSheet().getRange(11, 4).setValue(cell_aux);
+      SpreadsheetApp.getActiveSheet().getRange(4, 4).setValue("");
+    }
+    
+    if (cellAddress === cellAddress9) {
+      cell_aux = SpreadsheetApp.getActiveSheet().getRange(4, 5).getValue();
+      SpreadsheetApp.getActiveSheet().getRange(6, 5).setValue(cell_aux);
+      SpreadsheetApp.getActiveSheet().getRange(7, 5).setValue(cell_aux);
+      SpreadsheetApp.getActiveSheet().getRange(8, 5).setValue(cell_aux);
+      SpreadsheetApp.getActiveSheet().getRange(9, 5).setValue(cell_aux);
+      SpreadsheetApp.getActiveSheet().getRange(10, 5).setValue(cell_aux);
+      SpreadsheetApp.getActiveSheet().getRange(11, 5).setValue(cell_aux);
+      SpreadsheetApp.getActiveSheet().getRange(4, 5).setValue("");
+    }
+    
+    if (cellAddress === cellAddress10) {
+      cell_aux = SpreadsheetApp.getActiveSheet().getRange(4, 6).getValue();
+      if(cell_aux=="Match Hero Element")
+        cell_aux = SpreadsheetApp.getActiveSheet().getRange(4, 3).getValue();
+      if(cell_aux=="Any")
+        cell_aux = "Fire";
+      SpreadsheetApp.getActiveSheet().getRange(6, 6).setValue(cell_aux);
+      SpreadsheetApp.getActiveSheet().getRange(7, 6).setValue(cell_aux);
+      SpreadsheetApp.getActiveSheet().getRange(8, 6).setValue(cell_aux);
+      SpreadsheetApp.getActiveSheet().getRange(9, 6).setValue(cell_aux);
+      SpreadsheetApp.getActiveSheet().getRange(10, 6).setValue(cell_aux);
+      SpreadsheetApp.getActiveSheet().getRange(11, 6).setValue(cell_aux);
+      SpreadsheetApp.getActiveSheet().getRange(4, 6).setValue("");
+    }
+    
+    if (cellAddress === cellAddress15) {
+      cell_aux = SpreadsheetApp.getActiveSheet().getRange(4, 7).getValue();
+      SpreadsheetApp.getActiveSheet().getRange(6, 7).setValue(cell_aux);
+      SpreadsheetApp.getActiveSheet().getRange(7, 7).setValue(cell_aux);
+      SpreadsheetApp.getActiveSheet().getRange(8, 7).setValue(cell_aux);
+      SpreadsheetApp.getActiveSheet().getRange(9, 7).setValue(cell_aux);
+      SpreadsheetApp.getActiveSheet().getRange(10, 7).setValue(cell_aux);
+      SpreadsheetApp.getActiveSheet().getRange(11, 7).setValue(cell_aux);
+      SpreadsheetApp.getActiveSheet().getRange(4, 7).setValue("");
+    }
+    
+    
+    if (cellAddress === cellAddress11) 
+      read_import_builder();
+    
+    if (cellAddress === cellAddress12) {
+      cell_aux = SpreadsheetApp.getActiveSheet().getRange("C3").getValue();
+      if (cell_aux == "Soldier")
+        cell_aux = "Mercenary";
+      else if (cell_aux == "Mercenary")
+        cell_aux = "Soldier";
+      else if (cell_aux == "Barbarian")
+        cell_aux = "Chieftain";
+      else if (cell_aux == "Chieftain")
+        cell_aux = "Barbarian";
+      else if (cell_aux == "Knight")
+        cell_aux = "Lord";
+      else if (cell_aux == "Lord")
+        cell_aux = "Knight";
+      else if (cell_aux == "Ranger")
+        cell_aux = "Warden";
+      else if (cell_aux == "Warden")
+        cell_aux = "Ranger";
+      else if (cell_aux == "Samurai")
+        cell_aux = "Daimyo";
+      else if (cell_aux == "Daimyo")
+        cell_aux = "Samurai";
+      else if (cell_aux == "Berserker")
+        cell_aux = "Jarl";
+      else if (cell_aux == "Jarl")
+        cell_aux = "Berserker";
+      else if (cell_aux == "Dark Knight")
+        cell_aux = "Death Knight";
+      else if (cell_aux == "Death Knight")
+        cell_aux = "Dark Knight";
+      else if (cell_aux == "Thief")
+        cell_aux = "Trickster";
+      else if (cell_aux == "Trickster")
+        cell_aux = "Thief";
+      else if (cell_aux == "Monk")
+        cell_aux = "Grandmaster";
+      else if (cell_aux == "Grandmaster")
+        cell_aux = "Monk";
+      else if (cell_aux == "Musketeer")
+        cell_aux = "Conquistador";
+      else if (cell_aux == "Conquistador")
+        cell_aux = "Musketeer";
+      else if (cell_aux == "Wanderer")
+        cell_aux = "Pathfinder";
+      else if (cell_aux == "Pathfinder")
+        cell_aux = "Wanderer";
+      else if (cell_aux == "Ninja")
+        cell_aux = "Sensei";
+      else if (cell_aux == "Sensei")
+        cell_aux = "Ninja";
+      else if (cell_aux == "Dancer")
+        cell_aux = "Acrobat";
+      else if (cell_aux == "Acrobat")
+        cell_aux = "Dancer";
+      else if (cell_aux == "Velite")
+        cell_aux = "Praetorian";
+      else if (cell_aux == "Praetorian")
+        cell_aux = "Velite";
+      else if (cell_aux == "Mage")
+        cell_aux = "Archmage";
+      else if (cell_aux == "Archmage")
+        cell_aux = "Mage";
+      else if (cell_aux == "Cleric")
+        cell_aux = "Bishop";
+      else if (cell_aux == "Bishop")
+        cell_aux = "Cleric";
+      else if (cell_aux == "Druid")
+        cell_aux = "Arch Druid";
+      else if (cell_aux == "Arch Druid")
+        cell_aux = "Druid";
+      else if (cell_aux == "Sorcerer")
+        cell_aux = "Warlock";
+      else if (cell_aux == "Warlock")
+        cell_aux = "Sorcerer";
+      else if (cell_aux == "Spellblade")
+        cell_aux = "Spellknight";
+      else if (cell_aux == "Spellknight")
+        cell_aux = "Spellblade";
+      else if (cell_aux == "Geomancer")
+        cell_aux = "Astramancer";
+      else if (cell_aux == "Astramancer")
+        cell_aux = "Geomancer";
+      else if (cell_aux == "Chronomancer")
+        cell_aux = "Fateweaver";
+      else if (cell_aux == "Fateweaver")
+        cell_aux = "Chronomancer";
+      SpreadsheetApp.getActiveSheet().getRange("C3").setValue(cell_aux);
+    }
+    
+    if (cellAddress == cellAddress13) {
+        var hero_name  = SpreadsheetApp.getActiveSheet().getRange('F2').getValue();
+        var old_sheet = SpreadsheetApp.getActive().getSheetByName(activeSheet.getName());
+        var sheet = SpreadsheetApp.getActive().getSheetByName("Hero Data");
+  
+        var hero_range = sheet.getRange("A17:A76");
+        var i_found    = -1;
+        var hero_string;
+  
+        for (var i = 0; i < 60; i++) {
+          if(hero_range.getCell(i+1, 1).getValue()==hero_name) {
+            i_found=i+17;  
+            break;
+          }
+        }
+        
+        hero_string = sheet.getRange(i_found,22).getValue();
+  
+        SpreadsheetApp.getActiveSheet().getRange('E2').setValue(hero_string);
+        read_import_builder();
+        SpreadsheetApp.getActiveSheet().getRange('F2').setValue("");
+    }
+    
+    if (cellAddress == cellAddress14) {
+      
+      var hero_name  = SpreadsheetApp.getActiveSheet().getRange('C2').getValue();
+      var old_sheet = SpreadsheetApp.getActive().getSheetByName(activeSheet.getName());
+      var sheet = SpreadsheetApp.getActive().getSheetByName("Hero Data");
+           
+      var hero_range = sheet.getRange("A22:A76");
+      var i_found    = -1;
+      var hero_string;
+  
+        for (var i = 0; i < 60; i++) {
+          if(hero_range.getCell(i+1, 1).getValue()==hero_name) {
+            i_found=i+22;  
+            break;
+          }
+        }
+      
+      sheet.getRange(i_found,2).setValue(SpreadsheetApp.getActiveSheet().getRange('E17').getValue());
+      sheet.getRange(i_found,3).setValue(SpreadsheetApp.getActiveSheet().getRange('E24').getValue());
+      sheet.getRange(i_found,4).setValue("None");
+      sheet.getRange(i_found,5).setValue(SpreadsheetApp.getActiveSheet().getRange('E18').getValue());
+      sheet.getRange(i_found,6).setValue(SpreadsheetApp.getActiveSheet().getRange('E19').getValue());
+      sheet.getRange(i_found,7).setValue(SpreadsheetApp.getActiveSheet().getRange('E20').getValue());
+      sheet.getRange(i_found,8).setValue(SpreadsheetApp.getActiveSheet().getRange('E32').getValue());
+      sheet.getRange(i_found,9).setValue(SpreadsheetApp.getActiveSheet().getRange('E22').getValue());
+      sheet.getRange(i_found,10).setValue(SpreadsheetApp.getActiveSheet().getRange('E23').getValue());
+      sheet.getRange(i_found,11).setValue(SpreadsheetApp.getActiveSheet().getRange('E21').getValue());
+      
+      sheet.getRange(i_found,13).setValue(SpreadsheetApp.getActiveSheet().getRange('C4').getValue());
+      sheet.getRange(i_found,14).setValue(SpreadsheetApp.getActiveSheet().getRange('E25').getValue());
+      sheet.getRange(i_found,15).setValue(SpreadsheetApp.getActiveSheet().getRange('E27').getValue());
+      sheet.getRange(i_found,16).setValue(SpreadsheetApp.getActiveSheet().getRange('E28').getValue());
+      sheet.getRange(i_found,17).setValue(SpreadsheetApp.getActiveSheet().getRange('E26').getValue());
+      sheet.getRange(i_found,18).setValue(SpreadsheetApp.getActiveSheet().getRange('E29').getValue());
+      sheet.getRange(i_found,19).setValue(SpreadsheetApp.getActiveSheet().getRange('E30').getValue());
+      sheet.getRange(i_found,20).setValue(SpreadsheetApp.getActiveSheet().getRange('E31').getValue());
+      sheet.getRange(i_found,21).setValue(SpreadsheetApp.getActiveSheet().getRange('E34').getValue());
+      sheet.getRange(i_found,22).setValue(SpreadsheetApp.getActiveSheet().getRange('D2').getValue());
+      
+      var help1 = SpreadsheetApp.getActiveSheet().getRange('E12').getValue();
+      var help2 = help1.split("/");
+      var help = Number(help2[0]);
+      sheet.getRange(i_found,12).setValue(help);
+      
+      SpreadsheetApp.getActiveSheet().getRange('C2').setValue("");
+    }
+       
+    check_mundra();
+    make_export();
+    myFunction_builder();
+  }
+  else if (SpreadsheetApp.getActiveSheet().getRange(1, 29).getValue() == "CBSC" ) {
+    
+    var exp_string = SpreadsheetApp.getActive().getRange('B2').getValue();
+    exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('B3').getValue();
+    exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('B4').getValue();
+    exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('B5').getValue();
+    exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('B6').getValue();
+    exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('B7').getValue();
+    exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('B9').getValue();
+    exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('B10').getValue();
+    exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('B11').getValue();
+    exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('B12').getValue();
+    exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('B8').getValue();
+    exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('B13').getValue();
+    exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('B14').getValue();
+    exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('B15').getValue();
+    exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('B16').getValue();
+    exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('B17').getValue();
+    exp_string = exp_string + "|" + SpreadsheetApp.getActive().getRange('B18').getValue();
+    exp_string = exp_string + "|";
+    SpreadsheetApp.getActiveSheet().getRange('D2').setValue(exp_string);
+    
+    
+    var cellAddressCB1 = 'E2';
+    var cellAddressCB2 = 'F2';
+    var cellAddressCB3 = 'C2';
+    cellAddress = e.range.getA1Notation();
+ 
+    if (cellAddress == cellAddressCB1) {
+      var imp_string = SpreadsheetApp.getActive().getRange('E2').getValue();
+      SpreadsheetApp.getActiveSheet().getRange('D2').setValue(imp_string);
+      
+      var data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+      SpreadsheetApp.getActiveSheet().getRange('B2').setValue(data_curr);
+      imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);    
+  
+      data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+      SpreadsheetApp.getActiveSheet().getRange('B3').setValue(data_curr);
+      imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);    
+      
+      data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+      SpreadsheetApp.getActiveSheet().getRange('B4').setValue(data_curr);
+      imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);    
+      
+      data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+      SpreadsheetApp.getActiveSheet().getRange('B5').setValue(data_curr);
+      imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);    
+      
+      data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+      SpreadsheetApp.getActiveSheet().getRange('B6').setValue(data_curr);
+      imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);    
+      
+      data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+      SpreadsheetApp.getActiveSheet().getRange('B7').setValue(data_curr);
+      imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);    
+      
+      data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+      SpreadsheetApp.getActiveSheet().getRange('B9').setValue(data_curr);
+      imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);    
+      
+      data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+      SpreadsheetApp.getActiveSheet().getRange('B10').setValue(data_curr);
+      imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);    
+      
+      data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+      SpreadsheetApp.getActiveSheet().getRange('B11').setValue(data_curr);
+      imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);    
+      
+      data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+      SpreadsheetApp.getActiveSheet().getRange('B12').setValue(data_curr);
+      imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);    
+      
+      data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+      SpreadsheetApp.getActiveSheet().getRange('B8').setValue(data_curr);
+      imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);    
+
+      data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+      SpreadsheetApp.getActiveSheet().getRange('B13').setValue(data_curr);
+      imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length); 
+
+      data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+      SpreadsheetApp.getActiveSheet().getRange('B14').setValue(data_curr);
+      imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length); 
+
+      data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+      SpreadsheetApp.getActiveSheet().getRange('B15').setValue(data_curr);
+      imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length); 
+
+      data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+      SpreadsheetApp.getActiveSheet().getRange('B16').setValue(data_curr);
+      imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length); 
+
+      data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+      SpreadsheetApp.getActiveSheet().getRange('B17').setValue(data_curr);
+      imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length); 
+
+      data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+      SpreadsheetApp.getActiveSheet().getRange('B18').setValue(data_curr);
+      imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length); 
+  
+      SpreadsheetApp.getActiveSheet().getRange('E2').setValue("");
+    }
+    
+    
+        if (cellAddress == cellAddressCB2) {
+        var hero_name  = SpreadsheetApp.getActiveSheet().getRange('F2').getValue();
+        var old_sheet = SpreadsheetApp.getActive().getSheetByName(activeSheet.getName());
+        var sheet = SpreadsheetApp.getActive().getSheetByName("Hero Data");
+  
+        var hero_range = sheet.getRange("A3:A15");
+        var i_found    = -1;
+        var imp_string;
+  
+        for (var i = 0; i < 13; i++) {
+          if(hero_range.getCell(i+1, 1).getValue()==hero_name) {
+            i_found=i;  
+            break;
+          }
+        }
+        
+        imp_string = sheet.getRange(i_found+3,22).getValue();
+        SpreadsheetApp.getActiveSheet().getRange('D2').setValue(imp_string);   
+  
+        var data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+        SpreadsheetApp.getActiveSheet().getRange('B2').setValue(data_curr);
+        imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);    
+  
+        data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+        SpreadsheetApp.getActiveSheet().getRange('B3').setValue(data_curr);
+        imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);    
+      
+        data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+        SpreadsheetApp.getActiveSheet().getRange('B4').setValue(data_curr);
+        imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);    
+      
+        data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+        SpreadsheetApp.getActiveSheet().getRange('B5').setValue(data_curr);
+        imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);    
+      
+        data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+        SpreadsheetApp.getActiveSheet().getRange('B6').setValue(data_curr);
+        imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);    
+      
+        data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+        SpreadsheetApp.getActiveSheet().getRange('B7').setValue(data_curr);
+        imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);    
+      
+        data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+        SpreadsheetApp.getActiveSheet().getRange('B9').setValue(data_curr);
+        imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);    
+      
+        data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+        SpreadsheetApp.getActiveSheet().getRange('B10').setValue(data_curr);
+        imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);    
+      
+        data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+        SpreadsheetApp.getActiveSheet().getRange('B11').setValue(data_curr);
+        imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);    
+      
+        data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+        SpreadsheetApp.getActiveSheet().getRange('B12').setValue(data_curr);
+        imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);    
+          
+        data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+        SpreadsheetApp.getActiveSheet().getRange('B8').setValue(data_curr);
+        imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);    
+
+        data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+        SpreadsheetApp.getActiveSheet().getRange('B13').setValue(data_curr);
+        imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);   
+
+        data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+        SpreadsheetApp.getActiveSheet().getRange('B14').setValue(data_curr);
+        imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);   
+
+        data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+        SpreadsheetApp.getActiveSheet().getRange('B15').setValue(data_curr);
+        imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);   
+
+        data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+        SpreadsheetApp.getActiveSheet().getRange('B16').setValue(data_curr);
+        imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);   
+
+        data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+        SpreadsheetApp.getActiveSheet().getRange('B17').setValue(data_curr);
+        imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);   
+
+        data_curr = imp_string.substring(0,imp_string.indexOf('|'));
+        SpreadsheetApp.getActiveSheet().getRange('B18').setValue(data_curr);
+        imp_string = imp_string.substring(imp_string.indexOf('|')+1,imp_string.length);   
+  
+        SpreadsheetApp.getActiveSheet().getRange('E2').setValue("");    
+        SpreadsheetApp.getActiveSheet().getRange('F2').setValue("");
+    }
+    
+    if (cellAddress == cellAddressCB3) {
+      
+      var hero_name  = SpreadsheetApp.getActiveSheet().getRange('C2').getValue();
+      var old_sheet = SpreadsheetApp.getActive().getSheetByName(activeSheet.getName());
+      var sheet = SpreadsheetApp.getActive().getSheetByName("Hero Data");
+           
+      var hero_range = sheet.getRange("A3:A15");
+      var i_found    = -1;
+      var hero_string;
+  
+        for (var i = 0; i < 15; i++) {
+          if(hero_range.getCell(i+1, 1).getValue()==hero_name) {
+            i_found=i+3;  
+            break;
+          }
+        }
+      
+      sheet.getRange(i_found,2).setValue(SpreadsheetApp.getActiveSheet().getRange('E4').getValue());
+      sheet.getRange(i_found,3).setValue(SpreadsheetApp.getActiveSheet().getRange('E11').getValue());
+      sheet.getRange(i_found,4).setValue(SpreadsheetApp.getActiveSheet().getRange('E19').getValue());
+      sheet.getRange(i_found,5).setValue(SpreadsheetApp.getActiveSheet().getRange('E5').getValue());
+      sheet.getRange(i_found,6).setValue(SpreadsheetApp.getActiveSheet().getRange('E6').getValue());
+      sheet.getRange(i_found,7).setValue(SpreadsheetApp.getActiveSheet().getRange('E7').getValue());
+      sheet.getRange(i_found,8).setValue(SpreadsheetApp.getActiveSheet().getRange('E16').getValue());
+      sheet.getRange(i_found,9).setValue(SpreadsheetApp.getActiveSheet().getRange('E9').getValue());
+      sheet.getRange(i_found,10).setValue(SpreadsheetApp.getActiveSheet().getRange('E10').getValue());
+      sheet.getRange(i_found,11).setValue(SpreadsheetApp.getActiveSheet().getRange('E8').getValue());
+      sheet.getRange(i_found,12).setValue(SpreadsheetApp.getActiveSheet().getRange('E18').getValue());
+      sheet.getRange(i_found,13).setValue(SpreadsheetApp.getActiveSheet().getRange('E17').getValue());
+      sheet.getRange(i_found,14).setValue(SpreadsheetApp.getActiveSheet().getRange('E12').getValue());
+      sheet.getRange(i_found,15).setValue(SpreadsheetApp.getActiveSheet().getRange('E14').getValue());
+      sheet.getRange(i_found,16).setValue(SpreadsheetApp.getActiveSheet().getRange('E15').getValue());
+      sheet.getRange(i_found,17).setValue(SpreadsheetApp.getActiveSheet().getRange('E13').getValue());
+      sheet.getRange(i_found,18).setValue(0);
+      sheet.getRange(i_found,19).setValue(0);
+      sheet.getRange(i_found,20).setValue(0);
+      sheet.getRange(i_found,22).setValue(SpreadsheetApp.getActiveSheet().getRange('D2').getValue());
+      
+      SpreadsheetApp.getActiveSheet().getRange('C2').setValue("");
+    }
+    
+    
+    
+
+  }
+}
+

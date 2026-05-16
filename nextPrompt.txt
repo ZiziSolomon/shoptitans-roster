@@ -1,0 +1,121 @@
+Continuing work on aligning the Python MC sim (sim/combat.py) with the sheet's
+Apps Script sim (sheet/scripts/simV2.txt). See sim_diff_vs_sheet.md for the full
+24-item diff list — that's our roadmap.
+
+## Progress so far
+
+DONE (Batch 1, Batch 2, Batch 3, plus item 21 pulled forward):
+- B1: Mob/hero attack order swapped, AoE/single-target exclusive, round limit 499,
+      Hero attack order shuffled per trial (slot 0 fixed)
+- B2: Mob crits (10% / x1.5, single-target only), evasion cap 75%
+- B3: Surviving Fatal Blow (one-shot per trial, HP=1 on activation),
+      End-of-round lizard regen for ALL alive heroes (capped at HP max)
+- Item 21: Damage rounding hygiene (dmg_taken/crit/aoe precomputed per trial)
+
+## Validation state
+
+Validator: sim/validate_vs_sheet.py, tolerance ±1.0pp.
+
+Current sheet config (Batch 3 test setup, persisted in validate_vs_sheet.py):
+  Quest Sim tab:
+    Hero 1: Blue/Spellcaster T4 (4 Armadillo enchants → armadillo=60)
+    Hero 2: Blue/Spellcaster T4 (6 Lizard enchants → lizard=21 via Statuette affinity)
+    Quest Zone: Lost City of Gold Diff 11, Hard
+    Power Booster: None, Mini Boss: No, No champion, no aurasong
+  Last comparison (Python @100k, seed=42 vs sheet recalc):
+    Success: Py 46.35% vs Sheet 46.39% (0.04pp)
+    H1 surv: Py 38.32% vs Sheet 38.64% (0.32pp)
+    H2 surv: Py 36.63% vs Sheet 36.52% (0.11pp)
+  All PASS.
+  (Note: H2's lizard build cost a lot of HP/ATK/DEF/Crit — that's why success
+  fell from ~95% pre-B3 to ~46%. Lethal failure mode actually stress-tests
+  both armadillo and lizard. Good config to keep around as a regression test.)
+
+## Next: Batch 4 — Class Innates (split into 3 sub-batches)
+
+Batch 4 has 8+ class innates plus the Cleric/Bishop bits we deferred from B3.
+Split for tractable per-sub testing — each sub-batch needs its own sheet config.
+
+### Sub-4a: Defensive innates (DO FIRST)
+Closest to B3, builds on survive_chance + EoR heal infrastructure.
+  - Cleric/Bishop: survive_chance override to 1.2 (sheet 679-680)
+  - Cleric EoR heal: Math.min(tier,3)*5 - 5 (sheet 1124)
+  - Bishop EoR heal: tier2=+5, tier3+=+20 (sheet 1126-1130)
+  - Pathfinder: evasion cap 75 → 78 (sheet 241-243; flag is on Hero, check sheet field)
+  - Ninja/Sensei: starting evasion + crit bonus, lost on first hit taken
+    (sheet refs: Hero_Ninja_evasion, Hero_Ninja_crit, Hero_Lost_Innate timing
+    at 861-862, 929-930. Crit bonus lost same round as the hit; evasion cleared.)
+Sheet config to test:
+  - Slot 1: Cleric or Bishop (replaces Hero 1 Spellcaster — keep Blue/Light element
+    to keep things simple; pick a tier where heal is non-zero)
+  - Slot 2: Pathfinder OR Ninja/Sensei (one per session if needed for clean signal)
+  - Same LCoG D11 Hard quest
+  - Strip armadillo/lizard back to 0 so we see only the innate effects
+
+### Sub-4b: Offensive/conditional innates
+Mostly crit-related. Need a scenario where crits and evasions actually fire.
+  - Samurai/Daimyo: guaranteed crit round 1 (sheet 995, gated on Round==1)
+  - Daimyo: guaranteed evade round 1 (look for Hero_Guaranteed_Evade init)
+  - Conquistador: consecutive-crit bonus (sheet 1022, persistent counter)
+  - Dancer/Acrobat: guaranteed_crit flag set on evade (sheet 827-828, 892-893)
+Sheet config to test:
+  - Pick 2 hero slots from {Samurai, Daimyo, Conquistador, Dancer}
+  - Quest with meaningful AoE+single-target mix so evades happen
+  - Keep tier consistent across runs
+
+### Sub-4c: State-dependent innates
+HP-threshold and mob-HP-gated effects. Most complex state tracking.
+  - Berserker/Jarl: HP-stage bonuses (sheet 962-975)
+    Stage triggers at HP fractions; gives +ATK and +evasion (10% per stage)
+    Note: stage*0.1 evasion is added inside Math.min(...cap) on lines 826, 891
+  - Dark Knight/Death Knight: execute mob if Mob_HP < 10% (sheet 1038-1041)
+  - DEFER Mercenary 1.25× champion bonuses → goes with champion batch (B5)
+Sheet config to test:
+  - Berserker AND Dark Knight in slots
+  - High-HP quest so DK execute matters; high-damage quest so Berserker stages
+    cycle through. Possibly need two separate runs.
+
+## Notes for implementer
+
+- All three sub-batches will need per-hero class strings. Currently Hero
+  dataclass has no `class_` field. ADD ONE in sim/hero.py and populate from
+  HeroData. Search for how Class is stored in Hero Data tab CSV (col 1).
+- "Hero_Lost_Innate" in sheet is a round number — used as "innate was lost
+  this round, suppress effect on next round's check". Translate carefully:
+  it's set when the hit lands, checked next round.
+- Pathfinder eva cap: store cap per-hero on Hero (currently _evasion_cap is
+  a function returning constant 75). Replace with a per-hero field set at
+  party construction time, or check class string in _evasion_cap.
+- For each sub-batch, run validate_vs_sheet at start (should still PASS B3
+  config), then change sheet to sub-batch config, change PARTY in
+  validate_vs_sheet.py, re-run.
+
+## Key learnings to keep in mind
+
+- Don't fight statistical noise. At 100k Python trials, SE on success rate
+  is ~0.07-0.1pp. Don't chase <0.2pp diffs — run multiple seeds first.
+- Sheet uses 50k trials, auto-drops to 5k if avg rounds > 200 (simV2.txt:1097).
+- Sheet's Apps Script myFunction_V2() must be MANUALLY re-run after sheet
+  edits — recalc alone doesn't update MC outputs. Stat aggregations (lizard
+  total, etc) update on recalc; success rates don't. Burned 1 cycle on this.
+- The CSV export from gviz endpoint reflects whatever the cells currently
+  hold, so if the sheet wasn't re-run since the last edit, the script will
+  silently compare against stale MC numbers. Always confirm with user.
+- When swapping enchants, OTHER stats change too (HP, ATK, DEF, Crit shift
+  as items/sub-stats trade off). Pull fresh from Hero Data tab via gviz
+  CSV — don't trust prior PARTY values.
+
+## Files
+
+- sim/combat.py — main sim
+- sim/hero.py — Hero dataclass (needs class_ field for B4)
+- sim/validate_vs_sheet.py — validation harness (has B3 PARTY config)
+- sim/data.py, sim/quest.py — quest/hero data loaders
+- sheet/scripts/simV2.txt — source of truth (1235 lines)
+- sim_diff_vs_sheet.md — the 24-item roadmap
+
+## Task list state at handoff
+
+B3 tasks (#1-4) all completed.
+Next session: create tasks for Sub-4a items, work through them, validate,
+then Sub-4b, Sub-4c.
